@@ -2,3 +2,12 @@ language: kotlin
 
 jdk:
   - oraclejdk8
+
+sudo: true
+
+before_install:
+- chmod a+x gradlew
+
+script:
+- "./gradlew assemble"
+- "./gradlew jar"
