@@ -33,7 +33,7 @@ Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, {
 Removing all entities' gravity per 5 seconds. The operation to entity must run in the Spigot main thread, `runOnServerThread {}` will save you :) 
 
 ## Usage
-###Gradle
+### Gradle
 ```groovy
 repositories {
     jcenter()
