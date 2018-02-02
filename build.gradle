@@ -1,0 +1,42 @@
+buildscript {
+    ext.kotlin_version = '1.2.21'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
+}
+
+group 'cn.berberman'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin'
+apply plugin: 'com.novoda.bintray-release'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+publish {
+    userOrg = 'berberman'
+    groupId = 'cn.berberman'
+    artifactId = 'emerald-extension'
+    publishVersion = '1.0'
+    desc = 'a extension of Minecraft Spigot plugin, written by kotlin.'
+    website = 'https://github.com/berberman/emerald-extension'
+}
