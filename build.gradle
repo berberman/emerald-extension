@@ -32,6 +32,9 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.4'
+}
 publish {
     userOrg = 'berberman'
     groupId = 'cn.berberman'
