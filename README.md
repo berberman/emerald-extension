@@ -20,7 +20,7 @@ ItemStack(Material.DIAMOND_SWORD).modifyNBT {
 	slot = NBTModifier.NBTTagModifier.Slot.MainHand
 }
 ```
-Then you will get a 233-attack-damage-diamond sword.
+Then you will get a `233-attack-damage` diamond sword.
 ```kotlin
 Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, {
 	runOnServerThread {
