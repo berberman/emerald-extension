@@ -60,6 +60,7 @@ dependencies {
   <type>pom</type>
 </dependency>
 ```
-## Other
+### Other
 if you don't use dependency management system, you can download jars from [bintray](https://bintray.com/berberman/maven/emerald-extension/_latestVersion) or [github](https://github.com/berberman/emerald-extension/releases).
-
+## Contribution
+Welcome to open issues and pull request. This project is only a part of `Emerald`.
