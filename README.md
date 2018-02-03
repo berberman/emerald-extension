@@ -3,8 +3,9 @@
 
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 [![Build Status](https://travis-ci.org/berberman/emerald-extension.svg?branch=master)](https://travis-ci.org/berberman/emerald-extension)
-  
-An extension OF Minecraft-Spigot Plugin.   
+  [ ![Download](https://api.bintray.com/packages/berberman/maven/emerald-extension/images/download.svg) ](https://bintray.com/berberman/maven/emerald-extension/_latestVersion)
+
+An extension of Minecraft-Spigot Plugin.   
 
 What does this extension include?
 * top-level member to access Spigot API easily.
@@ -59,4 +60,6 @@ dependencies {
   <type>pom</type>
 </dependency>
 ```
+## Other
+if you don't use dependency management system, you can download jars from [bintray](https://bintray.com/berberman/maven/emerald-extension/_latestVersion) or [github](https://github.com/berberman/emerald-extension/releases).
 

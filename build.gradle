@@ -35,6 +35,7 @@ compileTestKotlin {
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
 }
+
 publish {
     userOrg = 'berberman'
     groupId = 'cn.berberman'
@@ -43,3 +44,13 @@ publish {
     desc = 'a extension of Minecraft Spigot plugin, written by kotlin.'
     website = 'https://github.com/berberman/emerald-extension'
 }
+
+//task sourceJar(type: Jar){
+//    baseName archivesBaseName
+//    classifier 'sources'
+//    from sourceSets.main.allSource
+//}
+//artifacts {
+//   archives jar
+//   archives sourceJar
+//}
