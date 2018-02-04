@@ -8,7 +8,7 @@
 
 An extension of Minecraft-Spigot Plugin.   
 
-~~Dont'need to pay attention whether Travis CI build successful or faild.~~
+~~Don't need to pay attention whether Travis CI build successful or faild.~~
 
 This dependency use library `spigot-1.12.2`,  but it supports other versions theoretically.
 
