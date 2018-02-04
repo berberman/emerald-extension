@@ -2,6 +2,7 @@
 ![233](https://d1u5p3l4wpay3k.cloudfront.net/minecraft_zh_gamepedia/6/6a/Emerald.png?version=c18f3d42d9893b84e783362697408421)
 
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/berberman/emerald-extension.svg?branch=master)](https://travis-ci.org/berberman/emerald-extension)
   [ ![Download](https://api.bintray.com/packages/berberman/maven/emerald-extension/images/download.svg) ](https://bintray.com/berberman/maven/emerald-extension/_latestVersion)
 
