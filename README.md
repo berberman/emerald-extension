@@ -120,4 +120,4 @@ override fun onEnable() {
 Default value of `Emerald.setDebug()` is false. While you are building commands, only `name` is required, other values are optional. `registerPermissions` is similar to `registerCommands`, both of them have optional arguments.  
  **Don't forget that if you use the function `whenSenderIs<T>()` without `otherwise`, you have to use a `()` to replace it.**
 ## Contribution
-Welcome to open issues and pull request.
+Welcome to open issues and make pull request.
