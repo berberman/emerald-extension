@@ -40,7 +40,7 @@ publish {
     userOrg = 'berberman'
     groupId = 'cn.berberman'
     artifactId = 'emerald-extension'
-    publishVersion = '1.0'
+    publishVersion = '1.1'
     desc = 'a extension of Minecraft Spigot plugin, written by kotlin.'
     website = 'https://github.com/berberman/emerald-extension'
 }

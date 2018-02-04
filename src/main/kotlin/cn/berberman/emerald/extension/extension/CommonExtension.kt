@@ -1,5 +1,6 @@
-package cn.berberman.emerald.extension
+package cn.berberman.emerald.extension.extension
 
+import cn.berberman.emerald.extension.Emerald
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Location
