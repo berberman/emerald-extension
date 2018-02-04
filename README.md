@@ -7,13 +7,18 @@
 
 An extension of Minecraft-Spigot Plugin.   
 
+~~Dont'need to pay attention whether Travis CI build successful or faild.~~
+
+This dependency use library `spigot-1.12.2`,  but it supports other versions theoretically.
+
 What does this extension include?
 * top-level member to access Spigot API easily.
 * `async {}`,`runOnServerThread {}` etc. These functions are used to create bukkit task, which let you dispatch tasks in appropriate thread context.
 * overload operators of classes `Location` and `Vector`, take place of `multiply`, `subtract`, `divide` etc. Also, you can get a value whatever which direction it's, such as  x, y or z by using `[]` operator.
 * packing NBT values of `ItemStack`, allows you to use `ItemStack.modifyNBT {}` to create a DSL structure to edit NBT value efficiently.
-
+* DSL part, which allows you to register commands, permissions, events easily.
 ## Example
+### Modify NBT
 ```kotlin
 ItemStack(Material.DIAMOND_SWORD).modifyNBT {
 	type = NBTModifier.NBTTagModifier.NBTType.AttackDamage
@@ -22,6 +27,7 @@ ItemStack(Material.DIAMOND_SWORD).modifyNBT {
 }
 ```
 Then you will get a `233-attack-damage` diamond sword.
+### Scheduler
 ```kotlin
 Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, {
 	runOnServerThread {
@@ -31,16 +37,17 @@ Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, {
 	}
 }, 5000)
 ```
-Removing all entities' gravity per 5000 ticks. The operation to entity must run in the Spigot main thread, `runOnServerThread {}` will save you :) 
+Removing all entities' gravity per 5000 ticks. The operation to entity must run in the Spigot main thread, `runOnServerThread {}` will save you :)
 
 ## Usage
+You need to import this dependency into your project, there are three ways:
 ### Gradle
 ```groovy
 repositories {
     jcenter()
 }
 dependencies {
-    compile "cn.berberman:emerald-extension:1.0"
+    compile "cn.berberman:emerald-extension:1.1"
 }
 ```
 ### Maven
@@ -56,11 +63,60 @@ dependencies {
 <dependency>
   <groupId>cn.berberman</groupId>
   <artifactId>emerald-extension</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <type>pom</type>
 </dependency>
 ```
 ### Other
 if you don't use dependency management system, you can download jars from [bintray](https://bintray.com/berberman/maven/emerald-extension/_latestVersion) or [github](https://github.com/berberman/emerald-extension/releases).
+## How to use?
+Here is a sample:
+```kotlin
+override fun onEnable() {
+  Emerald.setDebug(true)
+  Emerald.registerContext(this)
+  Emerald.registerCommands {
+    command("test") {
+      permissionMessage = "You don't have this permission!"
+      permission = "test"
+      description = "Test Command."
+      usageMessage = "/test"
+      action { sender ->
+        whenSenderIs<Player>(sender) {
+          this sendMessage "Hi! $name"
+          true
+        }()
+      }
+    }
+    command("hello") {
+      action { sender ->
+        whenSenderIs<Player>(sender) {
+          this sendMessage "Hi! $name"
+          true
+        } otherwise {
+          this sendMessage "You are not a Player!"
+          false
+        }
+      }
+    }
+  }
+  Emerald.registerEvents {
+    event<PlayerJoinEvent> {
+      joinMessage = ChatColor.AQUA * "Hello,${player.name}!"
+    }
+  }
+  Emerald.registerPermissions {
+    permission("test") {
+      description = "Test permission"
+      childPermission("test.child") {
+        description = "Test child permission"
+        defaultValue = PermissionDefault.TRUE
+      }
+    }
+  }
+}
+```
+Default value of `Emerald.setDebug()` is false. While you are building commands, only `name` is required, other values are optional. `registerPermissions` is similar to `registerCommands`, both of them have optional arguments.  
+ **Don't forget that if you use the function `whenSenderIs<T>()` without `otherwise`, you have to use a `()` to replace it.**
 ## Contribution
 Welcome to open issues and pull request.
