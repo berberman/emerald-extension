@@ -16,7 +16,7 @@ fun ItemStack.opertateMeta(block: ItemMeta.() -> Unit) = apply {
 fun ItemStack.modifyNBT(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModifier(this).modify(block)
 
 object NMSUtil {
-	private val version = Bukkit.getServer()::class.java.`package`.name.split("\\.")[3]
+	private val version = Bukkit.getServer()::class.java.`package`.name.split(".")[3]
 	private val nmsPackageName = "net.minecraft.server.$version"
 	private val craftBukkitPackageName = "org.bukkit.craftbukkit.$version"
 	fun getNMSClass(name: String): Class<*> = Class.forName("$nmsPackageName.$name")
@@ -24,10 +24,10 @@ object NMSUtil {
 	fun getCraftBukkitClass(nameWithPackage: String): Class<*> = Class.forName("$craftBukkitPackageName.$nameWithPackage")
 
 	fun asNMSCopy(original: ItemStack): Any = getCraftBukkitClass("inventory.CraftItemStack")
-			.getMethod("asNMSCopy", ItemStack::class.java)(original)
+			.getMethod("asNMSCopy", ItemStack::class.java)(original, original)
 
 	fun asBukkitCopy(original: NMSItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
-			.getMethod("asNMSCopy", ItemStack::class.java)(original.nmsItemStack) as ItemStack
+			.methods.firstOrNull { it.name == "asBukkitCopy" }!!(original.nmsItemStack, original.nmsItemStack) as ItemStack
 }
 
 class NMSNBTTagCompound {
@@ -87,8 +87,7 @@ class NMSNBTTagList {
 
 	private val methods = hashMapOf(
 			"remove" to getMethod("remove"),
-			"add" to getMethod("add"),
-			"c" to getMethod("c")
+			"add" to getMethod("add")
 	)
 
 	fun remove(int: Int) {
@@ -98,9 +97,6 @@ class NMSNBTTagList {
 	fun add(any: Any) {
 		methods["add"]!!(tagList, any)
 	}
-
-	@Suppress("UNCHECKED_CAST")
-	fun getContent() = methods["c"]!!(tagList) as Set<String>
 }
 
 class NMSItemStack(itemStack: ItemStack) {
@@ -117,8 +113,8 @@ class NMSItemStack(itemStack: ItemStack) {
 
 	fun getTag() = NMSNBTTagCompound(methods["getTag"]!!(nmsItemStack))
 
-	fun setTag(nmsNbtTagCompound: NMSNBTTagCompound) {
-		methods["setTag"]!!(nmsNbtTagCompound.tagCompound)
+	fun setTag(nmsNBTTagCompound: NMSNBTTagCompound) {
+		methods["setTag"]!!(nmsItemStack, nmsNBTTagCompound.tagCompound)
 	}
 }
 
@@ -133,10 +129,7 @@ class NBTModifier(itemStack: ItemStack) {
 
 	fun modify(block: NBTTagModifier.() -> Unit) = apply {
 		tag.set("AttributeModifiers", NMSNBTTagList().apply {
-			add(NBTTagModifier().apply(block).nbtTagCompound.apply {
-				if (Emerald.debug)
-					logger.warning("Tag内容" + getContent().joinToString())
-			})
+			add(NBTTagModifier().apply(block).nbtTagCompound.tagCompound)
 		}.tagList)
 	}.getResult()
 
@@ -182,25 +175,25 @@ class NBTModifier(itemStack: ItemStack) {
 
 		private fun setString(tagName: TagName, value: String) {
 			if (Emerald.debug)
-				logger.info("添加$tagName:$value")
+				logger.info("NBT:添加$tagName:$value")
 			nbtTagCompound.setString(tagName.getNBTName(), value)
 		}
 
 		private fun setInt(tagName: TagName, int: Int) {
 			if (Emerald.debug)
-				logger.info("添加$tagName:$int")
+				logger.info("NBT:添加$tagName:$int")
 			nbtTagCompound.setInt(tagName.getNBTName(), int)
 		}
 
 		private fun remove(tagName: TagName) {
 			if (Emerald.debug)
-				logger.info("移除${tagName.name}")
+				logger.info("NBT:移除${tagName.name}")
 			nbtTagCompound.remove(tagName.getNBTName())
 		}
 
 		private fun setTypeName(type: NBTType) {
 			if (Emerald.debug)
-				logger.info("添加Type:${type.getNBTName()}")
+				logger.info("NBT:添加Type:${type.getNBTName()}")
 			nbtTagCompound.setString("AttributeName", type.getNBTName())
 		}
 

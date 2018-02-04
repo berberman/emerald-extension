@@ -11,8 +11,10 @@ buildscript {
     }
 }
 
+//noinspection GroovyAssignabilityCheck
 group 'cn.berberman'
-version '1.0-SNAPSHOT'
+//noinspection GroovyAssignabilityCheck
+version '1.1-SNAPSHOT'
 
 apply plugin: 'kotlin'
 apply plugin: 'com.novoda.bintray-release'
