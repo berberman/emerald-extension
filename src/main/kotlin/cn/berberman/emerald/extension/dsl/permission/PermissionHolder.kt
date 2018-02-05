@@ -4,14 +4,19 @@ import cn.berberman.emerald.extension.Emerald
 import cn.berberman.emerald.extension.extension.logger
 import cn.berberman.emerald.extension.extension.pluginManager
 
-object PermissionHolder {
+/**
+ * A object holds permissions we want's to register.
+ * @see DSLPermissionScope
+ * @author berberman
+ */
+internal object PermissionHolder {
 	private val simplePermissionList = mutableListOf<DSLPermissionBuilder>()
 
 
 	fun addPermission(permissionBuilder: DSLPermissionBuilder) = simplePermissionList.add(permissionBuilder)
 
 
-	fun register() {
+	internal fun register() {
 		simplePermissionList.flatMap { it.getChildPermissionInstances() }.forEach(pluginManager::addPermission)
 		simplePermissionList.flatMap { it.getChildPermissionInstances() }.forEach {
 			if (Emerald.debug)

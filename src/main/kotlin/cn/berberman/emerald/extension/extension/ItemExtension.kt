@@ -1,122 +1,32 @@
 package cn.berberman.emerald.extension.extension
 
 import cn.berberman.emerald.extension.Emerald
-import org.apache.commons.lang3.RandomUtils
-import org.bukkit.Bukkit
+import cn.berberman.emerald.extension.dsl.nms.item.NMSUtil
+import cn.berberman.emerald.extension.dsl.nms.item.data.NMSItemStack
+import cn.berberman.emerald.extension.dsl.nms.item.data.NMSNBTTagCompound
+import cn.berberman.emerald.extension.dsl.nms.item.data.NMSNBTTagList
+import org.apache.commons.lang.math.RandomUtils
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-
-fun ItemStack.opertateMeta(block: ItemMeta.() -> Unit) = apply {
+/**
+ * Operate a bukkit ItemStack's meta.
+ * @param block function with receiver to access ItemMeta's class member
+ * @return this ItemStack
+ */
+fun ItemStack.operateMeta(block: ItemMeta.() -> Unit) = apply {
 	itemMeta = itemMeta.apply(block)
 }
 
+/**
+ * Modify a NBT Tag to a bukkit ItemStack.
+ * @param block function with receiver to access DSL NBTTagModifier
+ * @return this ItemStack
+ */
 fun ItemStack.modifyNBT(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModifier(this).modify(block)
 
-object NMSUtil {
-	private val version = Bukkit.getServer()::class.java.`package`.name.split(".")[3]
-	private val nmsPackageName = "net.minecraft.server.$version"
-	private val craftBukkitPackageName = "org.bukkit.craftbukkit.$version"
-	fun getNMSClass(name: String): Class<*> = Class.forName("$nmsPackageName.$name")
-
-	fun getCraftBukkitClass(nameWithPackage: String): Class<*> = Class.forName("$craftBukkitPackageName.$nameWithPackage")
-
-	fun asNMSCopy(original: ItemStack): Any = getCraftBukkitClass("inventory.CraftItemStack")
-			.getMethod("asNMSCopy", ItemStack::class.java)(original, original)
-
-	fun asBukkitCopy(original: NMSItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
-			.methods.firstOrNull { it.name == "asBukkitCopy" }!!(original.nmsItemStack, original.nmsItemStack) as ItemStack
-}
-
-class NMSNBTTagCompound {
-	constructor() {
-		tagCompound = NMSUtil.getNMSClass("NBTTagCompound").newInstance()
-	}
-
-	constructor(original: Any) {
-		tagCompound = original
-	}
-
-	val tagCompound: Any
-
-	private val rawMethods = NMSUtil.getNMSClass("NBTTagCompound").methods
-
-	private fun getMethod(name: String) = rawMethods.firstOrNull { it.name == name }!!
-
-	private val methods = hashMapOf(
-			"setInt" to getMethod("setInt"),
-			"setString" to getMethod("setString"),
-			"remove" to getMethod("remove"),
-			"set" to getMethod("set")
-	)
-
-	fun setInt(name: String, value: Int) {
-		methods["setInt"]!!(tagCompound, name, value)
-	}
-
-	fun setString(name: String, value: String) {
-		methods["setString"]!!(tagCompound, name, value)
-	}
-
-	fun remove(name: String) {
-		methods["remove"]!!(tagCompound, name)
-	}
-
-	fun set(name: String, any: Any) {
-		methods["set"]!!(tagCompound, name, any)
-	}
-
-}
-
-class NMSNBTTagList {
-	constructor() {
-		tagList = NMSUtil.getNMSClass("NBTTagList").newInstance()
-	}
-
-	constructor(original: Any) {
-		tagList = original
-	}
-
-	val tagList: Any
-
-	private val rawMethods = NMSUtil.getNMSClass("NBTTagList").methods
-
-	private fun getMethod(name: String) = rawMethods.firstOrNull { it.name == name }!!
-
-	private val methods = hashMapOf(
-			"remove" to getMethod("remove"),
-			"add" to getMethod("add")
-	)
-
-	fun remove(int: Int) {
-		methods["remove"]!!(tagList, int)
-	}
-
-	fun add(any: Any) {
-		methods["add"]!!(tagList, any)
-	}
-}
-
-class NMSItemStack(itemStack: ItemStack) {
-	val nmsItemStack: Any = NMSUtil.asNMSCopy(itemStack)
-	private val rawMethods = NMSUtil.getNMSClass("ItemStack").methods
-	private fun getMethod(name: String) = rawMethods.firstOrNull { it.name == name }!!
-	private val methods = hashMapOf(
-			"hasTag" to getMethod("hasTag"),
-			"getTag" to getMethod("getTag"),
-			"setTag" to getMethod("setTag")
-	)
-
-	fun hasTag() = methods["hasTag"]!!(nmsItemStack) as Boolean
-
-	fun getTag() = NMSNBTTagCompound(methods["getTag"]!!(nmsItemStack))
-
-	fun setTag(nmsNBTTagCompound: NMSNBTTagCompound) {
-		methods["setTag"]!!(nmsItemStack, nmsNBTTagCompound.tagCompound)
-	}
-}
 
 class NBTModifier(itemStack: ItemStack) {
 	private val nms = NMSItemStack(itemStack)
@@ -127,7 +37,10 @@ class NBTModifier(itemStack: ItemStack) {
 		tag = if (nms.hasTag()) nms.getTag() else NMSNBTTagCompound()
 	}
 
-	fun modify(block: NBTTagModifier.() -> Unit) = apply {
+	/**
+	 * Let outer class to access modifier.
+	 */
+	internal fun modify(block: NBTTagModifier.() -> Unit) = apply {
 		tag.set("AttributeModifiers", NMSNBTTagList().apply {
 			add(NBTTagModifier().apply(block).nbtTagCompound.tagCompound)
 		}.tagList)
@@ -136,18 +49,28 @@ class NBTModifier(itemStack: ItemStack) {
 	private fun getResult() = NMSUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
 
 	class NBTTagModifier {
-		val nbtTagCompound = NMSNBTTagCompound()
+		internal val nbtTagCompound = NMSNBTTagCompound()
 
+		/**
+		 * An enum which list data of NBT Name should implements this interface.
+		 * @author berberman
+		 */
 		interface INBTTagName {
 			fun getNBTName(): String
 		}
 
+		/**
+		 * NBT Tag Name enumeration.
+		 */
 		enum class TagName : INBTTagName {
 			Name, Type, Amount, Operation, UUIDLeast, UUIDMost, Slot;
 
 			override fun getNBTName() = if (this == Type) "AttributeName" else name
 		}
 
+		/**
+		 * NBT modify type enumeration.
+		 */
 		enum class NBTType(private val nbtName: String) : INBTTagName {
 			AttackDamage("attackDamage"),
 			AttackSpeed("attackSpeed"),
@@ -160,6 +83,9 @@ class NBTModifier(itemStack: ItemStack) {
 			override fun getNBTName() = "generic." + nbtName
 		}
 
+		/**
+		 * NBT slot enumeration.
+		 */
 		enum class Slot(private val nbtName: String) : INBTTagName {
 			MainHand("mainhand"),
 			OffHand("offhand"),
@@ -204,25 +130,39 @@ class NBTModifier(itemStack: ItemStack) {
 			const val DEFAULT_UUID_MOST = 30000
 		}
 
+		/**
+		 * Which NBT Tag type you want to modify.
+		 */
 		var type: NBTType by NBTDelegate(NBTType.Undefined, TagName.Type)
-
+		/**
+		 * Which slot where the item in this NBT Tag take effect.
+		 */
 		var slot: Slot by NBTDelegate(Slot.Undefined, TagName.Slot)
-
+		/**
+		 * The value of NBT Tag
+		 */
 		var amount: Int by NBTDelegate(0, TagName.Amount)
-
+		/**
+		 * <tt>true</tt> represents use amount
+		 * <tt>false</tt> represents use %
+		 */
 		var operation: Boolean by NBTDelegate(DEFAULT_OPERATION, TagName.Operation)
-
+		/**
+		 * uuidLeast value.
+		 */
 		var uuidLeast: Int by NBTDelegate(DEFAULT_UUID_LEAST, TagName.UUIDLeast)
-
+		/**
+		 * uuidMost value.
+		 */
 		var uuidMost: Int by NBTDelegate(DEFAULT_UUID_MOST, TagName.UUIDMost)
 
 
 		private inner class NBTDelegate<T>(initialValue: T, private val tagName: TagName)
 			: ReadWriteProperty<Any?, T> {
-			var field = initialValue
+			internal var field = initialValue
 
 			init {
-				//强行设置初值
+				//force initialize
 				setValue(null, this::field, field)
 			}
 

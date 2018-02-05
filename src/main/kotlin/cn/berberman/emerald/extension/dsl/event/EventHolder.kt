@@ -1,11 +1,19 @@
 package cn.berberman.emerald.extension.dsl.event
 
-
-object EventHolder {
+/**
+ * A object holds events we want's to register.
+ * @see DSLEventScope
+ * @author berberman
+ */
+internal object EventHolder {
 	private val events = mutableListOf<PackingEvent<*>>()
-
+	/**
+	 * Add event to register list.
+	 * @param packingEvent a event to register
+	 */
 	fun add(packingEvent: PackingEvent<*>) = events.add(packingEvent)
-	fun register() =
+
+	internal fun register() =
 			events.forEach(PackingEvent<*>::register)
 
 }
