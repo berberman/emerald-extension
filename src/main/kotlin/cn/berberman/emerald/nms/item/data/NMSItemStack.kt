@@ -1,7 +1,8 @@
-package cn.berberman.emerald.extension.dsl.nms.item.data
+package cn.berberman.emerald.nms.item.data
 
-import cn.berberman.emerald.extension.dsl.nms.item.NMSReflection
-import cn.berberman.emerald.extension.dsl.nms.item.NMSUtil
+import cn.berberman.emerald.extension.invoke
+import cn.berberman.emerald.nms.item.NMSReflection
+import cn.berberman.emerald.nms.item.NMSUtil
 import org.bukkit.inventory.ItemStack
 import java.lang.reflect.Method
 
@@ -31,7 +32,7 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 	 * internal function to get methods instance.
 	 *     You can't access this method, because it's inherited from NMSReflection.
 	 */
-	override fun getMethod(name: String) = rawMethods.firstOrNull { it.name == name }!!
+	override fun getMethod(name: String) = rawMethods.first { it.name == name }
 
 	/**
 	 * internal property to save realized methods.
@@ -47,19 +48,19 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 	 * Whether nmsItem has NBT Tag.
 	 * @return <tt>true</tt> if it has.
 	 */
-	fun hasTag() = methods["hasTag"]!!(nmsItemStack) as Boolean
+	fun hasTag() = methods("hasTag")(nmsItemStack) as Boolean
 
 	/**
 	 * Get NBT Tag from nmsItem
 	 * @return nmsItem's NBT Tag.
 	 */
-	fun getTag() = NMSNBTTagCompound(methods["getTag"]!!(nmsItemStack))
+	fun getTag() = NMSNBTTagCompound(methods("getTag")(nmsItemStack))
 
 	/**
 	 * Set nmsItem's NBT Tag
 	 * @param nmsNBTTagCompound tag
 	 */
 	fun setTag(nmsNBTTagCompound: NMSNBTTagCompound) {
-		methods["setTag"]!!(nmsItemStack, nmsNBTTagCompound.tagCompound)
+		methods("setTag")(nmsItemStack, nmsNBTTagCompound.tagCompound)
 	}
 }

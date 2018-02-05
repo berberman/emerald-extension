@@ -1,4 +1,4 @@
-package cn.berberman.emerald.extension.dsl.permission
+package cn.berberman.emerald.dsl.permission
 
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault

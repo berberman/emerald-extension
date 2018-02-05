@@ -1,9 +1,12 @@
-package cn.berberman.emerald.extension.dsl.nms.item
+package cn.berberman.emerald.nms.item
 
-import cn.berberman.emerald.extension.dsl.nms.item.data.NMSItemStack
+import cn.berberman.emerald.nms.item.data.NMSItemStack
 import org.bukkit.Bukkit
 import org.bukkit.inventory.ItemStack
 
+/**
+ * A utilities to easy operate nms.
+ */
 object NMSUtil {
 	private val version = Bukkit.getServer()::class.java.`package`.name.split(".")[3]
 	private val nmsPackageName = "net.minecraft.server.$version"

@@ -1,7 +1,8 @@
-package cn.berberman.emerald.extension.dsl.nms.item.data
+package cn.berberman.emerald.nms.item.data
 
-import cn.berberman.emerald.extension.dsl.nms.item.NMSReflection
-import cn.berberman.emerald.extension.dsl.nms.item.NMSUtil
+import cn.berberman.emerald.extension.invoke
+import cn.berberman.emerald.nms.item.NMSReflection
+import cn.berberman.emerald.nms.item.NMSUtil
 import java.lang.reflect.Method
 
 /**
@@ -48,7 +49,7 @@ class NMSNBTTagList : NMSReflection {
 	 * internal function to get methods instance.
 	 *     You can't access this method, because it's inherited from NMSReflection.
 	 */
-	override fun getMethod(name: String) = rawMethods.firstOrNull { it.name == name }!!
+	override fun getMethod(name: String) = rawMethods.first { it.name == name }
 
 	/**
 	 * internal property to save realized methods
@@ -64,7 +65,7 @@ class NMSNBTTagList : NMSReflection {
 	 * @param int the index of target member.
 	 */
 	fun remove(int: Int) {
-		methods["remove"]!!(tagList, int)
+		methods("remove")(tagList, int)
 	}
 
 	/**
@@ -72,6 +73,6 @@ class NMSNBTTagList : NMSReflection {
 	 * @param any a NBTBase instance that you'd to add it to the list.
 	 */
 	fun add(any: Any) {
-		methods["add"]!!(tagList, any)
+		methods("add")(tagList, any)
 	}
 }

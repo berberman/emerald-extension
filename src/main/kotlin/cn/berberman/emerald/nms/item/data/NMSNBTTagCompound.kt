@@ -1,9 +1,15 @@
-package cn.berberman.emerald.extension.dsl.nms.item.data
+package cn.berberman.emerald.nms.item.data
 
-import cn.berberman.emerald.extension.dsl.nms.item.NMSReflection
-import cn.berberman.emerald.extension.dsl.nms.item.NMSUtil
+import cn.berberman.emerald.extension.invoke
+import cn.berberman.emerald.nms.item.NMSReflection
+import cn.berberman.emerald.nms.item.NMSUtil
 import java.lang.reflect.Method
 
+/**
+ * Corresponding NBTTagCompound
+ * All methods are realized by reflection.
+ * @author berberman
+ */
 class NMSNBTTagCompound : NMSReflection {
 	/**
 	 * internal property to save corresponding nms class.<br>
@@ -40,7 +46,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * internal function to get methods instance.
 	 *     You can't access this method, because it's inherited from NMSReflection.
 	 */
-	override fun getMethod(name: String) = rawMethods.firstOrNull { it.name == name }!!
+	override fun getMethod(name: String) = rawMethods.first { it.name == name }
 
 	/**
 	 * internal property to save realized methods
@@ -59,7 +65,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param value value that you wan's to set.
 	 */
 	fun setInt(name: String, value: Int) {
-		methods["setInt"]!!(tagCompound, name, value)
+		methods("setInt")(tagCompound, name, value)
 	}
 
 	/**
@@ -68,7 +74,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param value value that you wan's to set.
 	 */
 	fun setString(name: String, value: String) {
-		methods["setString"]!!(tagCompound, name, value)
+		methods("setString")(tagCompound, name, value)
 	}
 
 	/**
@@ -76,7 +82,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param name the key of value.
 	 */
 	fun remove(name: String) {
-		methods["remove"]!!(tagCompound, name)
+		methods("remove")(tagCompound, name)
 	}
 
 	/**
@@ -85,7 +91,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param any NBTBase instance
 	 */
 	fun set(name: String, any: Any) {
-		methods["set"]!!(tagCompound, name, any)
+		methods("set")(tagCompound, name, any)
 	}
 
 }

@@ -1,6 +1,6 @@
-package cn.berberman.emerald.extension.extension
+package cn.berberman.emerald.extension
 
-import cn.berberman.emerald.extension.Emerald
+import cn.berberman.emerald.Emerald
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Location
@@ -11,6 +11,7 @@ import org.bukkit.entity.Entity
 import org.bukkit.event.Listener
 import org.bukkit.plugin.PluginManager
 import org.bukkit.plugin.java.JavaPlugin
+import java.lang.reflect.Method
 import java.util.logging.Logger
 
 internal fun getCommandMap(): CommandMap =
@@ -69,3 +70,4 @@ infix fun CommandSender.sendMessage(message: String) = sendMessage(message)
 
 internal val emptyListener = object : Listener {}
 
+internal operator fun Map<String, Method>.invoke(name: String): Method = get(name)!!

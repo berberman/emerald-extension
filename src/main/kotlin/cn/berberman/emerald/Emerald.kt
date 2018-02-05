@@ -1,14 +1,14 @@
-package cn.berberman.emerald.extension
+package cn.berberman.emerald
 
-import cn.berberman.emerald.extension.dsl.command.CommandHolder
-import cn.berberman.emerald.extension.dsl.command.DSLCommandScope
-import cn.berberman.emerald.extension.dsl.command.buildCommands
-import cn.berberman.emerald.extension.dsl.event.DSLEventScope
-import cn.berberman.emerald.extension.dsl.event.EventHolder
-import cn.berberman.emerald.extension.dsl.event.buildEvents
-import cn.berberman.emerald.extension.dsl.permission.DSLPermissionScope
-import cn.berberman.emerald.extension.dsl.permission.PermissionHolder
-import cn.berberman.emerald.extension.extension.getCommandMap
+import cn.berberman.emerald.dsl.command.CommandHolder
+import cn.berberman.emerald.dsl.command.DSLCommandScope
+import cn.berberman.emerald.dsl.command.buildCommands
+import cn.berberman.emerald.dsl.event.DSLEventScope
+import cn.berberman.emerald.dsl.event.EventHolder
+import cn.berberman.emerald.dsl.event.buildEvents
+import cn.berberman.emerald.dsl.permission.DSLPermissionScope
+import cn.berberman.emerald.dsl.permission.PermissionHolder
+import cn.berberman.emerald.extension.getCommandMap
 import org.bukkit.plugin.java.JavaPlugin
 
 object Emerald {
@@ -20,7 +20,7 @@ object Emerald {
 	 * Quote plugin instance, must be call if you want to use this API.
 	 */
 	fun registerContext(plugin: JavaPlugin) {
-		this.plugin = plugin
+		Emerald.plugin = plugin
 	}
 
 	/**

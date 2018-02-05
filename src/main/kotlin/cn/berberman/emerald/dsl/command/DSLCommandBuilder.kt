@@ -1,4 +1,4 @@
-package cn.berberman.emerald.extension.dsl.command
+package cn.berberman.emerald.dsl.command
 
 import org.bukkit.command.CommandSender
 
@@ -103,7 +103,7 @@ class DSLCommandBuilder internal constructor(val name: String) {
 
 /**
  * Provide Emerald to access that, build a DSL command builder,
- * @see cn.berberman.emerald.extension.Emerald
+ * @see cn.berberman.emerald.Emerald
  * @param block DSL structure
  */
 internal fun buildCommands(block: DSLCommandScope.() -> Unit) {

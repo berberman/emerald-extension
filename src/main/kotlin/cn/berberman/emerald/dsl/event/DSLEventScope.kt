@@ -1,4 +1,4 @@
-package cn.berberman.emerald.extension.dsl.event
+package cn.berberman.emerald.dsl.event
 
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority

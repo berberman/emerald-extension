@@ -1,9 +1,9 @@
-package cn.berberman.emerald.extension.dsl.command
+package cn.berberman.emerald.dsl.command
 
-import cn.berberman.emerald.extension.Emerald
-import cn.berberman.emerald.extension.extension.logger
-import cn.berberman.emerald.extension.extension.sendMessage
-import cn.berberman.emerald.extension.extension.times
+import cn.berberman.emerald.Emerald
+import cn.berberman.emerald.extension.logger
+import cn.berberman.emerald.extension.sendMessage
+import cn.berberman.emerald.extension.times
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender

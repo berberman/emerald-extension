@@ -1,4 +1,4 @@
-package cn.berberman.emerald.extension.dsl.event
+package cn.berberman.emerald.dsl.event
 
 /**
  * A object holds events we want's to register.

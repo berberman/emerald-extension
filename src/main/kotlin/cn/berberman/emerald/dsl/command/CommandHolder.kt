@@ -1,8 +1,8 @@
-package cn.berberman.emerald.extension.dsl.command
+package cn.berberman.emerald.dsl.command
 
-import cn.berberman.emerald.extension.Emerald
-import cn.berberman.emerald.extension.extension.logger
-import cn.berberman.emerald.extension.extension.plugin
+import cn.berberman.emerald.Emerald
+import cn.berberman.emerald.extension.logger
+import cn.berberman.emerald.extension.plugin
 import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
 
