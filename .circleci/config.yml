@@ -19,13 +19,13 @@ jobs:
 
       - run: gradle assemble
 
+      - store_artifacts:
+          path: ~/build/libs
+
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - run: gradle check
-
-      - store_artifacts:
-          path: ~/build/libs
 
