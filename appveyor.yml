@@ -3,7 +3,7 @@ environment:
 #
 
 build_script:
-  - gradle assemble --info
+  - gradlew.bat assemble --info
 #
 
 artifacts:
