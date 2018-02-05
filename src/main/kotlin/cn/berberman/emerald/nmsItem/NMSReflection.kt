@@ -1,4 +1,4 @@
-package cn.berberman.emerald.nms.item
+package cn.berberman.emerald.nmsItem
 
 import java.lang.reflect.Method
 

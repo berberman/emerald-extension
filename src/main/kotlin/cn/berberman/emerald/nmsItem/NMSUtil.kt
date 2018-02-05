@@ -1,6 +1,6 @@
-package cn.berberman.emerald.nms.item
+package cn.berberman.emerald.nmsItem
 
-import cn.berberman.emerald.nms.item.data.NMSItemStack
+import cn.berberman.emerald.nmsItem.data.NMSItemStack
 import org.bukkit.Bukkit
 import org.bukkit.inventory.ItemStack
 
@@ -9,20 +9,20 @@ import org.bukkit.inventory.ItemStack
  */
 object NMSUtil {
 	private val version = Bukkit.getServer()::class.java.`package`.name.split(".")[3]
-	private val nmsPackageName = "net.minecraft.server.$version"
-	private val craftBukkitPackageName = "org.bukkit.craftbukkit.$version"
+	private val nmsPackageName = "net.minecraft.server.${version}"
+	private val craftBukkitPackageName = "org.bukkit.craftbukkit.${version}"
 
 	/**
 	 * Get NMS Class.
 	 * @param name class name
 	 */
-	fun getNMSClass(name: String): Class<*> = Class.forName("$nmsPackageName.$name")
+	fun getNMSClass(name: String): Class<*> = Class.forName("${nmsPackageName}.$name")
 
 	/**
 	 * Get Craft Bukkit Class
 	 * @param nameWithPackage package name and class name
 	 */
-	fun getCraftBukkitClass(nameWithPackage: String): Class<*> = Class.forName("$craftBukkitPackageName.$nameWithPackage")
+	fun getCraftBukkitClass(nameWithPackage: String): Class<*> = Class.forName("${craftBukkitPackageName}.$nameWithPackage")
 
 	/**
 	 * Convert bukkit ItemStack to NMSItemStack

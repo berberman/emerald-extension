@@ -13,7 +13,7 @@ internal object PermissionHolder {
 	private val simplePermissionList = mutableListOf<DSLPermissionBuilder>()
 
 
-	fun addPermission(permissionBuilder: DSLPermissionBuilder) = simplePermissionList.add(permissionBuilder)
+	internal fun addPermission(permissionBuilder: DSLPermissionBuilder) = simplePermissionList.add(permissionBuilder)
 
 
 	internal fun register() {

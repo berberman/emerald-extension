@@ -11,6 +11,10 @@ import cn.berberman.emerald.dsl.permission.PermissionHolder
 import cn.berberman.emerald.extension.getCommandMap
 import org.bukkit.plugin.java.JavaPlugin
 
+/**
+ * Main class of this extension.
+ * @author berberman
+ */
 object Emerald {
 	internal lateinit var plugin: JavaPlugin
 

@@ -1,10 +1,11 @@
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.nms.item.NMSUtil
-import cn.berberman.emerald.nms.item.data.NMSItemStack
-import cn.berberman.emerald.nms.item.data.NMSNBTTagCompound
-import cn.berberman.emerald.nms.item.data.NMSNBTTagList
+import cn.berberman.emerald.extension.NBTModifier.NBTTagModifier
+import cn.berberman.emerald.nmsItem.NMSUtil
+import cn.berberman.emerald.nmsItem.data.NMSItemStack
+import cn.berberman.emerald.nmsItem.data.NMSNBTTagCompound
+import cn.berberman.emerald.nmsItem.data.NMSNBTTagList
 import org.apache.commons.lang.math.RandomUtils
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
@@ -27,7 +28,12 @@ fun ItemStack.operateMeta(block: ItemMeta.() -> Unit) = apply {
  */
 fun ItemStack.modifyNBT(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModifier(this).modify(block)
 
-
+/**
+ * NBT Modifier, let NBTTagModifier's value add to ItemStack.
+ * @see NBTTagModifier
+ * @author berberman
+ * @param itemStack bukkit ItemStack
+ */
 class NBTModifier(itemStack: ItemStack) {
 	private val nms = NMSItemStack(itemStack)
 
@@ -47,7 +53,11 @@ class NBTModifier(itemStack: ItemStack) {
 	}.getResult()
 
 	private fun getResult() = NMSUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
-
+	/**
+	 * Modify NBT Tag.
+	 * @see NBTModifier
+	 * @author berberman
+	 */
 	class NBTTagModifier {
 		internal val nbtTagCompound = NMSNBTTagCompound()
 
@@ -56,6 +66,10 @@ class NBTModifier(itemStack: ItemStack) {
 		 * @author berberman
 		 */
 		interface INBTTagName {
+			/**
+			 * Get NBT name
+			 * @return returns NBT name
+			 */
 			fun getNBTName(): String
 		}
 

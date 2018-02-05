@@ -1,8 +1,8 @@
-package cn.berberman.emerald.nms.item.data
+package cn.berberman.emerald.nmsItem.data
 
 import cn.berberman.emerald.extension.invoke
-import cn.berberman.emerald.nms.item.NMSReflection
-import cn.berberman.emerald.nms.item.NMSUtil
+import cn.berberman.emerald.nmsItem.NMSReflection
+import cn.berberman.emerald.nmsItem.NMSUtil
 import java.lang.reflect.Method
 
 /**
