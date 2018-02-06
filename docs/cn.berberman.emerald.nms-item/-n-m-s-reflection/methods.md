@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem](../index.md) / [NMSReflection](index.md) / [methods](.)
+---
+title: NMSReflection.methods - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem](../index.html) / [NMSReflection](index.html) / [methods](.)
 
 # methods
 

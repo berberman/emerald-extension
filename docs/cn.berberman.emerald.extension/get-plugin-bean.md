@@ -1,4 +1,8 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.extension](index.md) / [getPluginBean](.)
+---
+title: getPluginBean - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.extension](index.html) / [getPluginBean](.)
 
 # getPluginBean
 

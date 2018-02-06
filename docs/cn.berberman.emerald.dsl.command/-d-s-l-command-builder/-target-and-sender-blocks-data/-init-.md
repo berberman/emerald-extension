@@ -1,4 +1,8 @@
-[emerald-extension](../../../index.md) / [cn.berberman.emerald.dsl.command](../../index.md) / [DSLCommandBuilder](../index.md) / [TargetAndSenderBlocksData](index.md) / [&lt;init&gt;](.)
+---
+title: DSLCommandBuilder.TargetAndSenderBlocksData.<init> - emerald-extension
+---
+
+[emerald-extension](../../../index.html) / [cn.berberman.emerald.dsl.command](../../index.html) / [DSLCommandBuilder](../index.html) / [TargetAndSenderBlocksData](index.html) / [&lt;init&gt;](.)
 
 # &lt;init&gt;
 
@@ -19,5 +23,5 @@ berberman
 
 **See Also**
 
-[whenSenderIs](../when-sender-is.md)
+[whenSenderIs](../when-sender-is.html)
 

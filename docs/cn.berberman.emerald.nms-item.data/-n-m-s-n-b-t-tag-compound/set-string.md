@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem.data](../index.md) / [NMSNBTTagCompound](index.md) / [setString](.)
+---
+title: NMSNBTTagCompound.setString - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem.data](../index.html) / [NMSNBTTagCompound](index.html) / [setString](.)
 
 # setString
 

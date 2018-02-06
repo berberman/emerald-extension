@@ -1,4 +1,8 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.extension](index.md) / [async](.)
+---
+title: async - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.extension](index.html) / [async](.)
 
 # async
 

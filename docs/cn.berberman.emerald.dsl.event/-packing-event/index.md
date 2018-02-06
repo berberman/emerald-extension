@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.event](../index.md) / [PackingEvent](.)
+---
+title: PackingEvent - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.event](../index.html) / [PackingEvent](.)
 
 # PackingEvent
 
@@ -23,6 +27,5 @@ berberman
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
-| [&lt;init&gt;](-init-.md) | `PackingEvent(type: Class<out Event>, eventPriority: EventPriority, block: (T) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`)`<br>Packing a event with [org.bukkit.plugin.EventExecutor](#) |
+| [&lt;init&gt;](-init-.html) | `PackingEvent(type: Class<out Event>, eventPriority: EventPriority, block: (T) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`)`<br>Packing a event with [org.bukkit.plugin.EventExecutor](#) |
+

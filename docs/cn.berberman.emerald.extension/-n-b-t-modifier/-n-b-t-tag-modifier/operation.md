@@ -1,4 +1,8 @@
-[emerald-extension](../../../index.md) / [cn.berberman.emerald.extension](../../index.md) / [NBTModifier](../index.md) / [NBTTagModifier](index.md) / [operation](.)
+---
+title: NBTModifier.NBTTagModifier.operation - emerald-extension
+---
+
+[emerald-extension](../../../index.html) / [cn.berberman.emerald.extension](../../index.html) / [NBTModifier](../index.html) / [NBTTagModifier](index.html) / [operation](.)
 
 # operation
 

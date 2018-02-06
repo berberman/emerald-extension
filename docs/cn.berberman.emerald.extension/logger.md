@@ -1,4 +1,8 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.extension](index.md) / [logger](.)
+---
+title: logger - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.extension](index.html) / [logger](.)
 
 # logger
 

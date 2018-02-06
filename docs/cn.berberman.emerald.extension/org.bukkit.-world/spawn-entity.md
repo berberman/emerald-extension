@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [org.bukkit.World](index.md) / [spawnEntity](.)
+---
+title: spawnEntity - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [org.bukkit.World](index.html) / [spawnEntity](.)
 
 # spawnEntity
 

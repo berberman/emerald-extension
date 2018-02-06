@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.event](../index.md) / [PackingEvent](index.md) / [&lt;init&gt;](.)
+---
+title: PackingEvent.<init> - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.event](../index.html) / [PackingEvent](index.html) / [&lt;init&gt;](.)
 
 # &lt;init&gt;
 

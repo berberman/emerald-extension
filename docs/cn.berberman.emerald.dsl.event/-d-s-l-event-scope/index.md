@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.event](../index.md) / [DSLEventScope](.)
+---
+title: DSLEventScope - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.event](../index.html) / [DSLEventScope](.)
 
 # DSLEventScope
 
@@ -11,12 +15,11 @@ berberman
 
 **See Also**
 
-[PackingEvent](../-packing-event/index.md)
+[PackingEvent](../-packing-event/index.html)
 
 [EventHolder](#)
 
 ### Functions
 
-| Name | Summary |
-|---|---|
-| [event](event.md) | `fun <T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, block: T.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Build event function. |
+| [event](event.html) | `fun <T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, block: T.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Build event function. |
+

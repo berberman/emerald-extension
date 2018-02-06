@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem](../index.md) / [NMSUtil](index.md) / [getNMSClass](.)
+---
+title: NMSUtil.getNMSClass - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem](../index.html) / [NMSUtil](index.html) / [getNMSClass](.)
 
 # getNMSClass
 

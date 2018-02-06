@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.command](../index.md) / [DSLCommandBuilder](index.md) / [aliases](.)
+---
+title: DSLCommandBuilder.aliases - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.command](../index.html) / [DSLCommandBuilder](index.html) / [aliases](.)
 
 # aliases
 

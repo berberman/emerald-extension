@@ -1,8 +1,12 @@
-[emerald-extension](../../../index.md) / [cn.berberman.emerald.extension](../../index.md) / [NBTModifier](../index.md) / [NBTTagModifier](index.md) / [slot](.)
+---
+title: NBTModifier.NBTTagModifier.slot - emerald-extension
+---
+
+[emerald-extension](../../../index.html) / [cn.berberman.emerald.extension](../../index.html) / [NBTModifier](../index.html) / [NBTTagModifier](index.html) / [slot](.)
 
 # slot
 
-`var slot: `[`Slot`](-slot/index.md)
+`var slot: `[`Slot`](-slot/index.html)
 
 Which slot where the item in this NBT Tag take effect.
 

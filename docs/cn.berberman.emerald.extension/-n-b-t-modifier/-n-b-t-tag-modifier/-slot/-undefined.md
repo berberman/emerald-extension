@@ -1,4 +1,8 @@
-[emerald-extension](../../../../index.md) / [cn.berberman.emerald.extension](../../../index.md) / [NBTModifier](../../index.md) / [NBTTagModifier](../index.md) / [Slot](index.md) / [Undefined](.)
+---
+title: NBTModifier.NBTTagModifier.Slot.Undefined - emerald-extension
+---
+
+[emerald-extension](../../../../index.html) / [cn.berberman.emerald.extension](../../../index.html) / [NBTModifier](../../index.html) / [NBTTagModifier](../index.html) / [Slot](index.html) / [Undefined](.)
 
 # Undefined
 
@@ -6,6 +10,5 @@
 
 ### Inherited Functions
 
-| Name | Summary |
-|---|---|
-| [getNBTName](get-n-b-t-name.md) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |
+| [getNBTName](get-n-b-t-name.html) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |
+

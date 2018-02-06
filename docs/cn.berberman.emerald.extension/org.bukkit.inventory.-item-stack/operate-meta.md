@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [org.bukkit.inventory.ItemStack](index.md) / [operateMeta](.)
+---
+title: operateMeta - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [org.bukkit.inventory.ItemStack](index.html) / [operateMeta](.)
 
 # operateMeta
 

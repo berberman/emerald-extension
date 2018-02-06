@@ -1,8 +1,12 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald](../index.md) / [Emerald](index.md) / [registerCommands](.)
+---
+title: Emerald.registerCommands - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald](../index.html) / [Emerald](index.html) / [registerCommands](.)
 
 # registerCommands
 
-`fun registerCommands(block: `[`DSLCommandScope`](../../cn.berberman.emerald.dsl.command/-d-s-l-command-scope/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun registerCommands(block: `[`DSLCommandScope`](../../cn.berberman.emerald.dsl.command/-d-s-l-command-scope/index.html)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 Register commands.
 

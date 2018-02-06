@@ -1,10 +1,13 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.dsl.permission](.)
+---
+title: cn.berberman.emerald.dsl.permission - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.dsl.permission](.)
 
 ## Package cn.berberman.emerald.dsl.permission
 
 ### Types
 
-| Name | Summary |
-|---|---|
-| [DSLPermissionBuilder](-d-s-l-permission-builder/index.md) | `class DSLPermissionBuilder`<br>A DSL structure to build permissions. |
-| [DSLPermissionScope](-d-s-l-permission-scope/index.md) | `class DSLPermissionScope`<br>A DSL structure to build permission builder. |
+| [DSLPermissionBuilder](-d-s-l-permission-builder/index.html) | `class DSLPermissionBuilder`<br>A DSL structure to build permissions. |
+| [DSLPermissionScope](-d-s-l-permission-scope/index.html) | `class DSLPermissionScope`<br>A DSL structure to build permission builder. |
+

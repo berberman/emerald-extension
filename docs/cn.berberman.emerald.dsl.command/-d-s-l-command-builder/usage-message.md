@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.command](../index.md) / [DSLCommandBuilder](index.md) / [usageMessage](.)
+---
+title: DSLCommandBuilder.usageMessage - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.command](../index.html) / [DSLCommandBuilder](index.html) / [usageMessage](.)
 
 # usageMessage
 

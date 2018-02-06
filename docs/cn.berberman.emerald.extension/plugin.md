@@ -1,4 +1,8 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.extension](index.md) / [plugin](.)
+---
+title: plugin - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.extension](index.html) / [plugin](.)
 
 # plugin
 

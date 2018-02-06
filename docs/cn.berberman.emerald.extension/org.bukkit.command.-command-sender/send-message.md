@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [org.bukkit.command.CommandSender](index.md) / [sendMessage](.)
+---
+title: sendMessage - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [org.bukkit.command.CommandSender](index.html) / [sendMessage](.)
 
 # sendMessage
 

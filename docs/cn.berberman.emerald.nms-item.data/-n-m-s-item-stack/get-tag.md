@@ -1,8 +1,12 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem.data](../index.md) / [NMSItemStack](index.md) / [getTag](.)
+---
+title: NMSItemStack.getTag - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem.data](../index.html) / [NMSItemStack](index.html) / [getTag](.)
 
 # getTag
 
-`fun getTag(): `[`NMSNBTTagCompound`](../-n-m-s-n-b-t-tag-compound/index.md)
+`fun getTag(): `[`NMSNBTTagCompound`](../-n-m-s-n-b-t-tag-compound/index.html)
 
 Get NBT Tag from nmsItem
 

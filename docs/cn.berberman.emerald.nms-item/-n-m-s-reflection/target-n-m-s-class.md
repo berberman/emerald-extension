@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem](../index.md) / [NMSReflection](index.md) / [targetNMSClass](.)
+---
+title: NMSReflection.targetNMSClass - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem](../index.html) / [NMSReflection](index.html) / [targetNMSClass](.)
 
 # targetNMSClass
 

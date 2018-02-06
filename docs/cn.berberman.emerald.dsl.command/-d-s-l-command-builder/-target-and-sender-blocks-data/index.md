@@ -1,4 +1,8 @@
-[emerald-extension](../../../index.md) / [cn.berberman.emerald.dsl.command](../../index.md) / [DSLCommandBuilder](../index.md) / [TargetAndSenderBlocksData](.)
+---
+title: DSLCommandBuilder.TargetAndSenderBlocksData - emerald-extension
+---
+
+[emerald-extension](../../../index.html) / [cn.berberman.emerald.dsl.command](../../index.html) / [DSLCommandBuilder](../index.html) / [TargetAndSenderBlocksData](.)
 
 # TargetAndSenderBlocksData
 
@@ -19,17 +23,14 @@ berberman
 
 **See Also**
 
-[whenSenderIs](../when-sender-is.md)
+[whenSenderIs](../when-sender-is.html)
 
 ### Constructors
 
-| Name | Summary |
-|---|---|
-| [&lt;init&gt;](-init-.md) | `TargetAndSenderBlocksData(senderInstance: CommandSender, isTarget: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`, result: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`)`<br>A class support function whenSenderIs, holds its data. |
+| [&lt;init&gt;](-init-.html) | `TargetAndSenderBlocksData(senderInstance: CommandSender, isTarget: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`, result: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`)`<br>A class support function whenSenderIs, holds its data. |
 
 ### Functions
 
-| Name | Summary |
-|---|---|
-| [invoke](invoke.md) | `operator fun ~~invoke~~(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If don't use otherwise, you have to use invoke operator to get final result. We not recommended that. |
-| [otherwise](otherwise.md) | `infix fun otherwise(block: CommandSender.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Set otherwise action and return final result. |
+| [invoke](invoke.html) | `operator fun ~~invoke~~(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If don't use otherwise, you have to use invoke operator to get final result. We not recommended that. |
+| [otherwise](otherwise.html) | `infix fun otherwise(block: CommandSender.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Set otherwise action and return final result. |
+

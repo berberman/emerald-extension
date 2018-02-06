@@ -1,6 +1,8 @@
 buildscript {
-    ext.kotlin_version = '1.2.21'
-    ext.dokka_version = '0.9.15'
+    ext {
+        kotlin_version = '1.2.21'
+        dokka_version = '0.9.15'
+    }
     repositories {
         mavenCentral()
         jcenter()
@@ -42,16 +44,41 @@ task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
 }
 
+task copyDoc(group: 'documentation', type: Copy) {
+    from '/docs/emerald-extension'
+    from '_config.yml'
+    into '/docs'
+}
+
+task cleanOriginDoc(group: 'documentation', type: Delete) {
+    delete '/docs/emerald-extension'
+}
+
+task cleanDoc(group: 'documentation', type: Delete) {
+    delete '/docs'
+}
+
+clean {
+    dependsOn(cleanDoc)
+}
+
+configurations {
+    dokka.finalizedBy copyDoc
+    copyDoc.finalizedBy cleanOriginDoc
+}
+
 publish {
     userOrg = 'berberman'
+    bintrayUser = 'berberman'
+    dryRun = true
     groupId = 'cn.berberman'
     artifactId = 'emerald-extension'
-    publishVersion = '1.1'
+    publishVersion = version.toString()
     desc = 'a extension of Minecraft Spigot plugin, written by kotlin.'
     website = 'https://github.com/berberman/emerald-extension'
 }
 
 dokka {
-    outputFormat = 'gfm'
-    outputDirectory = "/docs"
+    outputFormat = 'jekyll'
+    outputDirectory = "$projectDir/docs"
 }

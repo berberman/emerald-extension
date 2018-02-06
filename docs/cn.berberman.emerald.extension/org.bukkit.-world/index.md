@@ -1,7 +1,10 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [org.bukkit.World](.)
+---
+title: cn.berberman.emerald.extension.org.bukkit.World - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [org.bukkit.World](.)
 
 ### Extensions for org.bukkit.World
 
-| Name | Summary |
-|---|---|
-| [spawnEntity](spawn-entity.md) | `fun <T : Entity> World.spawnEntity(location: Location): T`<br>Spawn a entity. |
+| [spawnEntity](spawn-entity.html) | `fun <T : Entity> World.spawnEntity(location: Location): T`<br>Spawn a entity. |
+

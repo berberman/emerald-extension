@@ -1,25 +1,26 @@
-[emerald-extension](../../../../index.md) / [cn.berberman.emerald.extension](../../../index.md) / [NBTModifier](../../index.md) / [NBTTagModifier](../index.md) / [Slot](.)
+---
+title: NBTModifier.NBTTagModifier.Slot - emerald-extension
+---
+
+[emerald-extension](../../../../index.html) / [cn.berberman.emerald.extension](../../../index.html) / [NBTModifier](../../index.html) / [NBTTagModifier](../index.html) / [Slot](.)
 
 # Slot
 
-`enum class Slot : `[`INBTTagName`](../-i-n-b-t-tag-name/index.md)
+`enum class Slot : `[`INBTTagName`](../-i-n-b-t-tag-name/index.html)
 
 NBT slot enumeration.
 
 ### Enum Values
 
-| Name | Summary |
-|---|---|
-| [MainHand](-main-hand.md) |  |
-| [OffHand](-off-hand.md) |  |
-| [Feet](-feet.md) |  |
-| [Legs](-legs.md) |  |
-| [Chest](-chest.md) |  |
-| [Head](-head.md) |  |
-| [Undefined](-undefined.md) |  |
+| [MainHand](-main-hand.html) |  |
+| [OffHand](-off-hand.html) |  |
+| [Feet](-feet.html) |  |
+| [Legs](-legs.html) |  |
+| [Chest](-chest.html) |  |
+| [Head](-head.html) |  |
+| [Undefined](-undefined.html) |  |
 
 ### Functions
 
-| Name | Summary |
-|---|---|
-| [getNBTName](get-n-b-t-name.md) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |
+| [getNBTName](get-n-b-t-name.html) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |
+

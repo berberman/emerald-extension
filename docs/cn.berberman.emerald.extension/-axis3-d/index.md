@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [Axis3D](.)
+---
+title: Axis3D - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [Axis3D](.)
 
 # Axis3D
 
@@ -17,8 +21,7 @@ berberman
 
 ### Enum Values
 
-| Name | Summary |
-|---|---|
-| [X](-x.md) |  |
-| [Y](-y.md) |  |
-| [Z](-z.md) |  |
+| [X](-x.html) |  |
+| [Y](-y.html) |  |
+| [Z](-z.html) |  |
+

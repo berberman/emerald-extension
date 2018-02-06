@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem](../index.md) / [NMSUtil](index.md) / [asNMSCopy](.)
+---
+title: NMSUtil.asNMSCopy - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem](../index.html) / [NMSUtil](index.html) / [asNMSCopy](.)
 
 # asNMSCopy
 

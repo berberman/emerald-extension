@@ -1,4 +1,8 @@
-[emerald-extension](../../../index.md) / [cn.berberman.emerald.extension](../../index.md) / [NBTModifier](../index.md) / [NBTTagModifier](index.md) / [DEFAULT_UUID_MOST](.)
+---
+title: NBTModifier.NBTTagModifier.DEFAULT_UUID_MOST - emerald-extension
+---
+
+[emerald-extension](../../../index.html) / [cn.berberman.emerald.extension](../../index.html) / [NBTModifier](../index.html) / [NBTTagModifier](index.html) / [DEFAULT_UUID_MOST](.)
 
 # DEFAULT_UUID_MOST
 

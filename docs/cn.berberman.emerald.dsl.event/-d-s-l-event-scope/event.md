@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.event](../index.md) / [DSLEventScope](index.md) / [event](.)
+---
+title: DSLEventScope.event - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.event](../index.html) / [DSLEventScope](index.html) / [event](.)
 
 # event
 

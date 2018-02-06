@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [org.bukkit.util.Vector](index.md) / [div](.)
+---
+title: div - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [org.bukkit.util.Vector](index.html) / [div](.)
 
 # div
 

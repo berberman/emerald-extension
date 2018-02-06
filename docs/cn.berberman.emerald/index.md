@@ -1,9 +1,12 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald](.)
+---
+title: cn.berberman.emerald - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald](.)
 
 ## Package cn.berberman.emerald
 
 ### Types
 
-| Name | Summary |
-|---|---|
-| [Emerald](-emerald/index.md) | `object Emerald`<br>Main class of this extension. |
+| [Emerald](-emerald/index.html) | `object Emerald`<br>Main class of this extension. |
+

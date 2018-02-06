@@ -1,4 +1,8 @@
-[emerald-extension](../../../index.md) / [cn.berberman.emerald.dsl.command](../../index.md) / [DSLCommandBuilder](../index.md) / [TargetAndSenderBlocksData](index.md) / [invoke](.)
+---
+title: DSLCommandBuilder.TargetAndSenderBlocksData.invoke - emerald-extension
+---
+
+[emerald-extension](../../../index.html) / [cn.berberman.emerald.dsl.command](../../index.html) / [DSLCommandBuilder](../index.html) / [TargetAndSenderBlocksData](index.html) / [invoke](.)
 
 # invoke
 
@@ -10,5 +14,5 @@ We not recommended that.
 
 **See Also**
 
-[otherwise](otherwise.md)
+[otherwise](otherwise.html)
 

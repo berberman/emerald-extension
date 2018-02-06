@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem.data](../index.md) / [NMSItemStack](index.md) / [hasTag](.)
+---
+title: NMSItemStack.hasTag - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem.data](../index.html) / [NMSItemStack](index.html) / [hasTag](.)
 
 # hasTag
 

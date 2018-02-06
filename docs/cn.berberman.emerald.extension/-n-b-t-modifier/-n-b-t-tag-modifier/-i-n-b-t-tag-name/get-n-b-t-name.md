@@ -1,4 +1,8 @@
-[emerald-extension](../../../../index.md) / [cn.berberman.emerald.extension](../../../index.md) / [NBTModifier](../../index.md) / [NBTTagModifier](../index.md) / [INBTTagName](index.md) / [getNBTName](.)
+---
+title: NBTModifier.NBTTagModifier.INBTTagName.getNBTName - emerald-extension
+---
+
+[emerald-extension](../../../../index.html) / [cn.berberman.emerald.extension](../../../index.html) / [NBTModifier](../../index.html) / [NBTTagModifier](../index.html) / [INBTTagName](index.html) / [getNBTName](.)
 
 # getNBTName
 

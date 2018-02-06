@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.permission](../index.md) / [DSLPermissionBuilder](index.md) / [description](.)
+---
+title: DSLPermissionBuilder.description - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.permission](../index.html) / [DSLPermissionBuilder](index.html) / [description](.)
 
 # description
 

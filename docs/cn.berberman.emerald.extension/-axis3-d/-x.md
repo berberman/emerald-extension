@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [Axis3D](index.md) / [X](.)
+---
+title: Axis3D.X - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [Axis3D](index.html) / [X](.)
 
 # X
 

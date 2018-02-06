@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.nmsItem](../index.md) / [NMSReflection](index.md) / [&lt;init&gt;](.)
+---
+title: NMSReflection.<init> - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.nmsItem](../index.html) / [NMSReflection](index.html) / [&lt;init&gt;](.)
 
 # &lt;init&gt;
 

@@ -1,8 +1,12 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [org.bukkit.inventory.ItemStack](index.md) / [modifyNBT](.)
+---
+title: modifyNBT - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [org.bukkit.inventory.ItemStack](index.html) / [modifyNBT](.)
 
 # modifyNBT
 
-`fun ItemStack.modifyNBT(block: `[`NBTTagModifier`](../-n-b-t-modifier/-n-b-t-tag-modifier/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): ItemStack`
+`fun ItemStack.modifyNBT(block: `[`NBTTagModifier`](../-n-b-t-modifier/-n-b-t-tag-modifier/index.html)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): ItemStack`
 
 Modify a NBT Tag to a bukkit ItemStack.
 

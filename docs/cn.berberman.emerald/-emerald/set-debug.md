@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald](../index.md) / [Emerald](index.md) / [setDebug](.)
+---
+title: Emerald.setDebug - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald](../index.html) / [Emerald](index.html) / [setDebug](.)
 
 # setDebug
 

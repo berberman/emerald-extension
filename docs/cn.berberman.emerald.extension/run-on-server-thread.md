@@ -1,4 +1,8 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.extension](index.md) / [runOnServerThread](.)
+---
+title: runOnServerThread - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.extension](index.html) / [runOnServerThread](.)
 
 # runOnServerThread
 

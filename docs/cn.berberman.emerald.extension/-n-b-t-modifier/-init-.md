@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.extension](../index.md) / [NBTModifier](index.md) / [&lt;init&gt;](.)
+---
+title: NBTModifier.<init> - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.extension](../index.html) / [NBTModifier](index.html) / [&lt;init&gt;](.)
 
 # &lt;init&gt;
 
@@ -12,7 +16,7 @@ NBT Modifier, let NBTTagModifier's value add to ItemStack.
 
 **See Also**
 
-[NBTTagModifier](-n-b-t-tag-modifier/index.md)
+[NBTTagModifier](-n-b-t-tag-modifier/index.html)
 
 **Author**
 berberman

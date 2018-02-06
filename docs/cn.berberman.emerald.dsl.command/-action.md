@@ -1,4 +1,8 @@
-[emerald-extension](../index.md) / [cn.berberman.emerald.dsl.command](index.md) / [Action](.)
+---
+title: Action - emerald-extension
+---
+
+[emerald-extension](../index.html) / [cn.berberman.emerald.dsl.command](index.html) / [Action](.)
 
 # Action
 

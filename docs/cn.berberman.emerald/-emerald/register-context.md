@@ -1,4 +1,8 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald](../index.md) / [Emerald](index.md) / [registerContext](.)
+---
+title: Emerald.registerContext - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald](../index.html) / [Emerald](index.html) / [registerContext](.)
 
 # registerContext
 

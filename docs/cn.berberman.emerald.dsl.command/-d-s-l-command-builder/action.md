@@ -1,8 +1,12 @@
-[emerald-extension](../../index.md) / [cn.berberman.emerald.dsl.command](../index.md) / [DSLCommandBuilder](index.md) / [action](.)
+---
+title: DSLCommandBuilder.action - emerald-extension
+---
+
+[emerald-extension](../../index.html) / [cn.berberman.emerald.dsl.command](../index.html) / [DSLCommandBuilder](index.html) / [action](.)
 
 # action
 
-`var action: `[`Action`](../-action.md)
+`var action: `[`Action`](../-action.html)
 
 Read only, which will be invoked when commands execute.
 
