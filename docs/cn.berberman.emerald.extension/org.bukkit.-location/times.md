@@ -15,10 +15,6 @@ scalar. Not world-aware.
 
 `double` - The factor
 
-**See Also**
-
-[Vector](#)
-
 **Return**
 the same location
 

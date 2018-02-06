@@ -30,7 +30,7 @@ berberman
 ### Properties
 
 | [amount](amount.html) | `var amount: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>The value of NBT Tag |
-| [operation](operation.html) | `var operation: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>true represents use amount false represents use % |
+| [operation](operation.html) | `var operation: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>`true` represents use amount `false` represents use % |
 | [slot](slot.html) | `var slot: `[`Slot`](-slot/index.html)<br>Which slot where the item in this NBT Tag take effect. |
 | [type](type.html) | `var type: `[`NBTType`](-n-b-t-type/index.html)<br>Which NBT Tag type you want to modify. |
 | [uuidLeast](uuid-least.html) | `var uuidLeast: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>uuidLeast value. |

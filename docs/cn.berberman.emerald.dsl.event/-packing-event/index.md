@@ -8,7 +8,7 @@ title: PackingEvent - emerald-extension
 
 `class PackingEvent<in T : Event>`
 
-Packing a event with [org.bukkit.plugin.EventExecutor](#)
+Packing a event with org.bukkit.plugin.EventExecutor
 
 ### Parameters
 
@@ -21,11 +21,7 @@ Packing a event with [org.bukkit.plugin.EventExecutor](#)
 **Author**
 berberman
 
-**See Also**
-
-[org.bukkit.plugin.PluginManager.registerEvent](#)
-
 ### Constructors
 
-| [&lt;init&gt;](-init-.html) | `PackingEvent(type: Class<out Event>, eventPriority: EventPriority, block: (T) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`)`<br>Packing a event with [org.bukkit.plugin.EventExecutor](#) |
+| [&lt;init&gt;](-init-.html) | `PackingEvent(type: Class<out Event>, eventPriority: EventPriority, block: (T) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`)`<br>Packing a event with org.bukkit.plugin.EventExecutor |
 

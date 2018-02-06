@@ -6,5 +6,5 @@ title: cn.berberman.emerald.extension.org.bukkit.command.CommandSender - emerald
 
 ### Extensions for org.bukkit.command.CommandSender
 
-| [sendMessage](send-message.html) | `infix fun CommandSender.sendMessage(message: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Infix function to extend [CommandSender.sendMessage](#) |
+| [sendMessage](send-message.html) | `infix fun CommandSender.sendMessage(message: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Infix function to extend CommandSender.sendMessage |
 

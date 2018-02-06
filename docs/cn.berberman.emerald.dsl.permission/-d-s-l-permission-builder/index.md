@@ -13,10 +13,6 @@ A DSL structure to build permissions.
 **Author**
 berberman
 
-**See Also**
-
-[org.bukkit.permissions.Permission](#)
-
 ### Properties
 
 | [defaultValue](default-value.html) | `var defaultValue: PermissionDefault`<br>the defaultValue of permission, default is OP. |

@@ -8,16 +8,16 @@ title: NBTModifier.NBTTagModifier.operation - emerald-extension
 
 `var operation: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
 
-true represents use amount
-false represents use %
+`true` represents use amount
+`false` represents use %
 
 **Getter**
 
-true represents use amount
-false represents use %
+`true` represents use amount
+`false` represents use %
 
 **Setter**
 
-true represents use amount
-false represents use %
+`true` represents use amount
+`false` represents use %
 

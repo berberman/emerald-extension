@@ -6,7 +6,6 @@ import org.bukkit.util.Vector
 /**
  * Adds the location by another.
  *
- * @see Vector
  * @param location The other location
  * @return the same location
  * @throws IllegalArgumentException for differing worlds
@@ -16,7 +15,6 @@ operator fun Location.plus(location: Location): Location = add(location)
 /**
  * Subtracts the location by another.
  *
- * @see Vector
  * @param location The other location
  * @return the same location
  * @throws IllegalArgumentException for differing worlds
@@ -28,7 +26,6 @@ operator fun Location.minus(location: Location): Location = subtract(location)
  * scalar. Not world-aware.
  *
  * @param double The factor
- * @see Vector
  * @return the same location
  */
 operator fun Location.times(double: Double): Location = multiply(double)
@@ -47,6 +44,7 @@ operator fun Location.get(axis3D: Axis3D) = when (axis3D) {
 /**
  * Set a one-dimension value to this location.
  * @param axis3D which axis
+ * @param double value to set
  */
 operator fun Location.set(axis3D: Axis3D, double: Double) = when (axis3D) {
 	Axis3D.X -> x = double

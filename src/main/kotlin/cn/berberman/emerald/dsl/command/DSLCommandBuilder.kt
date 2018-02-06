@@ -6,7 +6,6 @@ import org.bukkit.command.CommandSender
  * A DSL structure to build commands.
  * @param name command name
  * @author berberman
- * @see PackingCommand
  */
 class DSLCommandBuilder internal constructor(internal val name: String) {
 	/**
@@ -88,7 +87,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	}
 
 	/**
-	 * Provide a function to take place of <tt> if...else... </tt>
+	 * Provide a function to take place of ` if...else... `
 	 * @param T target type that assess whether sender is
 	 * @param sender command sender
 	 * @param block action if sender is target object
@@ -103,7 +102,6 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 
 /**
  * Provide Emerald to access that, build a DSL command builder,
- * @see cn.berberman.emerald.Emerald
  * @param block DSL structure
  */
 internal fun buildCommands(block: DSLCommandScope.() -> Unit) {
@@ -112,8 +110,6 @@ internal fun buildCommands(block: DSLCommandScope.() -> Unit) {
 
 /**
  * A DSL structure to build command builder.
- * @see DSLCommandBuilder
- * @see CommandHolder
  * @author berberman
  */
 class DSLCommandScope internal constructor() {

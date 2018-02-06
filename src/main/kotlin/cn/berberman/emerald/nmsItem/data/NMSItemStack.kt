@@ -46,7 +46,7 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 
 	/**
 	 * Whether nmsItem has NBT Tag.
-	 * @return <tt>true</tt> if it has.
+	 * @return `true` if it has.
 	 */
 	fun hasTag() = methods("hasTag")(nmsItemStack) as Boolean
 

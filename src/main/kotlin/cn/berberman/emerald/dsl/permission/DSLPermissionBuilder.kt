@@ -6,7 +6,6 @@ import org.bukkit.permissions.PermissionDefault
 /**
  *  A DSL structure to build permissions.
  *  @author berberman
- *  @see org.bukkit.permissions.Permission
  */
 class DSLPermissionBuilder internal constructor(private val name: String) {
 	/**

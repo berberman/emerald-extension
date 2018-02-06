@@ -57,8 +57,6 @@ val pluginManager: PluginManager = Bukkit.getPluginManager()
 /**
  * Represents the axis of three dimension.
  * @author berberman
- * @see org.bukkit.Location
- * @see org.bukkit.util.Vector
  */
 enum class Axis3D {
 	/**
@@ -76,7 +74,7 @@ enum class Axis3D {
 }
 
 /**
- * Infix function to extend [CommandSender.sendMessage]
+ * Infix function to extend CommandSender.sendMessage
  * @param message message to be displayed
  */
 infix fun CommandSender.sendMessage(message: String) = sendMessage(message)

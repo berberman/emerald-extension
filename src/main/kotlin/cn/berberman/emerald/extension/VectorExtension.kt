@@ -57,6 +57,7 @@ operator fun Vector.get(axis3D: Axis3D) = when (axis3D) {
 /**
  * Set a one-dimension value to this vector.
  * @param axis3D which axis
+ * @param double value to set
  */
 operator fun Vector.set(axis3D: Axis3D, double: Double) = when (axis3D) {
 	Axis3D.X -> x = double

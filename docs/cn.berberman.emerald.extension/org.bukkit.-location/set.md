@@ -13,3 +13,5 @@ Set a one-dimension value to this location.
 ### Parameters
 
 `axis3D` - which axis
+
+`double` - value to set

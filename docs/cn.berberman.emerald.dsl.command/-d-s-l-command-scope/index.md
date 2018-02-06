@@ -10,12 +10,6 @@ title: DSLCommandScope - emerald-extension
 
 A DSL structure to build command builder.
 
-**See Also**
-
-[DSLCommandBuilder](../-d-s-l-command-builder/index.html)
-
-[CommandHolder](#)
-
 **Author**
 berberman
 

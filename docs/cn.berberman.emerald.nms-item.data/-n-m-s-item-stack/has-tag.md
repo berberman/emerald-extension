@@ -11,5 +11,5 @@ title: NMSItemStack.hasTag - emerald-extension
 Whether nmsItem has NBT Tag.
 
 **Return**
-true if it has.
+`true` if it has.
 

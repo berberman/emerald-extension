@@ -20,8 +20,6 @@ import org.bukkit.command.CommandSender
  * @param before action before execute
  * @param after action after execute
  * @author berberman
- * @see Command
- * @see Command#execute
  */
 internal class PackingCommand
 (name: String,

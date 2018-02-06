@@ -13,12 +13,6 @@ Represents the axis of three dimension.
 **Author**
 berberman
 
-**See Also**
-
-[org.bukkit.Location](#)
-
-[org.bukkit.util.Vector](#)
-
 ### Enum Values
 
 | [X](-x.html) | X direction |

@@ -17,10 +17,6 @@ A DSL structure to build commands.
 **Author**
 berberman
 
-**See Also**
-
-[PackingCommand](#)
-
 ### Types
 
 | [TargetAndSenderBlocksData](-target-and-sender-blocks-data/index.html) | `class TargetAndSenderBlocksData`<br>A class support function whenSenderIs, holds its data. |
@@ -38,5 +34,5 @@ berberman
 
 | [action](action.html) | `fun action(block: (CommandSender) -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Set action, only retain parameter command sender`fun action(block: (CommandSender, `[`Array`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)`<out `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>) -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Set action, retain parameters command sender and command arguments |
 | [addAlias](add-alias.html) | `fun addAlias(alias: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Add alias to this command. |
-| [whenSenderIs](when-sender-is.html) | `fun <T : CommandSender> whenSenderIs(sender: CommandSender, block: T.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`TargetAndSenderBlocksData`](-target-and-sender-blocks-data/index.html)<br>Provide a function to take place of  if...else...  |
+| [whenSenderIs](when-sender-is.html) | `fun <T : CommandSender> whenSenderIs(sender: CommandSender, block: T.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`TargetAndSenderBlocksData`](-target-and-sender-blocks-data/index.html)<br>Provide a function to take place of ` if...else... ` |
 

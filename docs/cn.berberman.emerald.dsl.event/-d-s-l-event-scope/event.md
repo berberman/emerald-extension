@@ -15,8 +15,3 @@ Build event function.
 `T` - target event
 
 `eventPriority` - priority of event listener, default is NORMAL
-
-**See Also**
-
-[EventPriority](#)
-

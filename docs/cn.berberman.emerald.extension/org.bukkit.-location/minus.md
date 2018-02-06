@@ -18,10 +18,6 @@ Subtracts the location by another.
 
 `IllegalArgumentException` - for differing worlds
 
-**See Also**
-
-[Vector](#)
-
 **Return**
 the same location
 

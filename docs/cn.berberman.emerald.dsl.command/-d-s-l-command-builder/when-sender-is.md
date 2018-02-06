@@ -8,7 +8,7 @@ title: DSLCommandBuilder.whenSenderIs - emerald-extension
 
 `inline fun <reified T : CommandSender> whenSenderIs(sender: CommandSender, block: T.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`TargetAndSenderBlocksData`](-target-and-sender-blocks-data/index.html)
 
-Provide a function to take place of  if...else...
+Provide a function to take place of ` if...else... `
 
 ### Parameters
 

@@ -214,8 +214,8 @@ class NBTModifier(itemStack: ItemStack) {
 		 */
 		var amount: Int by NBTDelegate(0, TagName.Amount)
 		/**
-		 * <tt>true</tt> represents use amount
-		 * <tt>false</tt> represents use %
+		 * `true` represents use amount
+		 * `false` represents use %
 		 */
 		var operation: Boolean by NBTDelegate(DEFAULT_OPERATION, TagName.Operation)
 		/**

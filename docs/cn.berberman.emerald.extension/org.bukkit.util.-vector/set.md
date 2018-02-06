@@ -13,3 +13,5 @@ Set a one-dimension value to this vector.
 ### Parameters
 
 `axis3D` - which axis
+
+`double` - value to set
