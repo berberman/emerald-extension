@@ -52,6 +52,6 @@ publish {
 }
 
 dokka {
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
+    outputFormat = 'gfm'
+    outputDirectory = "/docs"
 }
