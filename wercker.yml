@@ -6,6 +6,10 @@ build:
 
   steps:
     - script:
+        name: permission
+        code: |
+          chmod a+x gradlew
+    - script:
         name: gradle
         code: |
-          gradlew assemble
+          ./gradlew assemble

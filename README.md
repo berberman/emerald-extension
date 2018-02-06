@@ -14,7 +14,8 @@ CI|Building Status
 Travis CI|[![Build Status](https://travis-ci.org/berberman/emerald-extension.svg?branch=master)](https://travis-ci.org/berberman/emerald-extension)
 CircleCI|[![CircleCI](https://circleci.com/gh/berberman/emerald-extension.svg?style=svg)](https://circleci.com/gh/berberman/emerald-extension)
 AppVeyor|[![Build status](https://ci.appveyor.com/api/projects/status/o1x1hh6xx6koh4v0?svg=true)](https://ci.appveyor.com/project/berberman/emerald-extension)
-
+Wercker|[![wercker status](https://app.wercker.com/status/820a6a6b02261bd3bfe88b9b5a066dce/s/master "wercker status")](https://app.wercker.com/project/byKey/820a6a6b02261bd3bfe88b9b5a066dce)
+Codeship|[ ![Codeship Status for berberman/emerald-extension](https://app.codeship.com/projects/350b4220-ec8e-0135-f54a-6e606d5d3d05/status?branch=master)](https://app.codeship.com/projects/270349)
 An extension of Minecraft-Spigot Plugin.   
 
 
