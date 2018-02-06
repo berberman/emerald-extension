@@ -30,7 +30,6 @@ berberman
 | [action](action.html) | `var action: `[`Action`](../-action.html)<br>Read only, which will be invoked when commands execute. |
 | [aliases](aliases.html) | `val aliases: `[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>`<br>The aliases of command, default is empty. |
 | [description](description.html) | `var description: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The description of command, default is empty. |
-| [name](name.html) | `val name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 | [permission](permission.html) | `var permission: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The permission that this command needs, default is empty. |
 | [permissionMessage](permission-message.html) | `var permissionMessage: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The message will say if invoker doesn't have permission, default is empty. |
 | [usageMessage](usage-message.html) | `var usageMessage: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The usageMessage of command, default is empty. |

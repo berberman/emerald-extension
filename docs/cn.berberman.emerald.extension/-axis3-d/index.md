@@ -21,7 +21,7 @@ berberman
 
 ### Enum Values
 
-| [X](-x.html) |  |
-| [Y](-y.html) |  |
-| [Z](-z.html) |  |
+| [X](-x.html) | X direction |
+| [Y](-y.html) | Y direction |
+| [Z](-z.html) | Z direction |
 

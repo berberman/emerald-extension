@@ -12,13 +12,13 @@ NBT slot enumeration.
 
 ### Enum Values
 
-| [MainHand](-main-hand.html) |  |
-| [OffHand](-off-hand.html) |  |
-| [Feet](-feet.html) |  |
-| [Legs](-legs.html) |  |
-| [Chest](-chest.html) |  |
-| [Head](-head.html) |  |
-| [Undefined](-undefined.html) |  |
+| [MainHand](-main-hand.html) | take effect when it's on the main hand. |
+| [OffHand](-off-hand.html) | take effect when it's on the off hand. |
+| [Feet](-feet.html) | take effect when it's wearing on the feet. |
+| [Legs](-legs.html) | take effect when it's wearing on the legs. |
+| [Chest](-chest.html) | take effect when it's wearing on the chest. |
+| [Head](-head.html) | take effect when it's wearing on the head. |
+| [Undefined](-undefined.html) | Should never be used. |
 
 ### Functions
 

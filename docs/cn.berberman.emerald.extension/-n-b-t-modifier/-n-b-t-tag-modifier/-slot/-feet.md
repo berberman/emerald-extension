@@ -8,6 +8,8 @@ title: NBTModifier.NBTTagModifier.Slot.Feet - emerald-extension
 
 `Feet`
 
+take effect when it's wearing on the feet.
+
 ### Inherited Functions
 
 | [getNBTName](get-n-b-t-name.html) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |

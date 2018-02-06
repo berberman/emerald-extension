@@ -60,7 +60,20 @@ val pluginManager: PluginManager = Bukkit.getPluginManager()
  * @see org.bukkit.Location
  * @see org.bukkit.util.Vector
  */
-enum class Axis3D { X, Y, Z }
+enum class Axis3D {
+	/**
+	 * X direction
+	 */
+	X,
+	/**
+	 * Y direction
+	 */
+	Y,
+	/**
+	 * Z direction
+	 */
+	Z
+}
 
 /**
  * Infix function to extend [CommandSender.sendMessage]

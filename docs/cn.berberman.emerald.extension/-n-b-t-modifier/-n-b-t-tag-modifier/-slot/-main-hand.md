@@ -8,6 +8,8 @@ title: NBTModifier.NBTTagModifier.Slot.MainHand - emerald-extension
 
 `MainHand`
 
+take effect when it's on the main hand.
+
 ### Inherited Functions
 
 | [getNBTName](get-n-b-t-name.html) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |

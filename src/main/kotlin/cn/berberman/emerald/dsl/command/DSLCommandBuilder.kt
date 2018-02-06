@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender
  * @author berberman
  * @see PackingCommand
  */
-class DSLCommandBuilder internal constructor(val name: String) {
+class DSLCommandBuilder internal constructor(internal val name: String) {
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */

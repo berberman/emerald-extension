@@ -7,3 +7,6 @@ title: NBTModifier.NBTTagModifier.DEFAULT_OPERATION - emerald-extension
 # DEFAULT_OPERATION
 
 `const val DEFAULT_OPERATION: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+
+Default operation value
+

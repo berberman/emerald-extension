@@ -12,13 +12,13 @@ NBT modify type enumeration.
 
 ### Enum Values
 
-| [AttackDamage](-attack-damage.html) |  |
-| [AttackSpeed](-attack-speed.html) |  |
-| [MaxHealth](-max-health.html) |  |
-| [MovementSpeed](-movement-speed.html) |  |
-| [Armor](-armor.html) |  |
-| [Luck](-luck.html) |  |
-| [Undefined](-undefined.html) |  |
+| [AttackDamage](-attack-damage.html) | modify attackDamage. |
+| [AttackSpeed](-attack-speed.html) | modify attackSpeed. |
+| [MaxHealth](-max-health.html) | modify  maxHealth. |
+| [MovementSpeed](-movement-speed.html) | modify movementSpeed. |
+| [Armor](-armor.html) | modify armor. |
+| [Luck](-luck.html) | modify luck. |
+| [Undefined](-undefined.html) | Should never be used. |
 
 ### Functions
 

@@ -8,6 +8,8 @@ title: NBTModifier.NBTTagModifier.NBTType.AttackSpeed - emerald-extension
 
 `AttackSpeed`
 
+modify attackSpeed.
+
 ### Inherited Functions
 
 | [getNBTName](get-n-b-t-name.html) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |

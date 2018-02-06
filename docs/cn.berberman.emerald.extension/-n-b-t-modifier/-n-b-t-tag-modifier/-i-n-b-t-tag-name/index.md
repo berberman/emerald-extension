@@ -21,5 +21,4 @@ berberman
 
 | [NBTType](../-n-b-t-type/index.html) | `enum class NBTType : INBTTagName`<br>NBT modify type enumeration. |
 | [Slot](../-slot/index.html) | `enum class Slot : INBTTagName`<br>NBT slot enumeration. |
-| [TagName](../-tag-name/index.html) | `enum class TagName : INBTTagName`<br>NBT Tag Name enumeration. |
 

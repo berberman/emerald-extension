@@ -8,6 +8,8 @@ title: NBTModifier.NBTTagModifier.Slot.OffHand - emerald-extension
 
 `OffHand`
 
+take effect when it's on the off hand.
+
 ### Inherited Functions
 
 | [getNBTName](get-n-b-t-name.html) | `fun getNBTName(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Get NBT name |

@@ -22,7 +22,6 @@ berberman
 | [INBTTagName](-i-n-b-t-tag-name/index.html) | `interface INBTTagName`<br>An enum which list data of NBT Name should implements this interface. |
 | [NBTType](-n-b-t-type/index.html) | `enum class NBTType : `[`INBTTagName`](-i-n-b-t-tag-name/index.html)<br>NBT modify type enumeration. |
 | [Slot](-slot/index.html) | `enum class Slot : `[`INBTTagName`](-i-n-b-t-tag-name/index.html)<br>NBT slot enumeration. |
-| [TagName](-tag-name/index.html) | `enum class TagName : `[`INBTTagName`](-i-n-b-t-tag-name/index.html)<br>NBT Tag Name enumeration. |
 
 ### Constructors
 
@@ -39,7 +38,7 @@ berberman
 
 ### Companion Object Properties
 
-| [DEFAULT_OPERATION](-d-e-f-a-u-l-t_-o-p-e-r-a-t-i-o-n.html) | `const val DEFAULT_OPERATION: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [DEFAULT_UUID_LEAST](-d-e-f-a-u-l-t_-u-u-i-d_-l-e-a-s-t.html) | `const val DEFAULT_UUID_LEAST: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [DEFAULT_UUID_MOST](-d-e-f-a-u-l-t_-u-u-i-d_-m-o-s-t.html) | `const val DEFAULT_UUID_MOST: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [DEFAULT_OPERATION](-d-e-f-a-u-l-t_-o-p-e-r-a-t-i-o-n.html) | `const val DEFAULT_OPERATION: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Default operation value |
+| [DEFAULT_UUID_LEAST](-d-e-f-a-u-l-t_-u-u-i-d_-l-e-a-s-t.html) | `const val DEFAULT_UUID_LEAST: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Default uuid least value |
+| [DEFAULT_UUID_MOST](-d-e-f-a-u-l-t_-u-u-i-d_-m-o-s-t.html) | `const val DEFAULT_UUID_MOST: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Default uuid most value |
 

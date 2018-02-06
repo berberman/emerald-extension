@@ -7,3 +7,6 @@ title: Axis3D.X - emerald-extension
 # X
 
 `X`
+
+X direction
+

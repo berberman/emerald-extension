@@ -76,8 +76,14 @@ class NBTModifier(itemStack: ItemStack) {
 		/**
 		 * NBT Tag Name enumeration.
 		 */
-		enum class TagName : INBTTagName {
-			Name, Type, Amount, Operation, UUIDLeast, UUIDMost, Slot;
+		internal enum class TagName : INBTTagName {
+			Name,
+			Type,
+			Amount,
+			Operation,
+			UUIDLeast,
+			UUIDMost,
+			Slot;
 
 			override fun getNBTName() = if (this == Type) "AttributeName" else name
 		}
@@ -86,12 +92,33 @@ class NBTModifier(itemStack: ItemStack) {
 		 * NBT modify type enumeration.
 		 */
 		enum class NBTType(private val nbtName: String) : INBTTagName {
+			/**
+			 * modify attackDamage.
+			 */
 			AttackDamage("attackDamage"),
+			/**
+			 * modify attackSpeed.
+			 */
 			AttackSpeed("attackSpeed"),
+			/**
+			 *modify  maxHealth.
+			 */
 			MaxHealth("maxHealth"),
+			/**
+			 * modify movementSpeed.
+			 */
 			MovementSpeed("movementSpeed"),
+			/**
+			 * modify armor.
+			 */
 			Armor("armor"),
+			/**
+			 * modify luck.
+			 */
 			Luck("luck"),
+			/**
+			 * Should never be used.
+			 */
 			Undefined("null");
 
 			override fun getNBTName() = "generic." + nbtName
@@ -101,12 +128,33 @@ class NBTModifier(itemStack: ItemStack) {
 		 * NBT slot enumeration.
 		 */
 		enum class Slot(private val nbtName: String) : INBTTagName {
+			/**
+			 * take effect when it's on the main hand.
+			 */
 			MainHand("mainhand"),
+			/**
+			 * take effect when it's on the off hand.
+			 */
 			OffHand("offhand"),
+			/**
+			 * take effect when it's wearing on the feet.
+			 */
 			Feet("feet"),
+			/**
+			 * take effect when it's wearing on the legs.
+			 */
 			Legs("legs"),
+			/**
+			 * take effect when it's wearing on the chest.
+			 */
 			Chest("chest"),
+			/**
+			 * take effect when it's wearing on the head.
+			 */
 			Head("head"),
+			/**
+			 * Should never be used.
+			 */
 			Undefined("null");
 
 			override fun getNBTName() = nbtName
@@ -139,8 +187,17 @@ class NBTModifier(itemStack: ItemStack) {
 
 
 		companion object {
+			/**
+			 * Default operation value
+			 */
 			const val DEFAULT_OPERATION = true
+			/**
+			 * Default uuid least value
+			 */
 			const val DEFAULT_UUID_LEAST = 10000
+			/**
+			 * Default uuid most value
+			 */
 			const val DEFAULT_UUID_MOST = 30000
 		}
 
