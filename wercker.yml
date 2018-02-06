@@ -1,0 +1,11 @@
+
+box: debian
+
+
+build:
+
+  steps:
+    - script:
+        name: gradle
+        code: |
+          gradlew assemble
