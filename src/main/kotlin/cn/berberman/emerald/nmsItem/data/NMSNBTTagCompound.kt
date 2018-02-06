@@ -25,7 +25,7 @@ class NMSNBTTagCompound : NMSReflection {
 	}
 
 	/**
-	 * Advance constructor, use a initialed instance.
+	 * Advance constructor, use an initialed instance.
 	 * @param original a NBTTagCompound instance.
 	 */
 	constructor(original: Any) {
@@ -33,7 +33,7 @@ class NMSNBTTagCompound : NMSReflection {
 	}
 
 	/**
-	 * a instance of NBTTagCompound holds by this class.
+	 * an instance of NBTTagCompound holds by this class.
 	 */
 	val tagCompound: Any
 	/**

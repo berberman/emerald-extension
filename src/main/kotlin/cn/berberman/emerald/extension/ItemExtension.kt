@@ -194,7 +194,7 @@ class NBTModifier(itemStack: ItemStack) {
 					}
 					is Slot    -> setString(tagName, value.getNBTName())
 
-					else       -> throw IllegalStateException("喵喵喵?")
+					else       -> throw IllegalStateException("That's impossible.")
 				}
 				field = value
 			}

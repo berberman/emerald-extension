@@ -27,7 +27,7 @@ class NMSNBTTagList : NMSReflection {
 	}
 
 	/**
-	 * Advance constructor, use a initialed instance.
+	 * Advance constructor, use an initialed instance.
 	 * @param original a NBTTagList instance.
 	 */
 	constructor(original: Any) {
@@ -35,7 +35,7 @@ class NMSNBTTagList : NMSReflection {
 	}
 
 	/**
-	 * a instance of NBTTagList holds by this class.
+	 * an instance of NBTTagList holds by this class.
 	 */
 	val tagList: Any
 

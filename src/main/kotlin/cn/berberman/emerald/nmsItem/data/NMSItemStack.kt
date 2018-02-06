@@ -19,7 +19,7 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 	 */
 	override val targetNMSClass: Class<*> = NMSUtil.getNMSClass("ItemStack")
 	/**
-	 * a instance of nmsItemStack holds by this class.
+	 * an instance of nmsItemStack holds by this class.
 	 */
 	val nmsItemStack: Any = NMSUtil.asNMSCopy(itemStack)
 	/**
