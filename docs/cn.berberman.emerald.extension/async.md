@@ -8,9 +8,8 @@ title: async - emerald-extension
 
 `fun async(delay: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)` = 0L, block: () -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): BukkitTask`
 
-Start a async task.
-Asynchronous tasks should never access any API in Bukkit. Great care
-should be taken to assure the thread-safety of asynchronous tasks.
+Start an async task.
+*Asynchronous tasks should never access any API in Bukkit. Great careshould be taken to assure the thread-safety of asynchronous tasks.*
 
 ### Parameters
 

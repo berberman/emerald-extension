@@ -79,10 +79,10 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 
 		/**
 		 * If don't use otherwise, you have to use invoke operator to get final result.
-		 * We not recommended that.
+		 * @deprecated Not recommended, use [otherwise] instead.
 		 * @see otherwise
 		 */
-		@Deprecated("Not recommended")
+		@Deprecated("Not recommended", ReplaceWith("otherwise"))
 		operator fun invoke() = result
 	}
 

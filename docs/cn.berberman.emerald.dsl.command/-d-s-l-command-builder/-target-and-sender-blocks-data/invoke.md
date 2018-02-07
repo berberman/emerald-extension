@@ -10,7 +10,9 @@ title: DSLCommandBuilder.TargetAndSenderBlocksData.invoke - emerald-extension
 **Deprecated:** Not recommended
 
 If don't use otherwise, you have to use invoke operator to get final result.
-We not recommended that.
+
+**Deprecated**
+Not recommended, use [otherwise](otherwise.html) instead.
 
 **See Also**
 

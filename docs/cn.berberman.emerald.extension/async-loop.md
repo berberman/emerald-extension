@@ -8,9 +8,8 @@ title: asyncLoop - emerald-extension
 
 `fun asyncLoop(delay: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)` = 0L, block: () -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): BukkitTask`
 
-Start a async loop.
-Asynchronous tasks should never access any API in Bukkit. Great care
-should be taken to assure the thread-safety of asynchronous tasks.
+Start an async loop.
+*Asynchronous tasks should never access any API in Bukkit. Great careshould be taken to assure the thread-safety of asynchronous tasks.*
 
 ### Parameters
 

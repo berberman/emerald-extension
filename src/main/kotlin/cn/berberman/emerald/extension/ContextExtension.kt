@@ -4,9 +4,9 @@ import org.bukkit.Bukkit
 import org.bukkit.scheduler.BukkitTask
 
 /**
- * Start a async loop.
- * <b>Asynchronous tasks should never access any API in Bukkit. Great care
- * should be taken to assure the thread-safety of asynchronous tasks.</b>
+ * Start an async loop.
+ * *Asynchronous tasks should never access any API in Bukkit. Great care
+ * should be taken to assure the thread-safety of asynchronous tasks.*
  * <p>
  * Returns a task that will run asynchronously.
  * @param delay the ticks to wait before running the task, default is 0
@@ -20,9 +20,9 @@ fun asyncLoop(delay: Long = 0L, block: () -> Boolean) = async(delay) {
 }
 
 /**
- * Start a async task.
- * <b>Asynchronous tasks should never access any API in Bukkit. Great care
- * should be taken to assure the thread-safety of asynchronous tasks.</b>
+ * Start an async task.
+ * *Asynchronous tasks should never access any API in Bukkit. Great care
+ * should be taken to assure the thread-safety of asynchronous tasks.*
  * <p>
  * Returns a task that will run asynchronously.
  * @param delay the ticks to wait before running the task, default is 0

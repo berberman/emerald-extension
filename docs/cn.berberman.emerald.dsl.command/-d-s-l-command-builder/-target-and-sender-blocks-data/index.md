@@ -31,6 +31,6 @@ berberman
 
 ### Functions
 
-| [invoke](invoke.html) | `operator fun ~~invoke~~(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If don't use otherwise, you have to use invoke operator to get final result. We not recommended that. |
+| [invoke](invoke.html) | `operator fun ~~invoke~~(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If don't use otherwise, you have to use invoke operator to get final result. |
 | [otherwise](otherwise.html) | `infix fun otherwise(block: CommandSender.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Set otherwise action and return final result. |
 
