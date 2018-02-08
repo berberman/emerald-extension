@@ -33,7 +33,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.spigotmc:spigot-api:$minecraft_version"
-    compile "org.bukkit:bukkit:$minecraft_version"
+//    compile "org.bukkit:bukkit:$minecraft_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 //    compile "com.comphenix.protocol:ProtocolLib:4.3.0"
 }
