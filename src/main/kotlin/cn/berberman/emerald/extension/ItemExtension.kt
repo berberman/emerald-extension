@@ -2,10 +2,10 @@ package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.extension.NBTModifier.NBTTagModifier
-import cn.berberman.emerald.nmsItem.NMSUtil
-import cn.berberman.emerald.nmsItem.data.NMSItemStack
-import cn.berberman.emerald.nmsItem.data.NMSNBTTagCompound
-import cn.berberman.emerald.nmsItem.data.NMSNBTTagList
+import cn.berberman.emerald.nms.NMSUtil
+import cn.berberman.emerald.nms.data.item.NMSItemStack
+import cn.berberman.emerald.nms.data.nbt.NMSNBTTagCompound
+import cn.berberman.emerald.nms.data.nbt.NMSNBTTagList
 import org.apache.commons.lang.math.RandomUtils
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta

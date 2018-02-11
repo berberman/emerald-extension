@@ -1,10 +1,9 @@
-package cn.berberman.emerald.nmsItem.data
+package cn.berberman.emerald.nms.data.item
 
-import cn.berberman.emerald.extension.invoke
-import cn.berberman.emerald.nmsItem.NMSReflection
-import cn.berberman.emerald.nmsItem.NMSUtil
+import cn.berberman.emerald.nms.NMSReflection
+import cn.berberman.emerald.nms.NMSUtil
+import cn.berberman.emerald.nms.data.nbt.NMSNBTTagCompound
 import org.bukkit.inventory.ItemStack
-import java.lang.reflect.Method
 
 /**
  * Corresponding ItemStack
@@ -22,17 +21,18 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 	 * an instance of nmsItemStack holds by this class.
 	 */
 	val nmsItemStack: Any = NMSUtil.asNMSCopy(itemStack)
-	/**
-	 * internal property to save all methods.
-	 *  You can't access this property, because it's inherited from NMSReflection.
-	 */
-	override val rawMethods: Array<out Method> = targetNMSClass.methods
-
-	/**
-	 * internal function to get methods instance.
-	 *     You can't access this method, because it's inherited from NMSReflection.
-	 */
-	override fun getMethod(name: String) = rawMethods.first { it.name == name }
+//
+//	/**
+//	 * internal property to save all methods.
+//	 *  You can't access this property, because it's inherited from NMSReflection.
+//	 */
+//	override val rawMethods: Array<out Method> = targetNMSClass.methods
+//
+//	/**
+//	 * internal function to get methods instance.
+//	 *     You can't access this method, because it's inherited from NMSReflection.
+//	 */
+//	override fun getMethod(name: String) = rawMethods.first { it.name == name }
 
 	/**
 	 * internal property to save realized methods.
@@ -45,19 +45,19 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 	)
 
 	/**
-	 * Whether nmsItem has NBT Tag.
+	 * Whether nms has NBT Tag.
 	 * @return `true` if it has.
 	 */
 	fun hasTag() = methods("hasTag")(nmsItemStack) as Boolean
 
 	/**
-	 * Get NBT Tag from nmsItem
-	 * @return nmsItem's NBT Tag.
+	 * Get NBT Tag from nms
+	 * @return nms's NBT Tag.
 	 */
 	fun getTag() = NMSNBTTagCompound(methods("getTag")(nmsItemStack))
 
 	/**
-	 * Set nmsItem's NBT Tag
+	 * Set nms's NBT Tag
 	 * @param nmsNBTTagCompound tag
 	 */
 	fun setTag(nmsNBTTagCompound: NMSNBTTagCompound) {

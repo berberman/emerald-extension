@@ -36,6 +36,7 @@ dependencies {
 //    compile "org.bukkit:bukkit:$minecraft_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 //    compile "com.comphenix.protocol:ProtocolLib:4.3.0"
+//    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 compileKotlin {

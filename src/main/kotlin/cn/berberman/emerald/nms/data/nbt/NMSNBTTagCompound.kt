@@ -1,9 +1,7 @@
-package cn.berberman.emerald.nmsItem.data
+package cn.berberman.emerald.nms.data.nbt
 
-import cn.berberman.emerald.extension.invoke
-import cn.berberman.emerald.nmsItem.NMSReflection
-import cn.berberman.emerald.nmsItem.NMSUtil
-import java.lang.reflect.Method
+import cn.berberman.emerald.nms.NMSReflection
+import cn.berberman.emerald.nms.NMSUtil
 
 /**
  * Corresponding NBTTagCompound
@@ -36,17 +34,17 @@ class NMSNBTTagCompound : NMSReflection {
 	 * an instance of NBTTagCompound holds by this class.
 	 */
 	val tagCompound: Any
-	/**
-	 * internal property to save all methods.<br>
-	 *  You can't access this property, because it's inherited from NMSReflection.
-	 */
-	override val rawMethods: Array<out Method> = targetNMSClass.methods
-
-	/**
-	 * internal function to get methods instance.
-	 *     You can't access this method, because it's inherited from NMSReflection.
-	 */
-	override fun getMethod(name: String) = rawMethods.first { it.name == name }
+//	/**
+//	 * internal property to save all methods.<br>
+//	 *  You can't access this property, because it's inherited from NMSReflection.
+//	 */
+//	override val rawMethods: Array<out Method> = targetNMSClass.methods
+//
+//	/**
+//	 * internal function to get methods instance.
+//	 *     You can't access this method, because it's inherited from NMSReflection.
+//	 */
+//	override fun getMethod(name: String) = rawMethods.first { it.name == name }
 
 	/**
 	 * internal property to save realized methods

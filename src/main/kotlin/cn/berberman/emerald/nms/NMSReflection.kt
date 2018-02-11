@@ -1,4 +1,4 @@
-package cn.berberman.emerald.nmsItem
+package cn.berberman.emerald.nms
 
 import java.lang.reflect.Method
 
@@ -14,16 +14,21 @@ abstract class NMSReflection {
 	/**
 	 * All methods of target class.
 	 */
-	protected abstract val rawMethods: Array<out Method>
+	protected open val rawMethods: Array<out Method>
+		get() = targetNMSClass.methods
 
 	/**
 	 * Find a method from rawMethods by name.
 	 * @param name method name
 	 */
-	protected abstract fun getMethod(name: String): Method
+	protected open fun getMethod(name: String) =
+			rawMethods.first { it.name == name }
+
 
 	/**
 	 * Methods we want's to use.
 	 */
 	protected abstract val methods: HashMap<String, Method>
+
+	protected operator fun Map<String, Method>.invoke(name: String): Method = get(name)!!
 }

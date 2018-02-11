@@ -11,7 +11,6 @@ import org.bukkit.entity.Entity
 import org.bukkit.event.Listener
 import org.bukkit.plugin.PluginManager
 import org.bukkit.plugin.java.JavaPlugin
-import java.lang.reflect.Method
 import java.util.logging.Logger
 
 internal fun getCommandMap(): CommandMap =
@@ -81,4 +80,3 @@ infix fun CommandSender.sendMessage(message: String) = sendMessage(message)
 
 internal val emptyListener = object : Listener {}
 
-internal operator fun Map<String, Method>.invoke(name: String): Method = get(name)!!
