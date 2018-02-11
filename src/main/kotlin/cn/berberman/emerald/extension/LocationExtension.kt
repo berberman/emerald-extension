@@ -1,7 +1,6 @@
 package cn.berberman.emerald.extension
 
 import org.bukkit.Location
-import org.bukkit.util.Vector
 
 /**
  * Adds the location by another.

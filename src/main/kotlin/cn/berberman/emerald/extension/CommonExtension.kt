@@ -8,12 +8,8 @@ import org.bukkit.World
 import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Entity
-import org.bukkit.event.Event
-import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
-import org.bukkit.plugin.IllegalPluginAccessException
 import org.bukkit.plugin.PluginManager
-import org.bukkit.plugin.SimplePluginManager
 import org.bukkit.plugin.java.JavaPlugin
 import java.lang.reflect.Method
 import java.util.logging.Logger

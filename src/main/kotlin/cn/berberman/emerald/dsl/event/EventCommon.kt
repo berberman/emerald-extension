@@ -12,12 +12,23 @@ import org.bukkit.plugin.IllegalPluginAccessException
 import org.bukkit.plugin.RegisteredListener
 import org.bukkit.plugin.SimplePluginManager
 
-internal fun <T : Event> registerEvent(packingEvent: PackingEvent<T>) {
+/**
+ * Register event.
+ * @param packingEvent Event listener
+ */
+fun <T : Event> registerEvent(packingEvent: PackingEvent<T>) {
 	pluginManager.registerEvent(packingEvent.type, emptyListener, packingEvent.eventPriority,
 			packingEvent.executor, plugin)
 	if (Emerald.debug)
 		logger.info("注册事件监听器：${packingEvent.type.simpleName}")
-	getEventListeners(packingEvent.type).registeredListeners
+}
+
+/**
+ * Register event.
+ * @param supplier A lambda supply a event listener
+ */
+fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
+	registerEvent(supplier())
 }
 
 internal fun getEventExecutor(registeredListener: RegisteredListener): EventExecutor {
