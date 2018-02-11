@@ -8,6 +8,7 @@ import cn.berberman.emerald.extension.pluginManager
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
+import org.bukkit.plugin.EventExecutor
 
 /**
  * Packing a event with org.bukkit.plugin.EventExecutor
@@ -16,10 +17,16 @@ import org.bukkit.event.Listener
  * @param block action when event execute
  * @author berberman
  */
-class PackingEvent<in T : Event>(private val type: Class<out Event>,
-                                 private val eventPriority: EventPriority,
+class PackingEvent<in T : Event>(val type: Class<out Event>,
+                                 val eventPriority: EventPriority,
                                  private val block: (T) -> Unit) {
+
 	@Suppress("UNCHECKED_CAST")
+	val executor:EventExecutor= EventExecutor { _, event ->
+		block(event as T)
+	}
+	@Suppress("UNCHECKED_CAST")
+	@Deprecated("GG")
 	internal fun register() {
 		pluginManager.registerEvent(type, emptyListener, eventPriority,
 				{ _: Listener, event ->
