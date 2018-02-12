@@ -48,5 +48,4 @@ fun registerCommands(block: DSLCommandScope.() -> Unit) {
 fun registerPermissions(block: DSLPermissionScope.() -> Unit) {
 	DSLPermissionScope().block()
 	PermissionHolder.register()
-
 }

@@ -14,7 +14,7 @@ import org.bukkit.plugin.SimplePluginManager
 
 /**
  * Register event.
- * @param packingEvent Event listener
+ * @param packingEvent event listener
  */
 fun <T : Event> registerEvent(packingEvent: PackingEvent<T>) {
 	pluginManager.registerEvent(packingEvent.type, emptyListener, packingEvent.eventPriority,
@@ -25,7 +25,7 @@ fun <T : Event> registerEvent(packingEvent: PackingEvent<T>) {
 
 /**
  * Register event.
- * @param supplier A lambda supply a event listener
+ * @param supplier A lambda supplies event listener
  */
 fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
 	registerEvent(supplier())
@@ -35,17 +35,30 @@ internal fun getEventExecutor(registeredListener: RegisteredListener): EventExec
 	val field = RegisteredListener::class.java.let {
 		it.declaredFields.firstOrNull { it.name == "executor" }
 				?: throw  IllegalPluginAccessException("Internal Error")
-	}
+	}.apply { isAccessible = true }
 	return field.get(registeredListener) as EventExecutor
 }
 
-internal fun <T : Event> unregisterEvent(packingEvent: PackingEvent<T>) {
+/**
+ * Unregister event
+ * @param packingEvent registered event
+ */
+fun <T : Event> unregisterEvent(packingEvent: PackingEvent<T>) {
 	getEventListeners(packingEvent.type).let {
 		it.registeredListeners.first { getEventExecutor(it) == packingEvent.executor }
 				.let(it::unregister)
 	}
 }
 
+/**
+ * Unregister event
+ * @param supplier a lambda supplies registered event
+ */
+fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
+	unregisterEvent(supplier())
+}
+
+@Suppress("UNCHECKED_CAST")
 internal fun getEventListeners(type: Class<out Event>): HandlerList {
 	val getRegistrationClass = SimplePluginManager::class.java.let {
 		val m = it.declaredMethods.firstOrNull { it.name == "getRegistrationClass" }
@@ -53,13 +66,7 @@ internal fun getEventListeners(type: Class<out Event>): HandlerList {
 		m.isAccessible = true
 		m
 	}
-	try {
-		val method = (getRegistrationClass(type) as Class<*>/*as Class<out Event>*/)
-				.getDeclaredMethod("getHandlerList")
-		method.isAccessible = true
-		return method.invoke(null) as HandlerList
-	} catch (e: Exception) {
-		throw IllegalPluginAccessException(e.toString())
+	return (getRegistrationClass(pluginManager, type) as Class<out Event>).let {
+		it.getDeclaredMethod("getHandlerList")(it) as HandlerList
 	}
-
 }

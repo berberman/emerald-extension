@@ -17,7 +17,7 @@ class NMSPacketPlayOutChat(chatBaseComponent: NMSIChatBaseComponent, chatMessage
 
 	override val methods: HashMap<String, Method> = hashMapOf()
 
-	override val nmsPacket: Any = NMSUtil.getNMSClass("ChatComponentText").let {
+	override val nmsPacket: Any = NMSUtil.getNMSClass("IChatBaseComponent").let {
 		if (shouldUseNewFormat())
 			targetNMSClass.getConstructor(it,
 					NMSUtil.getNMSClass("ChatMessageType")).newInstance(chatBaseComponent.nmsChat,

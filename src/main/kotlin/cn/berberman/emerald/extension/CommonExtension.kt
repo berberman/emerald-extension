@@ -79,4 +79,55 @@ enum class Axis3D {
 infix fun CommandSender.sendMessage(message: String) = sendMessage(message)
 
 internal val emptyListener = object : Listener {}
+/**
+ * Log a INFO message, which is only to be constructed if the logging
+ * level is such that the message will actually be logged.
+ * <p>
+ * If the logger is currently enabled for the INFO message
+ * level then the message is constructed by invoking the provided
+ * supplier function and forwarded to all the registered output
+ * Handler objects.
+ * <p>
+ * @param  msg   The string message (or a key in the message catalog)
+ */
+fun info(msg: String) = logger.info(msg)
+
+/**
+ * Log a INFO message, which is only to be constructed if the logging
+ * level is such that the message will actually be logged.
+ * <p>
+ * If the logger is currently enabled for the INFO message
+ * level then the message is constructed by invoking the provided
+ * supplier function and forwarded to all the registered output
+ * Handler objects.
+ * <p>
+ * @param  supplier   A function, which when called, produces the
+ *                        desired log message
+ */
+fun info(supplier: () -> String) = logger.info(supplier)
+
+/**
+ * Log a WARNING message.
+ * <p>
+ * If the logger is currently enabled for the WARNING message
+ * level then the given message is forwarded to all the
+ * registered output Handler objects.
+ * <p>
+ * @param   msg     The string message (or a key in the message catalog)
+ */
+fun warning(msg: String) = logger.warning(msg)
+
+/**
+ * Log a WARNING message, which is only to be constructed if the logging
+ * level is such that the message will actually be logged.
+ * <p>
+ * If the logger is currently enabled for the WARNING message
+ * level then the message is constructed by invoking the provided
+ * supplier function and forwarded to all the registered output
+ * Handler objects.
+ * <p>
+ * @param   supplier   A function, which when called, produces the
+ *                        desired log message
+ */
+fun warning(supplier: () -> String) = logger.warning(supplier)
 

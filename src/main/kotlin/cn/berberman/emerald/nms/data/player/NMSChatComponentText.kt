@@ -20,6 +20,6 @@ class NMSChatComponentText(val text: String) : NMSIChatBaseComponent() {
 	 */
 	override val targetNMSClass: Class<*> = NMSUtil.getNMSClass("ChatComponentText")
 
-	override val nmsChat:Any = targetNMSClass.getConstructor(String::class.java).newInstance(text)
+	override val nmsChat: Any = targetNMSClass.getConstructor(String::class.java).newInstance(text)
 
 }
