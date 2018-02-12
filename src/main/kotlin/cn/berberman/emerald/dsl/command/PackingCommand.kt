@@ -1,7 +1,7 @@
 package cn.berberman.emerald.dsl.command
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.logger
+import cn.berberman.emerald.extension.info
 import cn.berberman.emerald.extension.sendMessage
 import cn.berberman.emerald.extension.times
 import org.bukkit.ChatColor
@@ -53,9 +53,9 @@ internal class PackingCommand
 		before(p0, p1)
 		return action(p0, p1, p).apply {
 			if (!this) {
-				p0 sendMessage ChatColor.RED * "命令执行错误"
+				p0 sendMessage ChatColor.RED * "command execute error!"
 				if (Emerald.debug)
-					logger.info("命令:/$p1 执行错误!")
+					info("command:/$p1 execute error!")
 			}
 			after(p0, p1)
 		}

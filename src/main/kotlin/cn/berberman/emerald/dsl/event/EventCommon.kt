@@ -2,13 +2,12 @@ package cn.berberman.emerald.dsl.event
 
 import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.extension.emptyListener
-import cn.berberman.emerald.extension.logger
+import cn.berberman.emerald.extension.info
 import cn.berberman.emerald.extension.plugin
 import cn.berberman.emerald.extension.pluginManager
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 import org.bukkit.plugin.EventExecutor
-import org.bukkit.plugin.IllegalPluginAccessException
 import org.bukkit.plugin.RegisteredListener
 import org.bukkit.plugin.SimplePluginManager
 
@@ -20,7 +19,7 @@ fun <T : Event> registerEvent(packingEvent: PackingEvent<T>) {
 	pluginManager.registerEvent(packingEvent.type, emptyListener, packingEvent.eventPriority,
 			packingEvent.executor, plugin)
 	if (Emerald.debug)
-		logger.info("注册事件监听器：${packingEvent.type.simpleName}")
+		info("register event listener: ${packingEvent.type.simpleName}")
 }
 
 /**
@@ -33,8 +32,7 @@ fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
 
 internal fun getEventExecutor(registeredListener: RegisteredListener): EventExecutor {
 	val field = RegisteredListener::class.java.let {
-		it.declaredFields.firstOrNull { it.name == "executor" }
-				?: throw  IllegalPluginAccessException("Internal Error")
+		it.declaredFields.first { it.name == "executor" }
 	}.apply { isAccessible = true }
 	return field.get(registeredListener) as EventExecutor
 }
@@ -61,8 +59,7 @@ fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
 @Suppress("UNCHECKED_CAST")
 internal fun getEventListeners(type: Class<out Event>): HandlerList {
 	val getRegistrationClass = SimplePluginManager::class.java.let {
-		val m = it.declaredMethods.firstOrNull { it.name == "getRegistrationClass" }
-				?: throw  IllegalPluginAccessException("Internal Error")
+		val m = it.declaredMethods.first { it.name == "getRegistrationClass" }
 		m.isAccessible = true
 		m
 	}

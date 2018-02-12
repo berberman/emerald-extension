@@ -1,7 +1,7 @@
 package cn.berberman.emerald.dsl.permission
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.logger
+import cn.berberman.emerald.extension.info
 import cn.berberman.emerald.extension.pluginManager
 
 /**
@@ -20,13 +20,13 @@ internal object PermissionHolder {
 		simplePermissionList.flatMap { it.getChildPermissionInstances() }.forEach(pluginManager::addPermission)
 		simplePermissionList.flatMap { it.getChildPermissionInstances() }.forEach {
 			if (Emerald.debug)
-				logger.info("注册子权限：${it.name}")
+				info("register child permission: ${it.name}")
 		}
 		simplePermissionList.forEach { it.build().let(pluginManager::addPermission) }
 		simplePermissionList.forEach {
 			it.build().let {
 				if (Emerald.debug)
-					logger.info("注册权限：${it.name}")
+					info("register permission: ${it.name}")
 			}
 		}
 	}

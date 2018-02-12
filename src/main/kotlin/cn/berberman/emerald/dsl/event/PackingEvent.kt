@@ -19,14 +19,4 @@ class PackingEvent<in T : Event>(val type: Class<out Event>,
 	val executor: EventExecutor = EventExecutor { _, event ->
 		block(event as T)
 	}
-//	@Suppress("UNCHECKED_CAST")
-//	@Deprecated("GG")
-//	internal fun register() {
-//		pluginManager.registerEvent(type, emptyListener, eventPriority,
-//				{ _: Listener, event ->
-//					block(event as T)
-//				}, plugin)
-//		if (Emerald.debug)
-//			logger.info("注册事件监听器：${type.simpleName}")
-//	}
 }

@@ -1,7 +1,7 @@
 package cn.berberman.emerald.dsl.command
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.logger
+import cn.berberman.emerald.extension.info
 import cn.berberman.emerald.extension.plugin
 import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
@@ -18,17 +18,17 @@ internal object CommandHolder {
 	 * Add a command to register list.
 	 * @param packingCommand a command to register
 	 */
-	fun add(packingCommand: PackingCommand) = commands.add(packingCommand)
+	internal fun add(packingCommand: PackingCommand) = commands.add(packingCommand)
 
 	/**
 	 * Register all commands, you don't have to call it.
 	 * @param commandMap server's command map
 	 */
-	fun register(commandMap: CommandMap) {
+	internal fun register(commandMap: CommandMap) {
 		commands.forEach {
 			commandMap.register(plugin.name, it as Command)
 			if (Emerald.debug)
-				logger.info("注册命令：/${it.name}")
+				info("register command: /${it.name}")
 		}
 	}
 }

@@ -163,25 +163,25 @@ class NBTModifier(itemStack: ItemStack) {
 
 		private fun setString(tagName: TagName, value: String) {
 			if (Emerald.debug)
-				logger.info("NBT:添加$tagName:$value")
+				info("NBT:add $tagName:$value")
 			nbtTagCompound.setString(tagName.getNBTName(), value)
 		}
 
 		private fun setInt(tagName: TagName, int: Int) {
 			if (Emerald.debug)
-				logger.info("NBT:添加$tagName:$int")
+				info("NBT:add $tagName:$int")
 			nbtTagCompound.setInt(tagName.getNBTName(), int)
 		}
 
 		private fun remove(tagName: TagName) {
 			if (Emerald.debug)
-				logger.info("NBT:移除${tagName.name}")
+				info("NBT:add ${tagName.name}")
 			nbtTagCompound.remove(tagName.getNBTName())
 		}
 
 		private fun setTypeName(type: NBTType) {
 			if (Emerald.debug)
-				logger.info("NBT:添加Type:${type.getNBTName()}")
+				info("NBT:add Type:${type.getNBTName()}")
 			nbtTagCompound.setString("AttributeName", type.getNBTName())
 		}
 
