@@ -104,7 +104,7 @@ fun info(msg: String) = logger.info(msg)
  * @param  supplier   A function, which when called, produces the
  *                        desired log message
  */
-fun info(supplier: () -> String) = logger.info(supplier)
+inline fun info(supplier: () -> String) = logger.info(supplier())
 
 /**
  * Log a WARNING message.
@@ -129,5 +129,5 @@ fun warning(msg: String) = logger.warning(msg)
  * @param   supplier   A function, which when called, produces the
  *                        desired log message
  */
-fun warning(supplier: () -> String) = logger.warning(supplier)
+inline fun warning(supplier: () -> String) = logger.warning(supplier())
 
