@@ -20,6 +20,10 @@ class NMSPlayerConnection(val nmsPlayerConnection: Any) : NMSReflection() {
 			"sendPacket" to getMethod("sendPacket")
 	)
 
+	/**
+	 * Send packet to player
+	 * @param packet packet to send
+	 */
 	fun sendPacket(packet: NMSPacket) {
 		methods("sendPacket")(nmsPlayerConnection, packet.nmsPacket)
 	}
