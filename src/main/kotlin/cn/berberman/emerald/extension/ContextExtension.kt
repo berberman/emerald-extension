@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitTask
  * @param block action, keep running if it returns true
  * @return a BukkitTask that contains the id number
  */
-fun asyncLoop(delay: Long = 0L, block: () -> Boolean) = async(delay) {
+fun emeraldAsyncLoop(delay: Long = 0L, block: () -> Boolean) = emeraldAsync(delay) {
 	var result = block()
 	while (result)
 		result = block()
@@ -29,7 +29,7 @@ fun asyncLoop(delay: Long = 0L, block: () -> Boolean) = async(delay) {
  * @param block action to run
  * @return a BukkitTask that contains the id number
  */
-fun async(delay: Long = 0L, block: () -> Unit): BukkitTask = Bukkit.getScheduler()
+fun emeraldAsync(delay: Long = 0L, block: () -> Unit): BukkitTask = Bukkit.getScheduler()
 		.let {
 			if (delay != 0L) it.runTaskAsynchronously(plugin, block)
 			else it.runTaskLaterAsynchronously(plugin, block, delay)

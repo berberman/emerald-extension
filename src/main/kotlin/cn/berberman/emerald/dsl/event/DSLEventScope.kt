@@ -37,7 +37,7 @@ fun registerEvents(block: DSLEventScope.() -> Unit) =
 			events.forEach {
 				registerEvent(it)
 				if (Emerald.debug)
-					logger.info("注册事件监听器：${it.type.simpleName}")
+					logger.info("register event listener：${it.type.simpleName}")
 			}
 		}
 
