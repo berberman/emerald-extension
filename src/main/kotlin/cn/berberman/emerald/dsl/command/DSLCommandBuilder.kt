@@ -8,10 +8,12 @@ import org.bukkit.command.CommandSender
  * @author berberman
  */
 class DSLCommandBuilder internal constructor(internal val name: String) {
+	private val subActions =
+			mutableMapOf<String, (CommandSender, Array<out String>) -> Boolean>()
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
-	var action: Action = { _, _, _ -> false }
+	var action: Action = { sender, _, args -> dispatchSubCommand(sender, args).value ?: true }
 		private set
 	/**
 	 * The description of command, default is empty.
@@ -40,7 +42,13 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 * return boolean represents whether command executes successfully
 	 */
 	fun action(block: (CommandSender) -> Boolean) {
-		action = { seder, _, _ -> block(seder) }
+		action = { sender, _, args ->
+			dispatchSubCommand(sender, args).let { result ->
+				if (result == SubCommandInvokeState.UN_DISPATCHED && args.isEmpty()) block(sender)
+				else if (result == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) false
+				else result.value ?: throw IllegalStateException("That's impossible")
+			}
+		}
 	}
 
 	/**
@@ -49,7 +57,28 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 * return boolean represents whether command executes successfully
 	 */
 	fun action(block: (CommandSender, Array<out String>) -> Boolean) {
-		action = { seder, _, args -> block(seder, args) }
+		action = { sender, _, args ->
+			dispatchSubCommand(sender, args).let { result ->
+				if (result == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) block(sender, args)
+				else if (result == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) false
+				else result.value ?: throw IllegalStateException("That's impossible")
+			}
+		}
+	}
+
+	/**
+	 * Create a sub-command
+	 *
+	 * sub-commands will be invoked when the first argument equals its name.
+	 * In this case, super action will be ignored.
+	 *
+	 * @param name sub-command name
+	 * @param block action to invoke when sub-command dispatch
+	 *      Args supplied to sub-command will be removed first element(sub-command name).
+	 *
+	 */
+	fun subCommand(name: String, block: (CommandSender, Array<out String>) -> Boolean) {
+		subActions[name] = block
 	}
 
 	/**
@@ -92,12 +121,35 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 * @param sender command sender
 	 * @param block action if sender is target object
 	 */
-	inline fun <reified T : CommandSender> whenSenderIs(sender: CommandSender, block: T.() -> Boolean) =
+	inline fun <reified T : CommandSender>
+			whenSenderIs(sender: CommandSender, block: T.() -> Boolean) =
 			(sender is T).let { isTarget ->
 				TargetAndSenderBlocksData(sender, isTarget, if (isTarget)
 					(sender as T).block() else false)
 			}
 
+	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): SubCommandInvokeState =
+			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED
+			else subActions[args[0]]?.invoke(sender, mutableListOf<String>()
+					.apply {
+						addAll(args)
+						remove(args[0])
+					}.toTypedArray()).let { SubCommandInvokeState.valueOf(it) }
+
+
+	private enum class SubCommandInvokeState(val value: Boolean?) {
+		SUCCESSFUL(true),
+		FAILED(false),
+		UN_DISPATCHED(null);
+
+		companion object {
+			fun valueOf(value: Boolean?) = when (value) {
+				true  -> SUCCESSFUL
+				false -> FAILED
+				null  -> UN_DISPATCHED
+			}
+		}
+	}
 }
 
 /**
