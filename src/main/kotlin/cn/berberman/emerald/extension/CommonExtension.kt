@@ -1,14 +1,15 @@
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald
-import org.bukkit.Bukkit
-import org.bukkit.ChatColor
-import org.bukkit.Location
-import org.bukkit.World
+import org.bukkit.*
+import org.bukkit.block.Block
 import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Entity
 import org.bukkit.event.Listener
+import org.bukkit.event.inventory.InventoryType
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.InventoryHolder
 import org.bukkit.plugin.PluginManager
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Logger
@@ -130,4 +131,40 @@ fun warning(msg: String) = logger.warning(msg)
  *                        desired log message
  */
 inline fun warning(supplier: () -> String) = logger.warning(supplier())
+
+/**
+ * Creates an empty inventory.
+ *
+ * @param holder the holder of the inventory, default is null which indicate no holder
+ * @param lines a multiple of 9 as the lines of inventory to create
+ * @param title the title of the inventory, displayed when inventory is
+ *     viewed
+ * @param type  If the type is CHEST, the new inventory has a size of 27; otherwise the
+ *     new inventory has the normal size for its type. Default is null.
+ * @return a new inventory
+ * @throws IllegalArgumentException if the size is not a multiple of 9
+ */
+fun createInventory(holder: InventoryHolder? = null, lines: Int? = null,
+                    type: InventoryType? = null, title: String): Inventory =
+		title.takeIf { it.isNotBlank() }.let { name ->
+			if (lines == null && name == null && type != null)
+				Bukkit.createInventory(holder, type)
+			else if (lines != null && name == null && type == null)
+				Bukkit.createInventory(holder, lines * 9)
+			else if (lines != null && name != null && type == null)
+				Bukkit.createInventory(holder, lines * 9, name)
+			else if (lines == null && name != null && type != null)
+				Bukkit.createInventory(holder, type, name)
+			else throw IllegalArgumentException()
+		}
+
+/**
+ * Set a block type
+ * @receiver the world that block locate in
+ * @param location block location
+ * @param type type to set
+ * @return this block
+ */
+fun World.setBlock(location: Location, type: Material): Block =
+		getBlockAt(location).apply { this.type = type }
 
