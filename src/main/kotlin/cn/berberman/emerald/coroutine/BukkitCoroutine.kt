@@ -16,10 +16,10 @@ import kotlinx.coroutines.experimental.*
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code.
  */
-fun <T> async(
+fun <T> emeraldAsync(
 		start: CoroutineStart = CoroutineStart.DEFAULT,
 		block: suspend CoroutineScope.() -> T
-) = async(SpigotCoroutineDispatcher, start, null, block)
+) = async(BukkitAsyncCoroutineDispatcher, start, null, block)
 
 /**
  * Launches new coroutine without blocking current thread and returns a reference to the coroutine as a [Job].
@@ -40,7 +40,10 @@ fun <T> async(
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code.
  */
-fun launch(
+fun emeraldLaunch(
 		start: CoroutineStart = CoroutineStart.DEFAULT,
 		block: suspend CoroutineScope.() -> Unit
-) = launch(SpigotCoroutineDispatcher, start, null, block)
+) = launch(BukkitAsyncCoroutineDispatcher, start, null, block)
+
+typealias ServerThread = BukkitSyncCoroutineDispatcher
+typealias SchedulerThread = BukkitAsyncCoroutineDispatcher
