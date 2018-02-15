@@ -96,7 +96,7 @@ suspend fun getDataFromServer(): String {
 ```
 当 context 为 `SchedulerThread` 时，协程将在 Bukkit Scheduler Thread 上调度。
 你可以从 context 获取该协程所对的 `BukkitTask` 实例。除了`SchedulerThread` 外，
-还有 `ServerThread`，这会使协程运行在服务器主线程上**（这个线程不能被阻塞！)**。
+还有 `ServerThread`，这会使协程运行在服务器主线程上 **（这个线程不能被阻塞！)** 。
 当然，`async` 也同样接受这两个 context。
 ### 注册命令
 ```kotlin
@@ -128,7 +128,7 @@ registerCommands {
 ```
 `registerCommands` 在插件启动时应该被调用。对于每个命令来说，除了名字必须声明外，其他都是可选的，
 包括子命令、描述、权限、别名等。子命令可以有许多，但父命令的 `action` 只有在子命令未被调用 (而不是调用失败) 时调用。
-~~前面那句话没卵用，请忽略。~~在使用 `whenSenderIs<T : CommandSender>` 时后面要加 `otherwise {}`并且声明返回值。
+~~前面那句话没卵用，请忽略。~~ 在使用 `whenSenderIs<T : CommandSender>` 时后面要加 `otherwise {}`并且声明返回值。
 在 `registerCommands {}` 中，你可以使用 `command(name) {}` 注册许多命令。
 ### 注册事件监听器
 ```kotlin
