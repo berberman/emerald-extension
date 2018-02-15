@@ -90,7 +90,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	/**
 	 * A class support function whenSenderIs, holds its data.
 	 * @param senderInstance sender
-	 * @param isTarget whether sender is target object
+	 * @param isTarget whether sender is target type
 	 * @param result if it is, the result of execute
 	 * @author berberman
 	 * @see whenSenderIs
@@ -107,7 +107,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 				if (!isTarget) senderInstance.block() else result
 
 		/**
-		 * If don't use otherwise, you have to use invoke operator to get final result.
+		 * If you don't use otherwise, you have to use invoke operator to get final result.
 		 * @deprecated Not recommended, use [otherwise] instead.
 		 * @see otherwise
 		 */
@@ -117,15 +117,16 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 
 	/**
 	 * Provide a function to take place of ` if...else... `
-	 * @param T target type that assess whether sender is
-	 * @param sender command sender
-	 * @param block action if sender is target object
+	 *    *infix fun can't declared generic explicitly*
+	 * @param T type that assess whether sender is
+	 * @receiver sender command sender
+	 * @param block action if sender is target type
 	 */
-	inline fun <reified T : CommandSender>
-			whenSenderIs(sender: CommandSender, block: T.() -> Boolean) =
-			(sender is T).let { isTarget ->
-				TargetAndSenderBlocksData(sender, isTarget, if (isTarget)
-					(sender as T).block() else false)
+	inline infix fun <reified T : CommandSender>
+			CommandSender.whenSenderIs(block: T.() -> Boolean) =
+			(this is T).let { isTarget ->
+				TargetAndSenderBlocksData(this, isTarget, if (isTarget)
+					(this as T).block() else false)
 			}
 
 	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): SubCommandInvokeState =

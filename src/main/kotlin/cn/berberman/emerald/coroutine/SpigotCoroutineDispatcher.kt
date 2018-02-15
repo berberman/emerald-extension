@@ -9,6 +9,6 @@ import kotlin.coroutines.experimental.CoroutineContext
 object SpigotCoroutineDispatcher : CoroutineDispatcher() {
 	private val bukkitScheduler = Bukkit.getScheduler()
 	override fun dispatch(context: CoroutineContext, block: Runnable) {
-		bukkitScheduler.runTask(plugin, block)
+		bukkitScheduler.runTaskAsynchronously(plugin, block)
 	}
 }
