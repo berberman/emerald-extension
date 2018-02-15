@@ -168,3 +168,5 @@ fun createInventory(holder: InventoryHolder? = null, lines: Int? = null,
 fun World.setBlock(location: Location, type: Material): Block =
 		getBlockAt(location).apply { this.type = type }
 
+@DslMarker
+internal annotation class CommonBuilder

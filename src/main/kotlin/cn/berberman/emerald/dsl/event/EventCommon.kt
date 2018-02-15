@@ -67,3 +67,6 @@ internal fun getEventListeners(type: Class<out Event>): HandlerList {
 		it.getDeclaredMethod("getHandlerList")(it) as HandlerList
 	}
 }
+
+@DslMarker
+annotation class EventBuilder

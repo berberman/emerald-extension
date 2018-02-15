@@ -11,6 +11,7 @@ import org.bukkit.event.EventPriority
  * @see PackingEvent
  *
  */
+@EventBuilder
 class DSLEventScope internal constructor() {
 	/**
 	 * Build a packing event.
@@ -18,6 +19,7 @@ class DSLEventScope internal constructor() {
 	 * @param eventPriority Event Priority, default is normal
 	 * @param block DSL part of building event listeners
 	 */
+	@EventBuilder
 	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, noinline block: T.() -> Unit) = run {
 		PackingEvent(T::class.java, eventPriority, block).let(events::add)
 		Unit

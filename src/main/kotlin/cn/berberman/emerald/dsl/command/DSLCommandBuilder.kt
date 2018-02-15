@@ -1,5 +1,6 @@
 package cn.berberman.emerald.dsl.command
 
+import cn.berberman.emerald.extension.CommonBuilder
 import org.bukkit.command.CommandSender
 
 /**
@@ -7,6 +8,7 @@ import org.bukkit.command.CommandSender
  * @param name command name
  * @author berberman
  */
+@CommandBuilder
 class DSLCommandBuilder internal constructor(internal val name: String) {
 	private val subActions =
 			mutableMapOf<String, (CommandSender, Array<out String>) -> Boolean>()
@@ -165,6 +167,7 @@ internal fun buildCommands(block: DSLCommandScope.() -> Unit) {
  * A DSL structure to build command builder.
  * @author berberman
  */
+@CommonBuilder
 class DSLCommandScope internal constructor() {
 
 	/**
@@ -220,3 +223,6 @@ class DSLCommandScope internal constructor() {
 		 * use typealias to replace :)
 		 */
 typealias Action = (CommandSender, String, Array<out String>) -> Boolean
+
+@DslMarker
+internal annotation class CommandBuilder
