@@ -3,12 +3,12 @@
 
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
-  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7b4f22765ae44af4bd84103daddb00c7)](https://www.codacy.com/app/berberman/emerald-extension?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=berberman/emerald-extension&amp;utm_campaign=Badge_Grade)
- [![berberman](https://img.shields.io/badge/powered_by-berberman-orange.svg)](https://github.com/berberman)
- [![minecraft](https://img.shields.io/badge/minecraft-1.12.2-yellowgreen.svg)](https://www.spigotmc.org/)
- [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/berberman/emerald-extension)
- [![gradle](https://img.shields.io/badge/gradle-4.4-brightgreen.svg)](https://gradle.org/)
-  [ ![Download](https://api.bintray.com/packages/berberman/maven/emerald-extension/images/download.svg) ](https://bintray.com/berberman/maven/emerald-extension/_latestVersion)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7b4f22765ae44af4bd84103daddb00c7)](https://www.codacy.com/app/berberman/emerald-extension?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=berberman/emerald-extension&amp;utm_campaign=Badge_Grade)
+[![berberman](https://img.shields.io/badge/powered_by-berberman-orange.svg)](https://github.com/berberman)
+[![minecraft](https://img.shields.io/badge/minecraft-1.12.2-yellowgreen.svg)](https://www.spigotmc.org/)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/berberman/emerald-extension)
+[![gradle](https://img.shields.io/badge/gradle-4.4-brightgreen.svg)](https://gradle.org/)
+[![Download](https://api.bintray.com/packages/berberman/maven/emerald-extension/images/download.svg)](https://bintray.com/berberman/maven/emerald-extension/_latestVersion)
 
 持续集成构建|构建状态
 :---|:---:
@@ -99,6 +99,19 @@ suspend fun getDataFromServer(): String {
 还有 `ServerThread`，这会使协程运行在服务器主线程上 **（这个线程不能被阻塞！，例如 `Thread.sleep()`，
 但协程的 `delay` 等挂起函数可以正常调用。 )** 。
 当然，`async` 也同样接受这两个 context。
+### BukkitScheduler
+```kotlin
+launch(SchedulerThread) {
+	Thread.sleep(3000)
+	runOnServerThread {
+		player.world.spawnEntity<Pig>(player.location)
+	}
+}
+```
+当你执行一些会阻塞线程，并非挂起的任务时，需要使该协程在 `Scheduler` 线程上调度。
+这时，如果你想访问 Bukkit API，你就需要使任务运行在服务器线程上。但是，一些同步执行的
+简单语句没有开一个在主线程上运行的协程的必要，所以你可以通过`runOnServerThread {}` 函数
+使其运行在服务器主线程上。
 ### 注册命令
 ```kotlin
 registerCommands {
