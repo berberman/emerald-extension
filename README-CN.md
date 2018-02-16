@@ -99,7 +99,7 @@ suspend fun getDataFromServer(): String {
 还有 `ServerThread`，这会使协程运行在服务器主线程上 **（这个线程不能被阻塞！，例如 `Thread.sleep()`，
 但协程的 `delay` 等挂起函数可以正常调用。 )** 。
 当然，`async` 也同样接受这两个 context。
-### BukkitScheduler
+### Bukkit Scheduler
 ```kotlin
 launch(SchedulerThread) {
 	Thread.sleep(3000)

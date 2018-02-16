@@ -33,7 +33,8 @@ fun emeraldAsyncLoop(delay: Long = 0L, block: () -> Boolean) = emeraldAsync(dela
  * @deprecated You should use coroutine in kotlin :D
  * @return a BukkitTask that contains the id number
  */
-@Deprecated("You should use coroutine in kotlin :D", ReplaceWith("", "cn.berberman.emerald.coroutine.SpigotCoroutine.*"))
+@Deprecated("You should use coroutine in kotlin :D",
+		ReplaceWith("async(){}", "kotlinx.coroutines.experimental.async"))
 fun emeraldAsync(delay: Long = 0L, block: () -> Unit): BukkitTask = Bukkit.getScheduler()
 		.let {
 			if (delay != 0L) it.runTaskAsynchronously(plugin, block)
