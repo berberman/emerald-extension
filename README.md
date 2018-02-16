@@ -32,8 +32,8 @@ What does this extension include?
 * Supporting Bukkit of Kotlin Coroutine
 * Many Other Extensions
 ## Getting started
-See [Getting Started](wiki/Getting-started)
+See [Getting Started](https://github.com/berberman/emerald-extension/wiki/Getting-started)
 ## Documentation
-See [wiki](wiki) pages
+See [wiki](https://github.com/berberman/emerald-extension/wiki) pages
 ## Contribution
 Welcome to open issues and make pull request.
