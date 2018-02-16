@@ -16,6 +16,7 @@ import kotlinx.coroutines.experimental.*
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code.
  */
+@Deprecated("Use kontx's coroutine instead", ReplaceWith("async", "kotlinx.coroutines.experimental.async"))
 fun <T> emeraldAsync(
 		start: CoroutineStart = CoroutineStart.DEFAULT,
 		block: suspend CoroutineScope.() -> T
@@ -40,6 +41,7 @@ fun <T> emeraldAsync(
  * @param start coroutine start option. The default value is [CoroutineStart.DEFAULT].
  * @param block the coroutine code.
  */
+@Deprecated("Use kontx's coroutine instead", ReplaceWith("launch", "kotlinx.coroutines.experimental.launch"))
 fun emeraldLaunch(
 		start: CoroutineStart = CoroutineStart.DEFAULT,
 		block: suspend CoroutineScope.() -> Unit

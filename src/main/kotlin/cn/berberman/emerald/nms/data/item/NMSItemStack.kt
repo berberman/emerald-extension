@@ -52,12 +52,12 @@ class NMSItemStack(itemStack: ItemStack) : NMSReflection() {
 
 	/**
 	 * Get NBT Tag from nms
-	 * @return nms's NBT Tag.
+	 * @return nms NBT Tag.
 	 */
 	fun getTag() = NMSNBTTagCompound(methods("getTag")(nmsItemStack))
 
 	/**
-	 * Set nms's NBT Tag
+	 * Set nms NBT Tag
 	 * @param nmsNBTTagCompound tag
 	 */
 	fun setTag(nmsNBTTagCompound: NMSNBTTagCompound) {
