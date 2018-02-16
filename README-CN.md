@@ -96,7 +96,8 @@ suspend fun getDataFromServer(): String {
 ```
 当 context 为 `SchedulerThread` 时，协程将在 Bukkit Scheduler Thread 上调度。
 你可以从 context 获取该协程所对的 `BukkitTask` 实例。除了`SchedulerThread` 外，
-还有 `ServerThread`，这会使协程运行在服务器主线程上 **（这个线程不能被阻塞！)** 。
+还有 `ServerThread`，这会使协程运行在服务器主线程上 **（这个线程不能被阻塞！，例如 `Thread.sleep()`，
+但协程的 `delay` 等挂起函数可以正常调用。 )** 。
 当然，`async` 也同样接受这两个 context。
 ### 注册命令
 ```kotlin
