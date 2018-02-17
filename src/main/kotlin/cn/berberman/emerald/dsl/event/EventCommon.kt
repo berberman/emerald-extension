@@ -69,4 +69,4 @@ internal fun getEventListeners(type: Class<out Event>): HandlerList {
 }
 
 @DslMarker
-annotation class EventBuilder
+private annotation class EventBuilder
