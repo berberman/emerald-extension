@@ -1,25 +1,26 @@
 package cn.berberman.emerald.nms.data.nbt
 
-import cn.berberman.emerald.nms.NMSReflection
-import cn.berberman.emerald.nms.NMSUtil
+import cn.berberman.emerald.extension.getConstructorAccess
+import cn.berberman.emerald.nms.NMSAReflection
+import cn.berberman.emerald.nms.NMSAUtil
 
 /**
  * Corresponding NBTTagCompound
  * All methods are realized by reflection.
  * @author berberman
  */
-class NMSNBTTagCompound : NMSReflection {
+class NMSNBTTagCompound : NMSAReflection {
 	/**
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val targetNMSClass: Class<*> = NMSUtil.getNMSClass("NBTTagCompound")
+	override val targetNMSClass: Class<*> = NMSAUtil.getNMSClass("NBTTagCompound")
 
 	/**
 	 * Base constructor, which will new a NBTTagCompound instance.
 	 */
 	constructor() {
-		tagCompound = targetNMSClass.newInstance()
+		instanceNMS = targetNMSClass.getConstructorAccess().newInstance()
 	}
 
 	/**
@@ -27,35 +28,10 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param original a NBTTagCompound instance.
 	 */
 	constructor(original: Any) {
-		tagCompound = original
+		instanceNMS = original
 	}
 
-	/**
-	 * an instance of NBTTagCompound holds by this class.
-	 */
-	val tagCompound: Any
-//	/**
-//	 * internal property to save all methods.<br>
-//	 *  You can't access this property, because it's inherited from NMSReflection.
-//	 */
-//	override val rawMethods: Array<out Method> = targetNMSClass.methods
-//
-//	/**
-//	 * internal function to get methods instance.
-//	 *     You can't access this method, because it's inherited from NMSReflection.
-//	 */
-//	override fun getMethod(name: String) = rawMethods.first { it.name == name }
-
-	/**
-	 * internal property to save realized methods
-	 *  You can't access this property, because it's inherited from NMSReflection.
-	 */
-	override val methods = hashMapOf(
-			"setInt" to getMethod("setInt"),
-			"setString" to getMethod("setString"),
-			"remove" to getMethod("remove"),
-			"set" to getMethod("set")
-	)
+	override val instanceNMS: Any
 
 	/**
 	 * set int value
@@ -63,7 +39,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param value value that you wan's to set.
 	 */
 	fun setInt(name: String, value: Int) {
-		methods("setInt")(tagCompound, name, value)
+		methods("setInt", name, value)
 	}
 
 	/**
@@ -72,7 +48,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param value value that you wan's to set.
 	 */
 	fun setString(name: String, value: String) {
-		methods("setString")(tagCompound, name, value)
+		methods("setString", name, value)
 	}
 
 	/**
@@ -80,7 +56,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param name the key of value.
 	 */
 	fun remove(name: String) {
-		methods("remove")(tagCompound, name)
+		methods("remove", name)
 	}
 
 	/**
@@ -89,7 +65,7 @@ class NMSNBTTagCompound : NMSReflection {
 	 * @param any NBTBase instance
 	 */
 	fun set(name: String, any: Any) {
-		methods("set")(tagCompound, name, any)
+		methods("set", name, any)
 	}
 
 }

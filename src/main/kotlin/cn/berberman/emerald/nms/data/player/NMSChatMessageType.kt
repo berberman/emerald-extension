@@ -1,6 +1,6 @@
 package cn.berberman.emerald.nms.data.player
 
-import cn.berberman.emerald.nms.NMSUtil
+import cn.berberman.emerald.nms.NMSAUtil
 
 /**
  * Corresponding ChatMessageType Enum
@@ -26,7 +26,7 @@ enum class NMSChatMessageType(val type: Byte) {
 	 * @return nms instance of the enum.
 	 */
 	fun getNMSInstance(): Any {
-		val clazz = NMSUtil.getNMSClass("ChatMessageType")
+		val clazz = NMSAUtil.getNMSClass("ChatMessageType")
 		val a = clazz.methods.first { it.name == "a" && it.returnType == clazz }
 		return a(null, type)
 	}

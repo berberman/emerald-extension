@@ -35,6 +35,11 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.2'
     compile 'org.javassist:javassist:3.22.0-GA'
+    // compile 'com.esotericsoftware:reflectasm:1.11.3'
+    // https://mvnrepository.com/artifact/org.ow2.asm/asm-all
+    compile 'org.ow2.asm:asm-all:5.2'
+
+
 }
 
 compileKotlin {
