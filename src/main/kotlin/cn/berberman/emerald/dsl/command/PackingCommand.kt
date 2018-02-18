@@ -30,7 +30,8 @@ internal class PackingCommand
  permission: String,
  permissionMessage: String,
  private val before: (CommandSender, String) -> Unit,
- private val after: (CommandSender, String) -> Unit
+ private val after: (CommandSender, String) -> Unit,
+ private val tabCompleter: (PackingTabCompleter.() -> Unit)
 ) : Command(name,
 		description,
 		usageMessage,
@@ -42,6 +43,8 @@ internal class PackingCommand
 			super.setPermission(permission)
 	}
 
+	private val packingTabCompleter = PackingTabCompleter()
+	private val childPackingTabCompleter = PackingTabCompleter()
 	/**
 	 * Override execute method, invoke actions.
 	 * This method will be invoked by Server.
@@ -59,5 +62,19 @@ internal class PackingCommand
 			}
 			after(p0, p1)
 		}
+	}
+
+	override fun tabComplete(sender: CommandSender, alias: String, args: Array<out String>): List<String> {
+		childPackingTabCompleter.onComplete(sender, args)
+		(packingTabCompleter.apply { onComplete(sender, args) }
+				.apply(tabCompleter).childPackingTabCompleter)?.let(childPackingTabCompleter::apply)
+		val superValue = ArrayList(packingTabCompleter.result)
+		val childValue = ArrayList(childPackingTabCompleter.result)
+		childPackingTabCompleter.cleanUp()
+		packingTabCompleter.cleanUp()
+
+		return if (superValue.contains(args[0]))
+			childValue
+		else superValue
 	}
 }

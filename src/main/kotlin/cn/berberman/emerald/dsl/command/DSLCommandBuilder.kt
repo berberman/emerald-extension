@@ -11,11 +11,21 @@ import org.bukkit.command.CommandSender
 @CommandBuilder
 class DSLCommandBuilder internal constructor(internal val name: String) {
 	private val subActions =
-			mutableMapOf<String, (CommandSender, Array<out String>) -> Boolean>()
+			mutableMapOf<String, DSLSubCommandBuilder>()
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
 	var action: Action = { sender, _, args -> dispatchSubCommand(sender, args).value ?: true }
+		private set
+	/**
+	 * Read only, tab completer
+	 */
+	var tabCompleter: (PackingTabCompleter.() -> Unit) = {
+		childPackingTabCompleter = processSubCommandTabComplete(args)
+		subActions.keys.filter { it.startWithIgnoreCase(lastWord()) }
+				.let(result::addAll)
+		sort()
+	}
 		private set
 	/**
 	 * The description of command, default is empty.
@@ -79,8 +89,20 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 *      Args supplied to sub-command will be removed first element(sub-command name).
 	 *
 	 */
-	fun subCommand(name: String, block: (CommandSender, Array<out String>) -> Boolean) {
-		subActions[name] = block
+	fun subCommand(name: String, block: DSLSubCommandBuilder.() -> Unit) {
+		subActions[name] = DSLSubCommandBuilder(name).apply(block)
+	}
+
+	/**
+	 * DSL create tabCompleter
+	 * @param block DSL
+	 */
+	fun tabCompleter(block: PackingTabCompleter.() -> Unit) {
+		val processed: PackingTabCompleter.() -> Unit = {
+			processSubCommandTabComplete(args)
+			block()
+		}
+		tabCompleter = processed
 	}
 
 	/**
@@ -133,12 +155,14 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 
 	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): SubCommandInvokeState =
 			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED
-			else subActions[args[0]]?.invoke(sender, mutableListOf<String>()
+			else subActions[args[0]]?.action?.invoke(sender, mutableListOf<String>()
 					.apply {
 						addAll(args)
 						remove(args[0])
 					}.toTypedArray()).let { SubCommandInvokeState.valueOf(it) }
 
+	private fun processSubCommandTabComplete(args: Array<out String>)
+			: (PackingTabCompleter.() -> Unit)? = subActions[args.getOrNull(0)]?.tabCompleter
 
 	private enum class SubCommandInvokeState(val value: Boolean?) {
 		SUCCESSFUL(true),
@@ -152,6 +176,27 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 				null  -> UN_DISPATCHED
 			}
 		}
+	}
+}
+
+@SubCommandBuilder
+class DSLSubCommandBuilder internal constructor(internal val name: String) {
+	var action: (CommandSender, Array<out String>) -> Boolean = { _, _ -> true }
+		private set
+
+	var tabCompleter: (PackingTabCompleter.() -> Unit) = {}
+		private set
+
+	fun action(block: (CommandSender) -> Boolean) {
+		action = { sender, _ -> block(sender) }
+	}
+
+	fun action(block: (CommandSender, Array<out String>) -> Boolean) {
+		action = block
+	}
+
+	fun tabCompleter(block: PackingTabCompleter.() -> Unit) {
+		tabCompleter = block
 	}
 }
 
@@ -212,7 +257,7 @@ class DSLCommandScope internal constructor() {
 					aliases,
 					action,
 					permission,
-					permissionMessage, before, after).let(CommandHolder::add)
+					permissionMessage, before, after, tabCompleter).let(CommandHolder::add)
 		}
 	}
 
@@ -226,3 +271,6 @@ typealias Action = (CommandSender, String, Array<out String>) -> Boolean
 
 @DslMarker
 internal annotation class CommandBuilder
+
+@DslMarker
+internal annotation class SubCommandBuilder
