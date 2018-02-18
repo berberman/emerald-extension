@@ -20,8 +20,6 @@ Codeship|[ ![Codeship Status for berberman/emerald-extension](https://app.codesh
 
 一个作为 Spigot 插件开发的依赖。
 
-~~Wercker CI 不支持 Jvm，所以永远不能构建成功(逃~~
-
 本项目引入了 `spigot-1.12.2` 作为依赖, 理论支持 1.9+ 。
 
 本项目内容：

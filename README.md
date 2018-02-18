@@ -20,8 +20,6 @@ Codeship|[ ![Codeship Status for berberman/emerald-extension](https://app.codesh
 
 An extension of Minecraft-Spigot Plugin.   
 
-~~Wercker CI dosen't support Jvm :anger:~~
-
 This dependency use library `spigot-1.12.2`,  but it supports other versions theoretically.
 
 What does this extension include?
