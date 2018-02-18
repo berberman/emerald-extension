@@ -145,7 +145,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 		FAILED(false),
 		UN_DISPATCHED(null);
 
-		companion object {
+		internal companion object {
 			fun valueOf(value: Boolean?) = when (value) {
 				true  -> SUCCESSFUL
 				false -> FAILED

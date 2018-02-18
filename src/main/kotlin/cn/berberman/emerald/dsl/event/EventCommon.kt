@@ -1,10 +1,7 @@
 package cn.berberman.emerald.dsl.event
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.emptyListener
-import cn.berberman.emerald.extension.info
-import cn.berberman.emerald.extension.plugin
-import cn.berberman.emerald.extension.pluginManager
+import cn.berberman.emerald.extension.*
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 import org.bukkit.plugin.EventExecutor
@@ -64,7 +61,7 @@ internal fun getEventListeners(type: Class<out Event>): HandlerList {
 		m
 	}
 	return (getRegistrationClass(pluginManager, type) as Class<out Event>).let {
-		it.getDeclaredMethod("getHandlerList")(it) as HandlerList
+		it.invokeMethod(it, "getHandlerList") as HandlerList
 	}
 }
 

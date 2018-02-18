@@ -1,26 +1,46 @@
 $dokka.format:jekyll
 $dokka.linkExtension:html
+$dokka.location:cn.berberman.emerald$世界#org.bukkit.entity.Playercn.berberman.emerald/org.bukkit.entity.-player/世界.html
+$dokka.location:cn.berberman.emerald$位置#org.bukkit.entity.Playercn.berberman.emerald/org.bukkit.entity.-player/位置.html
+$dokka.location:cn.berberman.emerald$发送消息(org.bukkit.command.CommandSender, kotlin.String)cn.berberman.emerald/org.bukkit.command.-command-sender/发送消息.html
+$dokka.location:cn.berberman.emerald$生成实体(org.bukkit.World, org.bukkit.Location)cn.berberman.emerald/org.bukkit.-world/生成实体.html
+$dokka.location:cn.berberman.emerald$给点经验等级(org.bukkit.entity.Player, kotlin.Int)cn.berberman.emerald/org.bukkit.entity.-player/给点经验等级.html
+$dokka.location:cn.berberman.emerald$触发事件的玩家#org.bukkit.event.player.PlayerJoinEventcn.berberman.emerald/org.bukkit.event.player.-player-join-event/触发事件的玩家.html
+$dokka.location:cn.berberman.emerald$造成伤害(org.bukkit.entity.Damageable, kotlin.Double)cn.berberman.emerald/org.bukkit.entity.-damageable/造成伤害.html
 $dokka.location:cn.berberman.emerald.extension$div(org.bukkit.util.Vector, org.bukkit.util.Vector)cn.berberman.emerald.extension/org.bukkit.util.-vector/div.html
 $dokka.location:cn.berberman.emerald.extension$get(org.bukkit.Location, cn.berberman.emerald.extension.Axis3D)cn.berberman.emerald.extension/org.bukkit.-location/get.html
 $dokka.location:cn.berberman.emerald.extension$get(org.bukkit.util.Vector, cn.berberman.emerald.extension.Axis3D)cn.berberman.emerald.extension/org.bukkit.util.-vector/get.html
+$dokka.location:cn.berberman.emerald.extension$getConstructorAccess(java.lang.Class((cn.berberman.emerald.extension.getConstructorAccess.T)))cn.berberman.emerald.extension/java.lang.-class/get-constructor-access.html
+$dokka.location:cn.berberman.emerald.extension$getField(java.lang.Class((cn.berberman.emerald.extension.getField.T)), kotlin.Any, kotlin.String)cn.berberman.emerald.extension/java.lang.-class/get-field.html
+$dokka.location:cn.berberman.emerald.extension$getFieldAccess(java.lang.Class((cn.berberman.emerald.extension.getFieldAccess.T)))cn.berberman.emerald.extension/java.lang.-class/get-field-access.html
+$dokka.location:cn.berberman.emerald.extension$getMethodAccess(java.lang.Class((cn.berberman.emerald.extension.getMethodAccess.T)))cn.berberman.emerald.extension/java.lang.-class/get-method-access.html
+$dokka.location:cn.berberman.emerald.extension$invokeMethod(java.lang.Class((cn.berberman.emerald.extension.invokeMethod.T)), kotlin.Any, kotlin.String, kotlin.Array((kotlin.Any)))cn.berberman.emerald.extension/java.lang.-class/invoke-method.html
 $dokka.location:cn.berberman.emerald.extension$minus(org.bukkit.Location, org.bukkit.Location)cn.berberman.emerald.extension/org.bukkit.-location/minus.html
 $dokka.location:cn.berberman.emerald.extension$minus(org.bukkit.util.Vector, org.bukkit.util.Vector)cn.berberman.emerald.extension/org.bukkit.util.-vector/minus.html
 $dokka.location:cn.berberman.emerald.extension$modifyNBT(org.bukkit.inventory.ItemStack, kotlin.Function1((cn.berberman.emerald.extension.NBTModifier.NBTTagModifier, kotlin.Unit)))cn.berberman.emerald.extension/org.bukkit.inventory.-item-stack/modify-n-b-t.html
 $dokka.location:cn.berberman.emerald.extension$operateMeta(org.bukkit.inventory.ItemStack, kotlin.Function1((org.bukkit.inventory.meta.ItemMeta, kotlin.Unit)))cn.berberman.emerald.extension/org.bukkit.inventory.-item-stack/operate-meta.html
 $dokka.location:cn.berberman.emerald.extension$plus(org.bukkit.Location, org.bukkit.Location)cn.berberman.emerald.extension/org.bukkit.-location/plus.html
 $dokka.location:cn.berberman.emerald.extension$plus(org.bukkit.util.Vector, org.bukkit.util.Vector)cn.berberman.emerald.extension/org.bukkit.util.-vector/plus.html
+$dokka.location:cn.berberman.emerald.extension$sendActionBar(org.bukkit.entity.Player, kotlin.String)cn.berberman.emerald.extension/org.bukkit.entity.-player/send-action-bar.html
 $dokka.location:cn.berberman.emerald.extension$sendMessage(org.bukkit.command.CommandSender, kotlin.String)cn.berberman.emerald.extension/org.bukkit.command.-command-sender/send-message.html
 $dokka.location:cn.berberman.emerald.extension$set(org.bukkit.Location, cn.berberman.emerald.extension.Axis3D, kotlin.Double)cn.berberman.emerald.extension/org.bukkit.-location/set.html
 $dokka.location:cn.berberman.emerald.extension$set(org.bukkit.util.Vector, cn.berberman.emerald.extension.Axis3D, kotlin.Double)cn.berberman.emerald.extension/org.bukkit.util.-vector/set.html
+$dokka.location:cn.berberman.emerald.extension$setBlock(org.bukkit.World, org.bukkit.Location, org.bukkit.Material)cn.berberman.emerald.extension/org.bukkit.-world/set-block.html
 $dokka.location:cn.berberman.emerald.extension$spawnEntity(org.bukkit.World, org.bukkit.Location)cn.berberman.emerald.extension/org.bukkit.-world/spawn-entity.html
 $dokka.location:cn.berberman.emerald.extension$times(org.bukkit.ChatColor, kotlin.String)cn.berberman.emerald.extension/org.bukkit.-chat-color/times.html
 $dokka.location:cn.berberman.emerald.extension$times(org.bukkit.Location, kotlin.Double)cn.berberman.emerald.extension/org.bukkit.-location/times.html
 $dokka.location:cn.berberman.emerald.extension$times(org.bukkit.util.Vector, kotlin.Double)cn.berberman.emerald.extension/org.bukkit.util.-vector/times.html
 $dokka.location:cn.berberman.emerald.extension$times(org.bukkit.util.Vector, org.bukkit.util.Vector)cn.berberman.emerald.extension/org.bukkit.util.-vector/times.html
+$dokka.location:cn.berberman.emerald.extension$toCraftPlayer(org.bukkit.entity.Player)cn.berberman.emerald.extension/org.bukkit.entity.-player/to-craft-player.html
 cn.berberman.emerald
+cn.berberman.emerald.coroutine
 cn.berberman.emerald.dsl.command
 cn.berberman.emerald.dsl.event
 cn.berberman.emerald.dsl.permission
 cn.berberman.emerald.extension
-cn.berberman.emerald.nmsItem
-cn.berberman.emerald.nmsItem.data
+cn.berberman.emerald.nms
+cn.berberman.emerald.nms.data.item
+cn.berberman.emerald.nms.data.nbt
+cn.berberman.emerald.nms.data.player
+cn.berberman.emerald.nms.data.player.interfaces
+com.esotericsoftware.reflectasm

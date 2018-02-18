@@ -21,5 +21,5 @@ abstract class NMSAReflection {
 	 * Invoke a method in target class
 	 */
 	fun methods(name: String, vararg parameterName: Any): Any? =
-			targetNMSClass.invokeMethod(instanceNMS, name, *parameterName)
+			targetNMSClass.invokeMethod(instanceNMS, name, parameterName)
 }

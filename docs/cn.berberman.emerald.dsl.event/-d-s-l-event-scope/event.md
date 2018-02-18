@@ -8,10 +8,12 @@ title: DSLEventScope.event - emerald-extension
 
 `inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, noinline block: T.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Build event function.
+Build a packing event.
 
 ### Parameters
 
 `T` - target event
 
-`eventPriority` - priority of event listener, default is NORMAL
+`eventPriority` - Event Priority, default is normal
+
+`block` - DSL part of building event listeners

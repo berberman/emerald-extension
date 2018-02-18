@@ -14,5 +14,9 @@ import kotlin.coroutines.experimental.CoroutineContext
  */
 class BukkitTaskCoroutineContext(private val task: BukkitTask) : AbstractCoroutineContextElement(BukkitTaskCoroutineContext),
                                                                  BukkitTask by task {
+	/**
+	 * Coroutine Context Key
+	 * @author berberman
+	 */
 	companion object Key : CoroutineContext.Key<BukkitTaskCoroutineContext>
 }

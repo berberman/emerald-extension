@@ -8,7 +8,7 @@ title: DSLEventScope - emerald-extension
 
 `class DSLEventScope`
 
-A DSL structure to build event.
+A DSL structure to build events.
 
 **Author**
 berberman
@@ -19,5 +19,5 @@ berberman
 
 ### Functions
 
-| [event](event.html) | `fun <T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, block: T.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Build event function. |
+| [event](event.html) | `fun <T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, block: T.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Build a packing event. |
 

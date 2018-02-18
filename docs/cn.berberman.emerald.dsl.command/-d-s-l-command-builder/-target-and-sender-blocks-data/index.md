@@ -14,7 +14,7 @@ A class support function whenSenderIs, holds its data.
 
 `senderInstance` - sender
 
-`isTarget` - whether sender is target object
+`isTarget` - whether sender is target type
 
 `result` - if it is, the result of execute
 
@@ -31,6 +31,10 @@ berberman
 
 ### Functions
 
-| [invoke](invoke.html) | `operator fun ~~invoke~~(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If don't use otherwise, you have to use invoke operator to get final result. |
+| [invoke](invoke.html) | `operator fun ~~invoke~~(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If you don't use otherwise, you have to use invoke operator to get final result. |
 | [otherwise](otherwise.html) | `infix fun otherwise(block: CommandSender.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Set otherwise action and return final result. |
+
+### Extension Functions
+
+| [否则](../../../cn.berberman.emerald/否则.html) | `infix fun TargetAndSenderBlocksData.否则(block: CommandSender.() -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
 

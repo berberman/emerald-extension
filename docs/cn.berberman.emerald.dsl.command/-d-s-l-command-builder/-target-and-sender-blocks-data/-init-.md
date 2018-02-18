@@ -14,7 +14,7 @@ A class support function whenSenderIs, holds its data.
 
 `senderInstance` - sender
 
-`isTarget` - whether sender is target object
+`isTarget` - whether sender is target type
 
 `result` - if it is, the result of execute
 
