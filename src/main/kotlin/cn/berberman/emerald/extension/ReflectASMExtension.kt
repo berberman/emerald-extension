@@ -33,7 +33,7 @@ fun <T : Any> Class<T>.getConstructorAccess(): ConstructorAccess<T> = Constructo
  * @return method's return value
  */
 fun <T : Any> Class<T>.invokeMethod(instance: Any, name: String, vararg parameters: Any): Any? =
-		getMethodAccess()(instance, name, parameters)
+		getMethodAccess()(instance, name, *parameters)
 
 /**
  * Get a non-private field by using asm reflection.
