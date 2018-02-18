@@ -9,7 +9,18 @@ build:
         name: permission
         code: |
           chmod a+x gradlew
-    - script:
-        name: gradle
-        code: |
-          ./gradlew assemble
+    - java/gradle:
+      task: build
+      cache_project_cache: true
+
+#    - script
+#        name: jdk
+#        code: |
+#        sudo apt-get install python-software-properties
+#        sudo add-apt-repository ppa:webupd8team/java
+#        sudo apt-get update
+#        sudo apt-get install oracle-java8-installer
+#    - script:
+#        name: gradle
+#        code: |
+#          ./gradlew assemble
