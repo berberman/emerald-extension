@@ -3,15 +3,14 @@ box: debian
 
 
 build:
-
   steps:
     - script:
         name: permission
         code: |
           chmod a+x gradlew
     - java/gradle:
-      task: build
-      cache_project_cache: true
+        task: build
+        cache_project_cache: true
 
 #    - script
 #        name: jdk
