@@ -14,7 +14,7 @@ import org.bukkit.plugin.SimplePluginManager
  */
 fun <T : Event> registerEvent(packingEvent: PackingEvent<T>) {
 	pluginManager.registerEvent(packingEvent.type, emptyListener, packingEvent.eventPriority,
-			packingEvent.executor, plugin)
+			packingEvent.executor, plugin, packingEvent.ignoredCancelled)
 	if (Emerald.debug)
 		info("register event listener: ${packingEvent.type.simpleName}")
 }

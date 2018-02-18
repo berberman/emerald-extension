@@ -20,8 +20,8 @@ class DSLEventScope internal constructor() {
 	 * @param block DSL part of building event listeners
 	 */
 	@EventBuilder
-	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, noinline block: T.() -> Unit) = run {
-		PackingEvent(T::class.java, eventPriority, block).let(events::add)
+	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) = run {
+		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add)
 		Unit
 	}
 
@@ -50,5 +50,5 @@ fun registerEvents(block: DSLEventScope.() -> Unit) =
  * @param block DSL part of building event listeners
  * @return the event listener that you build
  */
-inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, noinline block: T.() -> Unit) =
-		PackingEvent(T::class.java, eventPriority, block)
+inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) =
+		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block)

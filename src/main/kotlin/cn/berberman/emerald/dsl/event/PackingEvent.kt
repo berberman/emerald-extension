@@ -13,6 +13,7 @@ import org.bukkit.plugin.EventExecutor
  */
 class PackingEvent<in T : Event>(val type: Class<out Event>,
                                  val eventPriority: EventPriority,
+                                 val ignoredCancelled: Boolean,
                                  private val block: (T) -> Unit) {
 
 	@Suppress("UNCHECKED_CAST")
