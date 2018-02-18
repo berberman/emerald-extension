@@ -2,7 +2,7 @@ package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.extension.NBTModifier.NBTTagModifier
-import cn.berberman.emerald.nms.NMSUtil
+import cn.berberman.emerald.nms.NMSAUtil
 import cn.berberman.emerald.nms.data.item.NMSItemStack
 import cn.berberman.emerald.nms.data.nbt.NMSNBTTagCompound
 import cn.berberman.emerald.nms.data.nbt.NMSNBTTagList
@@ -48,11 +48,11 @@ class NBTModifier(itemStack: ItemStack) {
 	 */
 	internal fun modify(block: NBTTagModifier.() -> Unit) = apply {
 		tag.set("AttributeModifiers", NMSNBTTagList().apply {
-			add(NBTTagModifier().apply(block).nbtTagCompound.tagCompound)
-		}.tagList)
+			add(NBTTagModifier().apply(block).nbtTagCompound.instanceNMS)
+		}.instanceNMS)
 	}.getResult()
 
-	private fun getResult() = NMSUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
+	private fun getResult() = NMSAUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
 	/**
 	 * Modify NBT Tag.
 	 * @see NBTModifier

@@ -1,7 +1,8 @@
 package cn.berberman.emerald.nms.data.nbt
 
-import cn.berberman.emerald.nms.NMSReflection
-import cn.berberman.emerald.nms.NMSUtil
+import cn.berberman.emerald.extension.getConstructorAccess
+import cn.berberman.emerald.nms.NMSAReflection
+import cn.berberman.emerald.nms.NMSAUtil
 
 /**
  * Corresponding NBTTagList
@@ -9,19 +10,18 @@ import cn.berberman.emerald.nms.NMSUtil
  *
  * @author berberman
  */
-class NMSNBTTagList : NMSReflection {
+class NMSNBTTagList : NMSAReflection {
 	/**
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
-	 * @see NMSReflection
 	 */
-	override val targetNMSClass: Class<*> = NMSUtil.getNMSClass("NBTTagList")
+	override val targetNMSClass: Class<*> = NMSAUtil.getNMSClass("NBTTagList")
 
 	/**
 	 * Base constructor, which will new a NBTTagList instance.
 	 */
 	constructor() {
-		tagList = targetNMSClass.newInstance()
+		instanceNMS = targetNMSClass.getConstructorAccess().newInstance()
 	}
 
 	/**
@@ -29,41 +29,17 @@ class NMSNBTTagList : NMSReflection {
 	 * @param original a NBTTagList instance.
 	 */
 	constructor(original: Any) {
-		tagList = original
+		instanceNMS = original
 	}
 
-	/**
-	 * an instance of NBTTagList holds by this class.
-	 */
-	val tagList: Any
-
-//	/**
-//	 * internal property to save all methods.
-//	 *  You can't access this property, because it's inherited from NMSReflection.
-//	 */
-//	override val rawMethods: Array<out Method> = targetNMSClass.methods
-//
-//	/**
-//	 * internal function to get methods instance.
-//	 *     You can't access this method, because it's inherited from NMSReflection.
-//	 */
-//	override fun getMethod(name: String) = rawMethods.first { it.name == name }
-
-	/**
-	 * internal property to save realized methods
-	 *  You can't access this property, because it's inherited from NMSReflection.
-	 */
-	override val methods = hashMapOf(
-			"remove" to getMethod("remove"),
-			"add" to getMethod("add")
-	)
+	override val instanceNMS: Any
 
 	/**
 	 * remove a member from list.
 	 * @param int the index of target member.
 	 */
 	fun remove(int: Int) {
-		methods("remove")(tagList, int)
+		methods("remove", int)
 	}
 
 	/**
@@ -71,6 +47,6 @@ class NMSNBTTagList : NMSReflection {
 	 * @param any a NBTBase instance that you'd to add it to the list.
 	 */
 	fun add(any: Any) {
-		methods("add")(tagList, any)
+		methods("add", any)
 	}
 }

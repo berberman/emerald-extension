@@ -13,7 +13,7 @@ import org.bukkit.entity.Player
 fun Player.toCraftPlayer() = NMSCraftPlayer(this)
 
 /**
- * Send an action to a player.
+ * Send an action bar to a player.
  */
 fun Player.sendActionBar(text: String) =
 		toCraftPlayer()

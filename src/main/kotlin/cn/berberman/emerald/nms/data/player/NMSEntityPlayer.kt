@@ -1,8 +1,8 @@
 package cn.berberman.emerald.nms.data.player
 
-import cn.berberman.emerald.nms.NMSReflection
-import cn.berberman.emerald.nms.NMSUtil
-import java.lang.reflect.Method
+import cn.berberman.emerald.extension.getFieldAccess
+import cn.berberman.emerald.nms.NMSAReflection
+import cn.berberman.emerald.nms.NMSAUtil
 
 /**
  * Corresponding EntityPlayer
@@ -11,14 +11,14 @@ import java.lang.reflect.Method
  * @author berberman
  * @param nmsEntityPlayer nmsEntityPlayer, get from reflection [NMSCraftPlayer]
  */
-class NMSEntityPlayer(val nmsEntityPlayer: Any) : NMSReflection() {
-	override val targetNMSClass: Class<*> = NMSUtil.getNMSClass("EntityPlayer")
+class NMSEntityPlayer(val nmsEntityPlayer: Any) : NMSAReflection() {
+	override val targetNMSClass: Class<*> = NMSAUtil.getNMSClass("EntityPlayer")
 
-	override val methods: HashMap<String, Method> = hashMapOf()
-
+	override val instanceNMS: Any
+		get() = nmsEntityPlayer
 	/**
 	 * nms player connection instance
 	 */
-	val playerConnection = NMSPlayerConnection(targetNMSClass.getField("playerConnection")[nmsEntityPlayer])
+	val playerConnection = NMSPlayerConnection(targetNMSClass.getFieldAccess()[nmsEntityPlayer, "playerConnection"])
 
 }
