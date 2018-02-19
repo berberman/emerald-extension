@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender
 @CommandBuilder
 class DSLCommandBuilder internal constructor(internal val name: String) {
 	private val subActions =
-			mutableMapOf<String, (CommandSender, Array<out String>) -> Boolean>()
+			mutableMapOf<String, DSLSubCommandBuilder>()
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
@@ -79,8 +79,8 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 *      Args supplied to sub-command will be removed first element(sub-command name).
 	 *
 	 */
-	fun subCommand(name: String, block: (CommandSender, Array<out String>) -> Boolean) {
-		subActions[name] = block
+	fun subCommand(name: String, block: DSLSubCommandBuilder.() -> Unit) {
+		subActions[name] = DSLSubCommandBuilder(name).apply(block)
 	}
 
 	/**
@@ -133,7 +133,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 
 	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): SubCommandInvokeState =
 			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED
-			else subActions[args[0]]?.invoke(sender, mutableListOf<String>()
+			else subActions[args[0]]?.action?.invoke(sender, mutableListOf<String>()
 					.apply {
 						addAll(args)
 						remove(args[0])
@@ -161,6 +161,34 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
  */
 internal fun buildCommands(block: DSLCommandScope.() -> Unit) {
 	DSLCommandScope().apply(block)
+}
+
+/**
+ * A DSL structure to build sub command.
+ * @author berberman
+ */
+@SubCommandBuilder
+class DSLSubCommandBuilder internal constructor(internal val name: String) {
+	/**
+	 * sub command action, read only.
+	 */
+	var action: (CommandSender, Array<out String>) -> Boolean = { _, _ -> true }
+		private set
+
+	/**
+	 * set sub command action
+	 * @param block action
+	 */
+	fun action(block: (CommandSender) -> Boolean) {
+		action = { sender, _ -> block(sender) }
+	}
+	/**
+	 * set sub command action
+	 * @param block action
+	 */
+	fun action(block: (CommandSender, Array<out String>) -> Boolean) {
+		action = block
+	}
 }
 
 /**
@@ -226,3 +254,6 @@ typealias Action = (CommandSender, String, Array<out String>) -> Boolean
 
 @DslMarker
 internal annotation class CommandBuilder
+
+@DslMarker
+internal annotation class SubCommandBuilder
