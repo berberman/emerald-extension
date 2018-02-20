@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender
  */
 @CommandBuilder
 class DSLCommandBuilder internal constructor(internal val name: String) {
-	private val subActions =
+	private val subCommands =
 			mutableMapOf<String, DSLSubCommandBuilder>()
 	/**
 	 * Read only, which will be invoked when commands execute.
@@ -80,7 +80,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 *
 	 */
 	fun subCommand(name: String, block: DSLSubCommandBuilder.() -> Unit) {
-		subActions[name] = DSLSubCommandBuilder(name).apply(block)
+		subCommands[name] = DSLSubCommandBuilder(name).apply(block)
 	}
 
 	/**
@@ -133,7 +133,7 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 
 	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): SubCommandInvokeState =
 			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED
-			else subActions[args[0]]?.action?.invoke(sender, mutableListOf<String>()
+			else subCommands[args[0]]?.action?.invoke(sender, mutableListOf<String>()
 					.apply {
 						addAll(args)
 						remove(args[0])
@@ -182,6 +182,7 @@ class DSLSubCommandBuilder internal constructor(internal val name: String) {
 	fun action(block: (CommandSender) -> Boolean) {
 		action = { sender, _ -> block(sender) }
 	}
+
 	/**
 	 * set sub command action
 	 * @param block action
@@ -240,7 +241,7 @@ class DSLCommandScope internal constructor() {
 					aliases,
 					action,
 					permission,
-					permissionMessage, before, after).let(CommandHolder::add)
+					permissionMessage, before, after, PackingTabCompleter { _, _ -> TODO("not implement") }).let(CommandHolder::add)
 		}
 	}
 

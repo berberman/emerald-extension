@@ -7,6 +7,7 @@ import cn.berberman.emerald.extension.times
 import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
+import org.bukkit.command.TabCompleter
 
 /**
  * Packing bukkit command, override its method [execute]
@@ -30,7 +31,8 @@ internal class PackingCommand
  permission: String,
  permissionMessage: String,
  private val before: (CommandSender, String) -> Unit,
- private val after: (CommandSender, String) -> Unit
+ private val after: (CommandSender, String) -> Unit,
+ private val completer: TabCompleter
 ) : Command(name,
 		description,
 		usageMessage,
@@ -59,5 +61,9 @@ internal class PackingCommand
 			}
 			after(p0, p1)
 		}
+	}
+
+	override fun tabComplete(sender: CommandSender, alias: String, args: Array<out String>): List<String> {
+		return completer.onTabComplete(sender, this, alias, args)
 	}
 }
