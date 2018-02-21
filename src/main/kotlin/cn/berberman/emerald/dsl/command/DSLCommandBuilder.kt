@@ -139,6 +139,10 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 						remove(args[0])
 					}.toTypedArray()).let { SubCommandInvokeState.valueOf(it) }
 
+	internal val defaultProcessTabComplete: PackingTabCompleter.(CommandSender, Array<out String>) -> Unit = { _, args ->
+		subCommands.keys.filter { it.startsWith(args.last(), true) }.let(this::addAll)
+		sort()
+	}
 
 	private enum class SubCommandInvokeState(val value: Boolean?) {
 		SUCCESSFUL(true),
@@ -241,7 +245,7 @@ class DSLCommandScope internal constructor() {
 					aliases,
 					action,
 					permission,
-					permissionMessage, before, after, PackingTabCompleter { _, _ -> TODO("not implement") }).let(CommandHolder::add)
+					permissionMessage, before, after, PackingTabCompleter(defaultProcessTabComplete)).let(CommandHolder::add)
 		}
 	}
 
