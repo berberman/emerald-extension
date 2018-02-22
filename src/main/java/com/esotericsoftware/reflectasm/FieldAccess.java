@@ -165,7 +165,7 @@ public abstract class FieldAccess {
 
 		String className = type.getName();
 		String accessClassName = className + "FieldAccess";
-		if(accessClassName.startsWith("java.")) accessClassName = "reflectasm." + accessClassName;
+		if(accessClassName.startsWith("java.")) accessClassName = "com.esotericsoftware.reflectasm." + accessClassName;
 		Class accessClass = null;
 
 		AccessClassLoader loader = AccessClassLoader.get(type);

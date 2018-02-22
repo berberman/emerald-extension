@@ -134,7 +134,7 @@ public abstract class MethodAccess {
 
 		String className = type.getName();
 		String accessClassName = className + "MethodAccess";
-		if(accessClassName.startsWith("java.")) accessClassName = "reflectasm." + accessClassName;
+		if(accessClassName.startsWith("java.")) accessClassName = "com.esotericsoftware.reflectasm." + accessClassName;
 		Class accessClass;
 
 		AccessClassLoader loader = AccessClassLoader.get(type);

@@ -251,10 +251,10 @@ class DSLCommandScope internal constructor() {
 
 }
 
-		/**
-		 * (CommandSender, String, Array<out String>) -> Boolean is too long,
-		 * use typealias to replace :)
-		 */
+/**
+ * (CommandSender, String, Array<out String>) -> Boolean is too long,
+ * use typealias to replace :)
+ */
 typealias Action = (CommandSender, String, Array<out String>) -> Boolean
 
 @DslMarker

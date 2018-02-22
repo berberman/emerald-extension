@@ -1,13 +1,13 @@
-package cn.berberman.emerald.nms.data.player
+package cn.berberman.emerald.nms.data.chat
 
-import cn.berberman.emerald.nms.NMSAUtil
+import cn.berberman.emerald.nms.NmsUtil
 
 /**
  * Corresponding ChatMessageType Enum
  * All methods are realized by reflection.
  * @author berberman
  */
-enum class NMSChatMessageType(val type: Byte) {
+enum class NmsChatMessageType(val type: Byte) {
 	/**
 	 * normal format
 	 */
@@ -26,7 +26,7 @@ enum class NMSChatMessageType(val type: Byte) {
 	 * @return nms instance of the enum.
 	 */
 	fun getNMSInstance(): Any {
-		val clazz = NMSAUtil.getNMSClass("ChatMessageType")
+		val clazz = NmsUtil.getNMSClass("ChatMessageType")
 		val a = clazz.methods.first { it.name == "a" && it.returnType == clazz }
 		return a(null, type)
 	}

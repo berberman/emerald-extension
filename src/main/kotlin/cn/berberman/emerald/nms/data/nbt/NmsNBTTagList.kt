@@ -1,8 +1,8 @@
 package cn.berberman.emerald.nms.data.nbt
 
 import cn.berberman.emerald.extension.getConstructorAccess
-import cn.berberman.emerald.nms.NMSAReflection
-import cn.berberman.emerald.nms.NMSAUtil
+import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.nms.NmsUtil
 
 /**
  * Corresponding NBTTagList
@@ -10,12 +10,12 @@ import cn.berberman.emerald.nms.NMSAUtil
  *
  * @author berberman
  */
-class NMSNBTTagList : NMSAReflection {
+class NmsNBTTagList : NmsReflection {
 	/**
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val targetNMSClass: Class<*> = NMSAUtil.getNMSClass("NBTTagList")
+	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("NBTTagList")
 
 	/**
 	 * Base constructor, which will new a NBTTagList instance.

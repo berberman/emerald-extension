@@ -1,7 +1,7 @@
-package cn.berberman.emerald.nms.data.player
+package cn.berberman.emerald.nms.data.chat
 
-import cn.berberman.emerald.nms.NMSAUtil
-import cn.berberman.emerald.nms.data.player.interfaces.NMSIChatBaseComponent
+import cn.berberman.emerald.nms.NmsUtil
+import cn.berberman.emerald.nms.data.chat.interfaces.NmsIChatBaseComponent
 
 /**
  * Corresponding ChatComponentText
@@ -9,13 +9,13 @@ import cn.berberman.emerald.nms.data.player.interfaces.NMSIChatBaseComponent
  * @author berberman
  * @param text the text
  */
-class NMSChatComponentText(val text: String) : NMSIChatBaseComponent() {
+class NmsChatComponentText(val text: String) : NmsIChatBaseComponent() {
 
 	/**
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val targetNMSClass: Class<*> = NMSAUtil.getNMSClass("ChatComponentText")
+	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("ChatComponentText")
 
 	override val nmsChat: Any = targetNMSClass.getConstructor(String::class.java).newInstance(text)
 

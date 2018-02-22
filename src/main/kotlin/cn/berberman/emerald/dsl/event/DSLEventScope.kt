@@ -1,7 +1,5 @@
 package cn.berberman.emerald.dsl.event
 
-import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.logger
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 
@@ -38,8 +36,6 @@ fun registerEvents(block: DSLEventScope.() -> Unit) =
 		DSLEventScope().apply(block).apply {
 			events.forEach {
 				registerEvent(it)
-				if (Emerald.debug)
-					logger.info("register event listener：${it.type.simpleName}")
 			}
 		}
 

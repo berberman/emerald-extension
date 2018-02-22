@@ -1,13 +1,13 @@
-package cn.berberman.emerald.nms.data.player.interfaces
+package cn.berberman.emerald.nms.data.chat.interfaces
 
-import cn.berberman.emerald.nms.NMSAReflection
+import cn.berberman.emerald.nms.NmsReflection
 
 /**
  * Corresponding Packet, a nms interface
  * All methods are realized by reflection.
  * @author berberman
  */
-abstract class NMSPacket : NMSAReflection() {
+abstract class NmsPacket : NmsReflection() {
 	/**
 	 * an instance of nms packet, should be inherited
 	 */

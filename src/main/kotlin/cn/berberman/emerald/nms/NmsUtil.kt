@@ -1,7 +1,6 @@
 package cn.berberman.emerald.nms
 
-import cn.berberman.emerald.extension.invokeMethod
-import cn.berberman.emerald.nms.data.item.NMSItemStack
+import cn.berberman.emerald.nms.data.item.NmsItemStack
 import org.bukkit.Bukkit
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.IllegalPluginAccessException
@@ -9,7 +8,7 @@ import org.bukkit.plugin.IllegalPluginAccessException
 /**
  * A utilities to easy operate nms.
  */
-object NMSAUtil {
+object NmsUtil {
 	val version = Bukkit.getServer()::class.java.`package`.name.split(".")[3]
 	private val nmsPackageName = "net.minecraft.server.$version"
 	private val craftBukkitPackageName = "org.bukkit.craftbukkit.$version"
@@ -29,7 +28,7 @@ object NMSAUtil {
 			?: throw IllegalPluginAccessException("Can't find this class: $nameWithPackage")
 
 	/**
-	 * Convert bukkit ItemStack to NMSItemStack
+	 * Convert bukkit ItemStack to NmsItemStack
 	 * @param original bukkit ItemStack
 	 */
 //	fun asNMSCopy(original: ItemStack): Any = getCraftBukkitClass("inventory.CraftItemStack").invokeMethod(original, "asNMSCopy", original)
@@ -43,10 +42,10 @@ object NMSAUtil {
 	 * Convert NMS ItemStack to bukkit ItemStack
 	 * @param original NMS ItemStack
 	 */
-//	fun asBukkitCopy(original: NMSItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
+//	fun asBukkitCopy(original: NmsItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
 //			.invokeMethod(original.instanceNMS, "asBukkitCopy", original.instanceNMS) as? ItemStack
 //			?: throw IllegalPluginAccessException("Convert $original error.")
-	fun asBukkitCopy(original: NMSItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
+	fun asBukkitCopy(original: NmsItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
 			.methods.firstOrNull { it.name == "asBukkitCopy" }?.invoke(original.instanceNMS, original.instanceNMS) as? ItemStack
 			?: throw IllegalPluginAccessException("Convert $original error.")
 }

@@ -2,12 +2,15 @@ package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.extension.NBTModifier.NBTTagModifier
-import cn.berberman.emerald.nms.NMSAUtil
-import cn.berberman.emerald.nms.data.item.NMSItemStack
-import cn.berberman.emerald.nms.data.nbt.NMSNBTTagCompound
-import cn.berberman.emerald.nms.data.nbt.NMSNBTTagList
+import cn.berberman.emerald.nms.NmsUtil
+import cn.berberman.emerald.nms.data.item.NmsItemStack
+import cn.berberman.emerald.nms.data.meta.BukkitCraftMetaBook
+import cn.berberman.emerald.nms.data.nbt.NmsNBTTagCompound
+import cn.berberman.emerald.nms.data.nbt.NmsNBTTagList
 import org.apache.commons.lang.math.RandomUtils
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.meta.BannerMeta
+import org.bukkit.inventory.meta.BookMeta
 import org.bukkit.inventory.meta.ItemMeta
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -26,7 +29,21 @@ fun ItemStack.operateMeta(block: ItemMeta.() -> Unit) = apply {
  * @param block function with receiver to access DSL NBTTagModifier
  * @return this ItemStack
  */
-fun ItemStack.modifyNBT(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModifier(this).modify(block)
+fun ItemStack.addNBTTag(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModifier(this).modify(block)
+
+fun ItemStack.operateBookMeta(block: BukkitCraftMetaBook.() -> Unit) = apply {
+	itemMeta = BukkitCraftMetaBook(itemMeta as? BookMeta
+			?: throw IllegalStateException("This is not a book!")).apply(block).instanceNMS as ItemMeta?
+}
+
+fun ItemStack.operateBannerMeta(block: BannerMeta.() -> Unit) = apply {
+	itemMeta = (itemMeta as? BannerMeta)?.apply(block) ?: throw IllegalStateException("This is not a banner!")
+}
+
+@Suppress("DeprecatedCallableAddReplaceWith")
+@Deprecated("Unsafe")
+inline fun <reified T : ItemMeta> ItemStack.operateSpecificMeta(block: T.() -> Unit) =
+		apply { itemMeta = (itemMeta as? T)?.apply(block) ?: throw IllegalStateException("Meta cast error!") }
 
 /**
  * NBT Modifier, let NBTTagModifier's value add to ItemStack.
@@ -35,31 +52,31 @@ fun ItemStack.modifyNBT(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModif
  * @param itemStack bukkit ItemStack
  */
 class NBTModifier(itemStack: ItemStack) {
-	private val nms = NMSItemStack(itemStack)
+	private val nms = NmsItemStack(itemStack)
 
-	private val tag: NMSNBTTagCompound
+	private val tag: NmsNBTTagCompound
 
 	init {
-		tag = if (nms.hasTag()) nms.getTag() else NMSNBTTagCompound()
+		tag = if (nms.hasTag()) nms.getTag() else NmsNBTTagCompound()
 	}
 
 	/**
 	 * Let outer class to access modifier.
 	 */
 	internal fun modify(block: NBTTagModifier.() -> Unit) = apply {
-		tag.set("AttributeModifiers", NMSNBTTagList().apply {
+		tag.set("AttributeModifiers", NmsNBTTagList().apply {
 			add(NBTTagModifier().apply(block).nbtTagCompound.instanceNMS)
 		}.instanceNMS)
 	}.getResult()
 
-	private fun getResult() = NMSAUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
+	private fun getResult() = NmsUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
 	/**
 	 * Modify NBT Tag.
 	 * @see NBTModifier
 	 * @author berberman
 	 */
 	class NBTTagModifier {
-		internal val nbtTagCompound = NMSNBTTagCompound()
+		internal val nbtTagCompound = NmsNBTTagCompound()
 
 		/**
 		 * An enum which list data of NBT Name should implements this interface.

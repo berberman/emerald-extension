@@ -6,7 +6,7 @@ import cn.berberman.emerald.extension.invokeMethod
  * An abstract class, describe what should a class that using reflection to corresponding nms class have.
  * @author berberman
  */
-abstract class NMSAReflection {
+abstract class NmsReflection {
 	/**
 	 * Which class we want's to corresponding.
 	 */

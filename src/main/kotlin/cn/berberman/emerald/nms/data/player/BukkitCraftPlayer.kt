@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.data.player
 
-import cn.berberman.emerald.nms.NMSAReflection
-import cn.berberman.emerald.nms.NMSAUtil
+import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.nms.NmsUtil
 import org.bukkit.entity.Player
 
 /**
@@ -11,8 +11,8 @@ import org.bukkit.entity.Player
  * @author berberman
  * @param player bukkit player
  */
-class NMSCraftPlayer(val player: Player) : NMSAReflection() {
-	override val targetNMSClass: Class<*> = NMSAUtil.getCraftBukkitClass("entity.CraftPlayer")
+class BukkitCraftPlayer(val player: Player) : NmsReflection() {
+	override val targetNMSClass: Class<*> = NmsUtil.getCraftBukkitClass("entity.CraftPlayer")
 
 	override val instanceNMS: Any
 		get() = player
@@ -21,5 +21,5 @@ class NMSCraftPlayer(val player: Player) : NMSAReflection() {
 	 * Get entity player
 	 * @return entity player
 	 */
-	fun getHandle() = NMSEntityPlayer(methods("getHandle")!!)
+	fun getHandle() = NmsEntityPlayer(methods("getHandle")!!)
 }
