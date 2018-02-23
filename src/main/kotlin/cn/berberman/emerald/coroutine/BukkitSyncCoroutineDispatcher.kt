@@ -1,6 +1,6 @@
 package cn.berberman.emerald.coroutine
 
-import cn.berberman.emerald.extension.plugin
+import cn.berberman.emerald.extension.EmeraldUtil.plugin
 import kotlinx.coroutines.experimental.CoroutineDispatcher
 import kotlinx.coroutines.experimental.Runnable
 import org.bukkit.Bukkit

@@ -1,5 +1,6 @@
 package cn.berberman.emerald.extension
 
+import cn.berberman.emerald.extension.EmeraldUtil.plugin
 import org.bukkit.Bukkit
 import org.bukkit.scheduler.BukkitTask
 

@@ -1,8 +1,8 @@
 package cn.berberman.emerald.dsl.permission
 
 import cn.berberman.emerald.Emerald
+import cn.berberman.emerald.extension.EmeraldUtil.pluginManager
 import cn.berberman.emerald.extension.info
-import cn.berberman.emerald.extension.pluginManager
 
 /**
  * A object holds permissions we want's to register.

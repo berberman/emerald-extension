@@ -5,7 +5,7 @@ import cn.berberman.emerald.dsl.command.DSLCommandScope
 import cn.berberman.emerald.dsl.command.buildCommands
 import cn.berberman.emerald.dsl.permission.DSLPermissionScope
 import cn.berberman.emerald.dsl.permission.PermissionHolder
-import cn.berberman.emerald.extension.getCommandMap
+import cn.berberman.emerald.extension.EmeraldUtil
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
@@ -38,7 +38,7 @@ object Emerald {
  */
 fun registerCommands(block: DSLCommandScope.() -> Unit) {
 	buildCommands(block)
-	CommandHolder.register(getCommandMap())
+	CommandHolder.register(EmeraldUtil.commandMap)
 }
 
 /**
