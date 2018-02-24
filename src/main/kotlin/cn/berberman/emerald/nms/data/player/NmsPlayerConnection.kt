@@ -1,8 +1,8 @@
 package cn.berberman.emerald.nms.data.player
 
 import cn.berberman.emerald.nms.NmsReflection
-import cn.berberman.emerald.nms.NmsUtil
 import cn.berberman.emerald.nms.data.chat.interfaces.NmsPacket
+import cn.berberman.emerald.util.NmsUtil
 
 /**
  * Corresponding PlayerConnection

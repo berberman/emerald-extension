@@ -3,7 +3,7 @@ package cn.berberman.emerald.nms.data.chat
 import cn.berberman.emerald.extension.getConstructorAccess
 import cn.berberman.emerald.extension.invokeMethod
 import cn.berberman.emerald.nms.NmsReflection
-import cn.berberman.emerald.nms.NmsUtil
+import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.plugin.IllegalPluginAccessException
 
 class NmsChatSerializer : NmsReflection() {

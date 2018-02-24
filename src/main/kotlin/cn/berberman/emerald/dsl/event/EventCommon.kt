@@ -1,11 +1,11 @@
 package cn.berberman.emerald.dsl.event
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.EmeraldUtil.emptyListener
-import cn.berberman.emerald.extension.EmeraldUtil.plugin
-import cn.berberman.emerald.extension.EmeraldUtil.pluginManager
 import cn.berberman.emerald.extension.info
 import cn.berberman.emerald.extension.invokeMethod
+import cn.berberman.emerald.util.EmeraldUtil.emptyListener
+import cn.berberman.emerald.util.EmeraldUtil.plugin
+import cn.berberman.emerald.util.EmeraldUtil.pluginManager
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 import org.bukkit.plugin.EventExecutor

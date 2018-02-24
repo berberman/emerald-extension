@@ -1,6 +1,6 @@
 package cn.berberman.emerald.nms.data.chat
 
-import cn.berberman.emerald.nms.NmsUtil
+import cn.berberman.emerald.util.NmsUtil
 
 /**
  * Corresponding ChatMessageType Enum

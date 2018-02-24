@@ -2,7 +2,7 @@ package cn.berberman.emerald.nms.data.nbt
 
 import cn.berberman.emerald.extension.getConstructorAccess
 import cn.berberman.emerald.nms.NmsReflection
-import cn.berberman.emerald.nms.NmsUtil
+import cn.berberman.emerald.util.NmsUtil
 
 /**
  * Corresponding NBTTagCompound

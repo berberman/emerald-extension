@@ -1,9 +1,9 @@
 package cn.berberman.emerald.nms.data.player
 
-import cn.berberman.emerald.nms.NmsUtil
 import cn.berberman.emerald.nms.data.chat.NmsChatMessageType
 import cn.berberman.emerald.nms.data.chat.interfaces.NmsIChatBaseComponent
 import cn.berberman.emerald.nms.data.chat.interfaces.NmsPacket
+import cn.berberman.emerald.util.NmsUtil
 
 /**
  * Corresponding PacketPlayOutChat

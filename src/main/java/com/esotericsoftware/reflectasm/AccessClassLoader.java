@@ -34,8 +34,7 @@ class AccessClassLoader extends ClassLoader {
 	// using ReflectASM/Kryo (exts,
 	// user classpath, etc).
 	// The key is the parent class loader and the value is the AccessClassLoader, both are weak-referenced in the hash table.
-	@SuppressWarnings("unchecked")
-	static private final WeakHashMap<ClassLoader, WeakReference<AccessClassLoader>> accessClassLoaders = new WeakHashMap();
+	static private final WeakHashMap<ClassLoader, WeakReference<AccessClassLoader>> accessClassLoaders = new WeakHashMap<>();
 
 	// Fast-path for classes loaded in the same ClassLoader as this class.
 	static private final ClassLoader selfContextParentClassLoader = getParentClassLoader(AccessClassLoader.class);

@@ -1,11 +1,5 @@
 package cn.berberman.emerald
 
-import cn.berberman.emerald.dsl.command.CommandHolder
-import cn.berberman.emerald.dsl.command.DSLCommandScope
-import cn.berberman.emerald.dsl.command.buildCommands
-import cn.berberman.emerald.dsl.permission.DSLPermissionScope
-import cn.berberman.emerald.dsl.permission.PermissionHolder
-import cn.berberman.emerald.extension.EmeraldUtil
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
@@ -30,22 +24,4 @@ object Emerald {
 	fun setDebug(boolean: Boolean) {
 		debug = boolean
 	}
-}
-
-/**
- * Register commands.
- * @param block DSL part of building commands.
- */
-fun registerCommands(block: DSLCommandScope.() -> Unit) {
-	buildCommands(block)
-	CommandHolder.register(EmeraldUtil.commandMap)
-}
-
-/**
- * Register permissions.
- * @param block  DSL part of building permissions.
- */
-fun registerPermissions(block: DSLPermissionScope.() -> Unit) {
-	DSLPermissionScope().block()
-	PermissionHolder.register()
 }

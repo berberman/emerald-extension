@@ -1,19 +1,18 @@
 package cn.berberman.emerald.extension
 
-import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.nms.NmsUtil
-import org.bukkit.*
+import cn.berberman.emerald.dsl.command.CommandHolder
+import cn.berberman.emerald.dsl.command.DSLCommandScope
+import cn.berberman.emerald.dsl.command.buildCommands
+import cn.berberman.emerald.dsl.permission.DSLPermissionScope
+import cn.berberman.emerald.dsl.permission.PermissionHolder
+import cn.berberman.emerald.util.EmeraldUtil
+import org.bukkit.ChatColor
+import org.bukkit.Location
+import org.bukkit.Material
+import org.bukkit.World
 import org.bukkit.block.Block
-import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Entity
-import org.bukkit.event.Listener
-import org.bukkit.event.inventory.InventoryType
-import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.InventoryHolder
-import org.bukkit.plugin.PluginManager
-import org.bukkit.plugin.java.JavaPlugin
-import java.util.logging.Logger
 
 //internal fun getCommandMap(): CommandMap =
 //		Bukkit.getServer().let {
@@ -128,61 +127,21 @@ fun World.setBlock(location: Location, type: Material): Block =
 @DslMarker
 internal annotation class CommonBuilder
 
-object EmeraldUtil {
 
-	internal val craftServerClass = NmsUtil.getCraftBukkitClass("CraftServer")
+/**
+ * Register commands.
+ * @param block DSL part of building commands.
+ */
+fun registerCommands(block: DSLCommandScope.() -> Unit) {
+	buildCommands(block)
+	CommandHolder.register(EmeraldUtil.commandMap)
+}
 
-	val commandMap = craftServerClass
-			.invokeMethod(Bukkit.getServer(), "getCommandMap") as CommandMap
-
-	val serverThread = NmsUtil.getNMSClass("MinecraftServer").getFieldAccess()[craftServerClass.getDeclaredField("console").also { it.isAccessible = true }
-			[Bukkit.getServer()], "primaryThread"]
-
-	internal val emptyListener = object : Listener {}
-
-	/**
-	 * Get one plugin's instance.
-	 * @param T main class of that plugin
-	 */
-	inline fun <reified T : JavaPlugin> getPluginBean(): T = JavaPlugin.getPlugin(T::class.java)
-
-	/**
-	 * Quoted plugin instance.
-	 */
-	val plugin = Emerald.plugin
-	/**
-	 * Plugin's logger.
-	 */
-	val logger: Logger = plugin.logger
-	/**
-	 * Plugin manager.
-	 */
-	val pluginManager: PluginManager = Bukkit.getPluginManager()
-
-	/**
-	 * Creates an empty inventory.
-	 *
-	 * @param holder the holder of the inventory, default is null which indicate no holder
-	 * @param lines a multiple of 9 as the lines of inventory to create
-	 * @param title the title of the inventory, displayed when inventory is
-	 *     viewed
-	 * @param type  If the type is CHEST, the new inventory has a size of 27; otherwise the
-	 *     new inventory has the normal size for its type. Default is null.
-	 * @return a new inventory
-	 * @throws IllegalArgumentException if the size is not a multiple of 9
-	 */
-	fun createInventory(holder: InventoryHolder? = null, lines: Int? = null,
-	                    type: InventoryType? = null, title: String): Inventory =
-			title.takeIf { it.isNotBlank() }.let { name ->
-				if (lines == null && name == null && type != null)
-					Bukkit.createInventory(holder, type)
-				else if (lines != null && name == null && type == null)
-					Bukkit.createInventory(holder, lines * 9)
-				else if (lines != null && name != null && type == null)
-					Bukkit.createInventory(holder, lines * 9, name)
-				else if (lines == null && name != null && type != null)
-					Bukkit.createInventory(holder, type, name)
-				else throw IllegalArgumentException()
-			}
-
+/**
+ * Register permissions.
+ * @param block  DSL part of building permissions.
+ */
+fun registerPermissions(block: DSLPermissionScope.() -> Unit) {
+	DSLPermissionScope().block()
+	PermissionHolder.register()
 }

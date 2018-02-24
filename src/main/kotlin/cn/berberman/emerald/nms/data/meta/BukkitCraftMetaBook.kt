@@ -3,8 +3,8 @@ package cn.berberman.emerald.nms.data.meta
 import cn.berberman.emerald.extension.getFieldAccess
 import cn.berberman.emerald.extension.toIChatBaseList
 import cn.berberman.emerald.nms.NmsReflection
-import cn.berberman.emerald.nms.NmsUtil
 import cn.berberman.emerald.nms.data.chat.interfaces.NmsIChatBaseComponent
+import cn.berberman.emerald.util.NmsUtil
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.inventory.meta.BookMeta
 
