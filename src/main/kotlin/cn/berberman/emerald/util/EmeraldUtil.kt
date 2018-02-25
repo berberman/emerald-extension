@@ -20,8 +20,10 @@ object EmeraldUtil {
 	val commandMap = craftServerClass
 			.invokeMethod(Bukkit.getServer(), "getCommandMap") as CommandMap
 
-	val serverThread = NmsUtil.getNMSClass("MinecraftServer").getFieldAccess()[craftServerClass.getDeclaredField("console").also { it.isAccessible = true }
-			[Bukkit.getServer()], "primaryThread"]
+	val serverThread = NmsUtil.getNMSClass("MinecraftServer").getFieldAccess()[craftServerClass
+			.getDeclaredField("console")
+			.also { it.isAccessible = true }
+			[Bukkit.getServer()], "primaryThread"] as Thread
 
 	internal val emptyListener = object : Listener {}
 
