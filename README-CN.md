@@ -79,24 +79,7 @@ ItemStack(Material.WOOD_SWORD).modifyNBT {
 ```
 一把 `不会损坏的233攻击力` 的木剑就到手了。
 ### 协程
-```kotlin
-launch(SchedulerThread) {
-	coroutineContext[BukkitTaskCoroutineContext]?.taskId
-	getDataFromServer()
-}
-suspend fun getDataFromServer(): String {
-    val data = runBlocking {
-	    delay(5000) //模拟数据获取
-	    "233333"
-	}
-    return data
-}
-```
-当 context 为 `SchedulerThread` 时，协程将在 Bukkit Scheduler Thread 上调度。
-你可以从 context 获取该协程所对的 `BukkitTask` 实例。除了`SchedulerThread` 外，
-还有 `ServerThread`，这会使协程运行在服务器主线程上 **（这个线程不能被阻塞！，例如 `Thread.sleep()`，
-但协程的 `delay` 等挂起函数可以正常调用。 )** 。
-当然，`async` 也同样接受这两个 context。
+...
 ### Bukkit Scheduler
 ```kotlin
 launch(SchedulerThread) {
