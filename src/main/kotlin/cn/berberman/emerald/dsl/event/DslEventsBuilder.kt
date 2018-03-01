@@ -10,7 +10,7 @@ import org.bukkit.event.EventPriority
  *
  */
 @EventBuilder
-class DSLEventScope internal constructor() {
+class EventsBuilder internal constructor() {
 	/**
 	 * Build a packing event.
 	 * 	@param T target event
@@ -32,8 +32,8 @@ class DSLEventScope internal constructor() {
  * Register events.
  * @param block DSL part of building event listeners
  */
-fun registerEvents(block: DSLEventScope.() -> Unit) =
-		DSLEventScope().apply(block).apply {
+fun registerEvents(block: EventsBuilder.() -> Unit) =
+		EventsBuilder().apply(block).apply {
 			events.forEach {
 				registerEvent(it)
 			}

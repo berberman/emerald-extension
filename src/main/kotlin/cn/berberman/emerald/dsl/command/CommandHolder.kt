@@ -8,7 +8,7 @@ import org.bukkit.command.CommandMap
 
 /**
  * A object holds commands we want's to register.
- * @see DSLCommandBuilder
+ * @see DslCommandBuilder
  * @author berberman
  */
 internal object CommandHolder {

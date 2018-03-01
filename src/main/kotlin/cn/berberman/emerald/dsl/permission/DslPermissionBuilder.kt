@@ -1,6 +1,6 @@
 package cn.berberman.emerald.dsl.permission
 
-import cn.berberman.emerald.extension.CommonBuilder
+import cn.berberman.emerald.dsl.CommonBuilder
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault
 
@@ -9,7 +9,7 @@ import org.bukkit.permissions.PermissionDefault
  *  @author berberman
  */
 @PermissionBuilder
-class DSLPermissionBuilder internal constructor(private val name: String) {
+class DslPermissionBuilder internal constructor(private val name: String) {
 	/**
 	 * the description of permission, default is empty.
 	 */
@@ -28,12 +28,12 @@ class DSLPermissionBuilder internal constructor(private val name: String) {
 	 * @param name child permission name
 	 * @param block DSL child permission builder, default is `{}`
 	 */
-	fun childPermission(name: String, block: DSLPermissionBuilder.() -> Unit = {}) {
+	fun childPermission(name: String, block: DslPermissionBuilder.() -> Unit = {}) {
 		var resolveName = name
 		if (!resolveName.startsWith(this.name.removeSuffix("*")))
 			resolveName = this.name.removeSuffix("*") + name
 		childPermissionNames.add(resolveName)
-		childPermission.add(DSLPermissionBuilder(resolveName).apply(block).build())
+		childPermission.add(DslPermissionBuilder(resolveName).apply(block).build())
 	}
 
 	internal fun getChildPermissionInstances() = childPermission
@@ -50,19 +50,28 @@ class DSLPermissionBuilder internal constructor(private val name: String) {
 /**
  * A DSL structure to build permission builder.
  * @author berberman
- * @see DSLPermissionBuilder
+ * @see DslPermissionBuilder
  */
 @CommonBuilder
-class DSLPermissionScope internal constructor() {
+class DslPermissionScope internal constructor() {
 	/**
 	 * Build a permission.
 	 * @param name permission name
 	 * @param block DSL child permission builder, default is `{}`
 	 */
-	fun permission(name: String, block: DSLPermissionBuilder.() -> Unit = {}) {
-		DSLPermissionBuilder(name).apply(block).let(PermissionHolder::addPermission)
+	fun permission(name: String, block: DslPermissionBuilder.() -> Unit = {}) {
+		DslPermissionBuilder(name).apply(block).let(PermissionHolder::addPermission)
 	}
 }
 
 @DslMarker
 internal annotation class PermissionBuilder
+
+/**
+ * Register permissions.
+ * @param block  DSL part of building permissions.
+ */
+fun registerPermissions(block: DslPermissionScope.() -> Unit) {
+	DslPermissionScope().block()
+	PermissionHolder.register()
+}

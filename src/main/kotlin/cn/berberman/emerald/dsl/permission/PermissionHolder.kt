@@ -6,14 +6,14 @@ import cn.berberman.emerald.util.EmeraldUtil.pluginManager
 
 /**
  * A object holds permissions we want's to register.
- * @see DSLPermissionScope
+ * @see DslPermissionScope
  * @author berberman
  */
 internal object PermissionHolder {
-	private val simplePermissionList = mutableListOf<DSLPermissionBuilder>()
+	private val simplePermissionList = mutableListOf<DslPermissionBuilder>()
 
 
-	internal fun addPermission(permissionBuilder: DSLPermissionBuilder) = simplePermissionList.add(permissionBuilder)
+	internal fun addPermission(permissionBuilder: DslPermissionBuilder) = simplePermissionList.add(permissionBuilder)
 
 
 	internal fun register() {

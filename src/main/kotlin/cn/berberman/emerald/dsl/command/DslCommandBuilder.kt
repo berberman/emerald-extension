@@ -1,6 +1,7 @@
 package cn.berberman.emerald.dsl.command
 
-import cn.berberman.emerald.extension.CommonBuilder
+import cn.berberman.emerald.dsl.CommonBuilder
+import cn.berberman.emerald.util.EmeraldUtil
 import org.bukkit.command.CommandSender
 
 /**
@@ -9,9 +10,9 @@ import org.bukkit.command.CommandSender
  * @author berberman
  */
 @CommandBuilder
-class DSLCommandBuilder internal constructor(internal val name: String) {
+class DslCommandBuilder internal constructor(internal val name: String) {
 	private val subCommands =
-			mutableMapOf<String, DSLSubCommandBuilder>()
+			mutableMapOf<String, DslSubCommandBuilder>()
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
@@ -79,8 +80,8 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
 	 *      Args supplied to sub-command will be removed first element(sub-command name).
 	 *
 	 */
-	fun subCommand(name: String, block: DSLSubCommandBuilder.() -> Unit) {
-		subCommands[name] = DSLSubCommandBuilder(name).apply(block)
+	fun subCommand(name: String, block: DslSubCommandBuilder.() -> Unit) {
+		subCommands[name] = DslSubCommandBuilder(name).apply(block)
 	}
 
 	/**
@@ -163,8 +164,8 @@ class DSLCommandBuilder internal constructor(internal val name: String) {
  * Provide Emerald to access that, build a DSL command builder,
  * @param block DSL structure
  */
-internal fun buildCommands(block: DSLCommandScope.() -> Unit) {
-	DSLCommandScope().apply(block)
+internal fun buildCommands(block: CommandsBuilder.() -> Unit) {
+	CommandsBuilder().apply(block)
 }
 
 /**
@@ -172,7 +173,7 @@ internal fun buildCommands(block: DSLCommandScope.() -> Unit) {
  * @author berberman
  */
 @SubCommandBuilder
-class DSLSubCommandBuilder internal constructor(internal val name: String) {
+class DslSubCommandBuilder internal constructor(internal val name: String) {
 	/**
 	 * sub command action, read only.
 	 */
@@ -201,7 +202,7 @@ class DSLSubCommandBuilder internal constructor(internal val name: String) {
  * @author berberman
  */
 @CommonBuilder
-class DSLCommandScope internal constructor() {
+class CommandsBuilder internal constructor() {
 
 	/**
 	 * Action before execute, default is empty.Read only.
@@ -237,8 +238,8 @@ class DSLCommandScope internal constructor() {
 	 * @param name command name
 	 * @param block other information about command, a DSL structure
 	 */
-	fun command(name: String, block: DSLCommandBuilder.() -> Unit) {
-		DSLCommandBuilder(name).apply(block).apply {
+	fun command(name: String, block: DslCommandBuilder.() -> Unit) {
+		DslCommandBuilder(name).apply(block).apply {
 			PackingCommand(this.name,
 					description,
 					usageMessage,
@@ -262,3 +263,14 @@ internal annotation class CommandBuilder
 
 @DslMarker
 internal annotation class SubCommandBuilder
+
+
+/**
+ * Register commands.
+ * @param block DSL part of building commands.
+ */
+fun registerCommands(block: CommandsBuilder.() -> Unit) {
+	buildCommands(block)
+	CommandHolder.register(EmeraldUtil.commandMap)
+}
+
