@@ -43,9 +43,9 @@ object NmsUtil {
 	 * @param original NMS ItemStack
 	 */
 //	fun asBukkitCopy(original: NmsItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
-//			.invokeMethod(original.instanceNMS, "asBukkitCopy", original.instanceNMS) as? ItemStack
+//			.invokeMethod(original.instance, "asBukkitCopy", original.instance) as? ItemStack
 //			?: throw IllegalPluginAccessException("Convert $original error.")
 	fun asBukkitCopy(original: NmsItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
-			.methods.firstOrNull { it.name == "asBukkitCopy" }?.invoke(original.instanceNMS, original.instanceNMS) as? ItemStack
+			.methods.firstOrNull { it.name == "asBukkitCopy" }?.invoke(original.instance, original.instance) as? ItemStack
 			?: throw IllegalPluginAccessException("Convert $original error.")
 }

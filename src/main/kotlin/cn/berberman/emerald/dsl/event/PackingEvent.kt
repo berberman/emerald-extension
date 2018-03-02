@@ -15,6 +15,7 @@ class PackingEvent<in T : Event>(val type: Class<out Event>,
                                  val eventPriority: EventPriority,
                                  val ignoredCancelled: Boolean,
                                  private val block: (T) -> Unit) {
+	internal var isRegistered = false
 
 	@Suppress("UNCHECKED_CAST")
 	val executor: EventExecutor = EventExecutor { _, event ->

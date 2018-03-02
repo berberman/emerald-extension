@@ -1,8 +1,8 @@
 package cn.berberman.emerald.ui
 
 import cn.berberman.emerald.dsl.event.event
-import cn.berberman.emerald.dsl.event.registerEvent
-import cn.berberman.emerald.dsl.event.unregisterEvent
+import cn.berberman.emerald.dsl.event.register
+import cn.berberman.emerald.dsl.event.unregister
 import org.bukkit.entity.Player
 import org.bukkit.event.EventPriority
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -49,15 +49,15 @@ data class UI internal constructor(private val inventory: Inventory) {
 
 		internal fun unregister() {
 			if (!registered) return
-			unregisterEvent(clickEvent)
-			unregisterEvent(closeEvent)
+			clickEvent.unregister()
+			closeEvent.unregister()
 			registered = false
 		}
 
 		internal fun register() {
 			if (registered) return
-			registerEvent(clickEvent)
-			registerEvent(closeEvent)
+			clickEvent.register()
+			closeEvent.register()
 			registered = true
 		}
 

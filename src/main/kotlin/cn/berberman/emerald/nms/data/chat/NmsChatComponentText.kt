@@ -15,8 +15,8 @@ class NmsChatComponentText(val text: String) : NmsIChatBaseComponent() {
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("ChatComponentText")
+	override val clazz: Class<*> = NmsUtil.getNMSClass("ChatComponentText")
 
-	override val nmsChat: Any = targetNMSClass.getConstructor(String::class.java).newInstance(text)
+	override val nmsChat: Any = clazz.getConstructor(String::class.java).newInstance(text)
 
 }

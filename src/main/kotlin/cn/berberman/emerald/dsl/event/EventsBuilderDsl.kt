@@ -1,5 +1,6 @@
 package cn.berberman.emerald.dsl.event
 
+import cn.berberman.emerald.dsl.event.annotation.EventBuilder
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 
@@ -18,7 +19,9 @@ class EventsBuilder internal constructor() {
 	 * @param block DSL part of building event listeners
 	 */
 	@EventBuilder
-	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) = run {
+	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL,
+	                                     ignoreCancelled: Boolean = false,
+	                                     noinline block: T.() -> Unit) = run {
 		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add)
 		Unit
 	}
@@ -34,9 +37,7 @@ class EventsBuilder internal constructor() {
  */
 fun registerEvents(block: EventsBuilder.() -> Unit) =
 		EventsBuilder().apply(block).apply {
-			events.forEach {
-				registerEvent(it)
-			}
+			events.forEach(PackingEvent<*>::register)
 		}
 
 /**

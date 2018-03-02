@@ -1,25 +1,25 @@
-package cn.berberman.emerald.nms
-
-import cn.berberman.emerald.extension.invokeMethod
+package cn.berberman.emerald.reflection
 
 /**
  * An abstract class, describe what should a class that using reflection to corresponding nms class have.
  * @author berberman
  */
-abstract class NmsReflection {
+abstract class ReflectionWrapper {
 	/**
 	 * Which class we want's to corresponding.
 	 */
-	protected abstract val targetNMSClass: Class<*>
+	protected abstract val clazz: Class<*>
 
 	/**
 	 * NMS instance
 	 */
-	abstract val instanceNMS: Any
+	abstract val instance: Any
 
 	/**
 	 * Invoke a method in target class
 	 */
 	fun methods(name: String, vararg parameter: Any): Any? =
-			targetNMSClass.invokeMethod(instanceNMS, name, *parameter)
+			clazz.invokeMethod(instance, name, *parameter)
+
+	fun fields(name: String): Any? = clazz.getFieldAccess()[instance, name]
 }

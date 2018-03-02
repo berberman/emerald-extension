@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.data.player
 
-import cn.berberman.emerald.extension.getFieldAccess
-import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.reflection.getFieldAccess
+import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.util.NmsUtil
 
 /**
@@ -11,14 +11,14 @@ import cn.berberman.emerald.util.NmsUtil
  * @author berberman
  * @param nmsEntityPlayer nmsEntityPlayer, get from reflection [BukkitCraftPlayer]
  */
-class NmsEntityPlayer(val nmsEntityPlayer: Any) : NmsReflection() {
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("EntityPlayer")
+class NmsEntityPlayer(val nmsEntityPlayer: Any) : ReflectionWrapper() {
+	override val clazz: Class<*> = NmsUtil.getNMSClass("EntityPlayer")
 
-	override val instanceNMS: Any
+	override val instance: Any
 		get() = nmsEntityPlayer
 	/**
 	 * nms player connection instance
 	 */
-	val playerConnection = NmsPlayerConnection(targetNMSClass.getFieldAccess()[nmsEntityPlayer, "playerConnection"])
+	val playerConnection = NmsPlayerConnection(clazz.getFieldAccess()[nmsEntityPlayer, "playerConnection"])
 
 }

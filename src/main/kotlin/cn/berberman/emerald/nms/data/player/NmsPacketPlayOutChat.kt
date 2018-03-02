@@ -13,15 +13,15 @@ import cn.berberman.emerald.util.NmsUtil
  * @param chatMessageType message type
  */
 class NmsPacketPlayOutChat(chatBaseComponent: NmsIChatBaseComponent, chatMessageType: NmsChatMessageType) : NmsPacket() {
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("PacketPlayOutChat")
+	override val clazz: Class<*> = NmsUtil.getNMSClass("PacketPlayOutChat")
 
 
 	override val nmsPacket: Any = NmsUtil.getNMSClass("IChatBaseComponent").let {
 		if (shouldUseNewFormat())
-			targetNMSClass.getConstructor(it,
+			clazz.getConstructor(it,
 					NmsUtil.getNMSClass("ChatMessageType")).newInstance(chatBaseComponent.nmsChat,
 					chatMessageType.getNMSInstance())
-		else targetNMSClass.getConstructor(it, Byte::class.java)
+		else clazz.getConstructor(it, Byte::class.java)
 				.newInstance(chatBaseComponent, chatMessageType.type)
 	}
 

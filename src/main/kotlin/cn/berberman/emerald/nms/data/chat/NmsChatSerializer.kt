@@ -1,12 +1,12 @@
 package cn.berberman.emerald.nms.data.chat
 
-import cn.berberman.emerald.extension.getConstructorAccess
-import cn.berberman.emerald.extension.invokeMethod
-import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.reflection.getConstructorAccess
+import cn.berberman.emerald.reflection.invokeMethod
+import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.plugin.IllegalPluginAccessException
 
-class NmsChatSerializer : NmsReflection() {
+class NmsChatSerializer : ReflectionWrapper() {
 
 	companion object {
 		fun decodeFromString(raw: String) = NmsUtil.getNMSClass("IChatBaseComponent\$ChatSerializer").invokeMethod(
@@ -14,7 +14,7 @@ class NmsChatSerializer : NmsReflection() {
 		)?.let { NmsIChatBaseComponentEx(it) } ?: throw IllegalPluginAccessException("Convert error.")
 	}
 
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("IChatBaseComponent\$ChatSerializer")
+	override val clazz: Class<*> = NmsUtil.getNMSClass("IChatBaseComponent\$ChatSerializer")
 
-	override val instanceNMS: Any = targetNMSClass.getConstructorAccess().newInstance()
+	override val instance: Any = clazz.getConstructorAccess().newInstance()
 }

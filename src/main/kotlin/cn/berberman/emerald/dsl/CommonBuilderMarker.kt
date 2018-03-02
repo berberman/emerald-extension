@@ -1,4 +1,4 @@
 package cn.berberman.emerald.dsl
 
 @DslMarker
-internal annotation class CommonBuilder
+internal annotation class CommonBuilderMarker

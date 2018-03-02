@@ -1,6 +1,6 @@
 package cn.berberman.emerald.dsl.permission
 
-import cn.berberman.emerald.dsl.CommonBuilder
+import cn.berberman.emerald.dsl.CommonBuilderMarker
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault
 
@@ -52,7 +52,7 @@ class DslPermissionBuilder internal constructor(private val name: String) {
  * @author berberman
  * @see DslPermissionBuilder
  */
-@CommonBuilder
+@CommonBuilderMarker
 class DslPermissionScope internal constructor() {
 	/**
 	 * Build a permission.

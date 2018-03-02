@@ -1,6 +1,6 @@
 package cn.berberman.emerald.nms.data.item
 
-import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.nms.data.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.inventory.ItemStack
@@ -11,16 +11,16 @@ import org.bukkit.inventory.ItemStack
  * @author berberman
  * @param itemStack a bukkit itemStack instance
  */
-class NmsItemStack(itemStack: ItemStack) : NmsReflection() {
+class NmsItemStack(itemStack: ItemStack) : ReflectionWrapper() {
 	/**
 	 * internal property to save corresponding nms class.
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("ItemStack")
+	override val clazz: Class<*> = NmsUtil.getNMSClass("ItemStack")
 	/**
 	 * an instance of nmsItemStack holds by this class.
 	 */
-	override val instanceNMS: Any = NmsUtil.asNMSCopy(itemStack)
+	override val instance: Any = NmsUtil.asNMSCopy(itemStack)
 
 	/**
 	 * Whether nms has NBT Tag.
@@ -39,6 +39,6 @@ class NmsItemStack(itemStack: ItemStack) : NmsReflection() {
 	 * @param nmsNBTTagCompound tag
 	 */
 	fun setTag(nmsNBTTagCompound: NmsNBTTagCompound) {
-		methods("setTag", nmsNBTTagCompound.instanceNMS)
+		methods("setTag", nmsNBTTagCompound.instance)
 	}
 }

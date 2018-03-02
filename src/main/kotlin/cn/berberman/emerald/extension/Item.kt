@@ -33,7 +33,7 @@ fun ItemStack.addNBTTag(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModif
 
 fun ItemStack.operateBookMeta(block: BukkitCraftMetaBook.() -> Unit) = apply {
 	itemMeta = BukkitCraftMetaBook(itemMeta as? BookMeta
-			?: throw IllegalStateException("This is not a book!")).apply(block).instanceNMS as ItemMeta?
+			?: throw IllegalStateException("This is not a book!")).apply(block).instance as ItemMeta?
 }
 
 fun ItemStack.operateBannerMeta(block: BannerMeta.() -> Unit) = apply {
@@ -65,8 +65,8 @@ class NBTModifier(itemStack: ItemStack) {
 	 */
 	internal fun modify(block: NBTTagModifier.() -> Unit) = apply {
 		tag.set("AttributeModifiers", NmsNBTTagList().apply {
-			add(NBTTagModifier().apply(block).nbtTagCompound.instanceNMS)
-		}.instanceNMS)
+			add(NBTTagModifier().apply(block).nbtTagCompound.instance)
+		}.instance)
 	}.getResult()
 
 	private fun getResult() = NmsUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })

@@ -1,8 +1,8 @@
 package cn.berberman.emerald.util
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.getFieldAccess
-import cn.berberman.emerald.extension.invokeMethod
+import cn.berberman.emerald.reflection.getFieldAccess
+import cn.berberman.emerald.reflection.invokeMethod
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandMap
 import org.bukkit.event.Listener

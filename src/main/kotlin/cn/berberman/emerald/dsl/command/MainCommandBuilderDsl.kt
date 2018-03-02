@@ -1,7 +1,6 @@
 package cn.berberman.emerald.dsl.command
 
-import cn.berberman.emerald.dsl.CommonBuilder
-import cn.berberman.emerald.util.EmeraldUtil
+import cn.berberman.emerald.dsl.command.annotation.CommandBuilderMarker
 import org.bukkit.command.CommandSender
 
 /**
@@ -9,10 +8,10 @@ import org.bukkit.command.CommandSender
  * @param name command name
  * @author berberman
  */
-@CommandBuilder
+@CommandBuilderMarker
 class DslCommandBuilder internal constructor(internal val name: String) {
 	private val subCommands =
-			mutableMapOf<String, DslSubCommandBuilder>()
+			mutableMapOf<String, SubCommandBuilderDsl>()
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
@@ -80,8 +79,8 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 *      Args supplied to sub-command will be removed first element(sub-command name).
 	 *
 	 */
-	fun subCommand(name: String, block: DslSubCommandBuilder.() -> Unit) {
-		subCommands[name] = DslSubCommandBuilder(name).apply(block)
+	fun subCommand(name: String, block: SubCommandBuilderDsl.() -> Unit) {
+		subCommands[name] = SubCommandBuilderDsl(name).apply(block)
 	}
 
 	/**
@@ -159,118 +158,3 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 		}
 	}
 }
-
-/**
- * Provide Emerald to access that, build a DSL command builder,
- * @param block DSL structure
- */
-internal fun buildCommands(block: CommandsBuilder.() -> Unit) {
-	CommandsBuilder().apply(block)
-}
-
-/**
- * A DSL structure to build sub command.
- * @author berberman
- */
-@SubCommandBuilder
-class DslSubCommandBuilder internal constructor(internal val name: String) {
-	/**
-	 * sub command action, read only.
-	 */
-	var action: (CommandSender, Array<out String>) -> Boolean = { _, _ -> true }
-		private set
-
-	/**
-	 * set sub command action
-	 * @param block action
-	 */
-	fun action(block: (CommandSender) -> Boolean) {
-		action = { sender, _ -> block(sender) }
-	}
-
-	/**
-	 * set sub command action
-	 * @param block action
-	 */
-	fun action(block: (CommandSender, Array<out String>) -> Boolean) {
-		action = block
-	}
-}
-
-/**
- * A DSL structure to build command builder.
- * @author berberman
- */
-@CommonBuilder
-class CommandsBuilder internal constructor() {
-
-	/**
-	 * Action before execute, default is empty.Read only.
-	 */
-	var before: (CommandSender, String) -> Unit = { _, _ -> }
-		private set
-	/**
-	 * Action after execute, default is empty.Read only.
-	 */
-	var after: (CommandSender, String) -> Unit = { _, _ -> }
-		private set
-
-	/**
-	 * Set property before
-	 * @param block action before execute
-	 * @see [before] property
-	 */
-	fun before(block: (CommandSender, String) -> Unit) {
-		before = block
-	}
-
-	/**
-	 * Set property after
-	 * @param block action after execute
-	 * @see [after] property
-	 */
-	fun after(block: (CommandSender, String) -> Unit) {
-		after = block
-	}
-
-	/**
-	 * Build a command
-	 * @param name command name
-	 * @param block other information about command, a DSL structure
-	 */
-	fun command(name: String, block: DslCommandBuilder.() -> Unit) {
-		DslCommandBuilder(name).apply(block).apply {
-			PackingCommand(this.name,
-					description,
-					usageMessage,
-					aliases,
-					action,
-					permission,
-					permissionMessage, before, after, PackingTabCompleter(defaultProcessTabComplete)).let(CommandHolder::add)
-		}
-	}
-
-}
-
-/**
- * (CommandSender, String, Array<out String>) -> Boolean is too long,
- * use typealias to replace :)
- */
-typealias Action = (CommandSender, String, Array<out String>) -> Boolean
-
-@DslMarker
-internal annotation class CommandBuilder
-
-@DslMarker
-internal annotation class SubCommandBuilder
-
-
-/**
- * Register commands.
- * @param block DSL part of building commands.
- */
-fun registerCommands(block: CommandsBuilder.() -> Unit) {
-	buildCommands(block)
-	CommandHolder.register(EmeraldUtil.commandMap)
-}
-

@@ -1,6 +1,6 @@
 package cn.berberman.emerald.nms.data.player
 
-import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.nms.data.chat.interfaces.NmsPacket
 import cn.berberman.emerald.util.NmsUtil
 
@@ -12,10 +12,10 @@ import cn.berberman.emerald.util.NmsUtil
  * @author berberman
  * @param nmsPlayerConnection raw nms player connection
  */
-class NmsPlayerConnection(val nmsPlayerConnection: Any) : NmsReflection() {
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("PlayerConnection")
+class NmsPlayerConnection(val nmsPlayerConnection: Any) : ReflectionWrapper() {
+	override val clazz: Class<*> = NmsUtil.getNMSClass("PlayerConnection")
 
-	override val instanceNMS: Any
+	override val instance: Any
 		get() = nmsPlayerConnection
 
 	/**

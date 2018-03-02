@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.data.nbt
 
-import cn.berberman.emerald.extension.getConstructorAccess
-import cn.berberman.emerald.nms.NmsReflection
+import cn.berberman.emerald.reflection.getConstructorAccess
+import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.util.NmsUtil
 
 /**
@@ -9,18 +9,18 @@ import cn.berberman.emerald.util.NmsUtil
  * All methods are realized by reflection.
  * @author berberman
  */
-class NmsNBTTagCompound : NmsReflection {
+class NmsNBTTagCompound : ReflectionWrapper {
 	/**
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("NBTTagCompound")
+	override val clazz: Class<*> = NmsUtil.getNMSClass("NBTTagCompound")
 
 	/**
 	 * Base constructor, which will new a NBTTagCompound instance.
 	 */
 	constructor() {
-		instanceNMS = targetNMSClass.getConstructorAccess().newInstance()
+		instance = clazz.getConstructorAccess().newInstance()
 	}
 
 	/**
@@ -28,10 +28,10 @@ class NmsNBTTagCompound : NmsReflection {
 	 * @param original a NBTTagCompound instance.
 	 */
 	constructor(original: Any) {
-		instanceNMS = original
+		instance = original
 	}
 
-	override val instanceNMS: Any
+	override val instance: Any
 
 	/**
 	 * set int value

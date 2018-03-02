@@ -7,5 +7,5 @@ class NmsIChatBaseComponentEx(nmsMsg: Any) : NmsIChatBaseComponent() {
 
 	override val nmsChat: Any = nmsMsg
 
-	override val targetNMSClass: Class<*> = NmsUtil.getNMSClass("IChatBaseComponent")
+	override val clazz: Class<*> = NmsUtil.getNMSClass("IChatBaseComponent")
 }

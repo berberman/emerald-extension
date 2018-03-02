@@ -48,4 +48,5 @@ fun emeraldLaunch(
 ) = launch(BukkitAsyncCoroutineDispatcher, start, null, block)
 
 typealias ServerThread = BukkitSyncCoroutineDispatcher
+
 typealias SchedulerThread = BukkitAsyncCoroutineDispatcher
