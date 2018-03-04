@@ -1,7 +1,7 @@
-package cn.berberman.emerald.nms.data.nbt
+package cn.berberman.emerald.nms.wrapper.nbt
 
-import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.util.NmsUtil
 
 /**

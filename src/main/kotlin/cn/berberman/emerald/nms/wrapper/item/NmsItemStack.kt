@@ -1,7 +1,7 @@
-package cn.berberman.emerald.nms.data.item
+package cn.berberman.emerald.nms.wrapper.item
 
+import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.reflection.ReflectionWrapper
-import cn.berberman.emerald.nms.data.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.inventory.ItemStack
 

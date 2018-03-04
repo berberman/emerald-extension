@@ -1,7 +1,7 @@
-package cn.berberman.emerald.nms.data.player
+package cn.berberman.emerald.nms.wrapper.player
 
+import cn.berberman.emerald.nms.wrapper.chat.interfaces.NmsPacket
 import cn.berberman.emerald.reflection.ReflectionWrapper
-import cn.berberman.emerald.nms.data.chat.interfaces.NmsPacket
 import cn.berberman.emerald.util.NmsUtil
 
 /**

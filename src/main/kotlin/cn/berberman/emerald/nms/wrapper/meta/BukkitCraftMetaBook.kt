@@ -1,9 +1,9 @@
-package cn.berberman.emerald.nms.data.meta
+package cn.berberman.emerald.nms.wrapper.meta
 
-import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.extension.toIChatBaseList
+import cn.berberman.emerald.nms.wrapper.chat.interfaces.NmsIChatBaseComponent
 import cn.berberman.emerald.reflection.ReflectionWrapper
-import cn.berberman.emerald.nms.data.chat.interfaces.NmsIChatBaseComponent
+import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.util.NmsUtil
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.inventory.meta.BookMeta

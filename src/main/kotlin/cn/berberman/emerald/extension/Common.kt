@@ -65,3 +65,4 @@ infix fun CommandSender.sendMessage(message: String) = sendMessage(message)
 fun World.setBlock(location: Location, type: Material): Block =
 		getBlockAt(location).apply { this.type = type }
 
+inline fun <reified T> Any.safeCast() = this as? T

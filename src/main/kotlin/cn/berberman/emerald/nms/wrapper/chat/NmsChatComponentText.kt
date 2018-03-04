@@ -1,6 +1,6 @@
-package cn.berberman.emerald.nms.data.chat
+package cn.berberman.emerald.nms.wrapper.chat
 
-import cn.berberman.emerald.nms.data.chat.interfaces.NmsIChatBaseComponent
+import cn.berberman.emerald.nms.wrapper.chat.interfaces.NmsIChatBaseComponent
 import cn.berberman.emerald.util.NmsUtil
 
 /**

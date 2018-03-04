@@ -51,18 +51,22 @@ public abstract class ConstructorAccess<T> {
 		return isNonStaticMemberClass;
 	}
 
-	/** Constructor for top-level classes and static nested classes.
+	/**
+	 * Constructor for top-level classes and static nested classes.
 	 * <p>
 	 * If the underlying class is a inner (non-static nested) class, a new instance will be created using <code>null</code> as
 	 * the
 	 * this$0 synthetic reference. The instantiated object will work as long as it actually don't use any member variable or
 	 * method
-	 * fron the enclosing instance. */
+	 * fron the enclosing instance.
+	 */
 	abstract public T newInstance();
 
-	/** Constructor for inner classes (non-static nested classes).
+	/**
+	 * Constructor for inner classes (non-static nested classes).
 	 * @param enclosingInstance The instance of the enclosing type to which this inner instance is related to (assigned to its
-	 *           synthetic this$0 field). */
+	 * synthetic this$0 field).
+	 */
 	abstract public T newInstance(Object enclosingInstance);
 
 	static public <T> ConstructorAccess<T> get(Class<T> type) {
