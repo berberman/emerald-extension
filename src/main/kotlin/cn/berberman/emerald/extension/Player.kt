@@ -1,9 +1,9 @@
 package cn.berberman.emerald.extension
 
-import cn.berberman.emerald.nms.data.chat.NmsChatComponentText
-import cn.berberman.emerald.nms.data.chat.NmsChatMessageType
-import cn.berberman.emerald.nms.data.player.BukkitCraftPlayer
-import cn.berberman.emerald.nms.data.player.NmsPacketPlayOutChat
+import cn.berberman.emerald.nms.wrapper.chat.NmsChatComponentText
+import cn.berberman.emerald.nms.wrapper.chat.NmsChatMessageType
+import cn.berberman.emerald.nms.wrapper.player.BukkitCraftPlayer
+import cn.berberman.emerald.nms.wrapper.player.NmsPacketPlayOutChat
 import org.bukkit.entity.Player
 
 /**

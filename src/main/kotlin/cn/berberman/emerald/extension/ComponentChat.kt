@@ -1,6 +1,6 @@
 package cn.berberman.emerald.extension
 
-import cn.berberman.emerald.nms.data.chat.NmsChatSerializer
+import cn.berberman.emerald.nms.wrapper.chat.NmsChatSerializer
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.ClickEvent
 import net.md_5.bungee.api.chat.ComponentBuilder

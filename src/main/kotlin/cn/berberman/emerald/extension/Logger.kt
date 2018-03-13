@@ -9,7 +9,7 @@ import cn.berberman.emerald.util.EmeraldUtil
  * <p>
  * If the logger is currently enabled for the INFO message
  * level then the message is constructed by invoking the provided
- * supplier function and forwarded to all the registered output
+ * supplier function and forwarded to all the isRegistered output
  * Handler objects.
  * <p>
  * @param  msg   The string message (or a key in the message catalog)
@@ -22,7 +22,7 @@ fun info(msg: String) = EmeraldUtil.logger.info(msg)
  * <p>
  * If the logger is currently enabled for the INFO message
  * level then the message is constructed by invoking the provided
- * supplier function and forwarded to all the registered output
+ * supplier function and forwarded to all the isRegistered output
  * Handler objects.
  * <p>
  * @param  supplier   A function, which when called, produces the
@@ -35,7 +35,7 @@ inline fun info(supplier: () -> String) = EmeraldUtil.logger.info(supplier())
  * <p>
  * If the logger is currently enabled for the WARNING message
  * level then the given message is forwarded to all the
- * registered output Handler objects.
+ * isRegistered output Handler objects.
  * <p>
  * @param   msg     The string message (or a key in the message catalog)
  */
@@ -47,7 +47,7 @@ fun warning(msg: String) = EmeraldUtil.logger.warning(msg)
  * <p>
  * If the logger is currently enabled for the WARNING message
  * level then the message is constructed by invoking the provided
- * supplier function and forwarded to all the registered output
+ * supplier function and forwarded to all the isRegistered output
  * Handler objects.
  * <p>
  * @param   supplier   A function, which when called, produces the
