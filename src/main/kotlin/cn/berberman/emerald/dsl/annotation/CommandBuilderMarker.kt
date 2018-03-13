@@ -1,4 +1,4 @@
-package cn.berberman.emerald.dsl.command.annotation
+package cn.berberman.emerald.dsl.annotation
 
 @DslMarker
 internal annotation class CommandBuilderMarker

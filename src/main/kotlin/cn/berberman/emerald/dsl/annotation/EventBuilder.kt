@@ -1,4 +1,4 @@
-package cn.berberman.emerald.dsl.event.annotation
+package cn.berberman.emerald.dsl.annotation
 
 @DslMarker
 internal annotation class EventBuilder

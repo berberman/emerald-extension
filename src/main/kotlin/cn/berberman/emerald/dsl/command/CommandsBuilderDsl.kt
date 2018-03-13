@@ -1,7 +1,7 @@
 package cn.berberman.emerald.dsl.command
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.dsl.CommonBuilderMarker
+import cn.berberman.emerald.dsl.annotation.CommonBuilderMarker
 import cn.berberman.emerald.extension.info
 import cn.berberman.emerald.util.EmeraldUtil
 import org.bukkit.command.Command
@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender
  * Provide Emerald to access that, build a DSL command builder,
  * @param block DSL structure
  */
-fun buildCommands(block: CommandsBuilder.() -> Unit) =
+fun createCommands(block: CommandsBuilder.() -> Unit) =
 		CommandsBuilder().apply(block)
 
 
@@ -92,8 +92,8 @@ typealias Action = (CommandSender, String, Array<out String>) -> Boolean
  * Register commands.
  * @param block DSL part of building commands.
  */
-fun registerCommands(block: CommandsBuilder.() -> Unit) =
-		buildCommands(block).register()
+fun createAndRegisterCommands(block: CommandsBuilder.() -> Unit) =
+		createCommands(block).register()
 
 
 fun CommandsBuilder.register() =

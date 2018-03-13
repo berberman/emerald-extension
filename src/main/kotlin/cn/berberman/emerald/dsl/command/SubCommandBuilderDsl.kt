@@ -1,6 +1,6 @@
 package cn.berberman.emerald.dsl.command
 
-import cn.berberman.emerald.dsl.command.annotation.SubCommandBuilderMarker
+import cn.berberman.emerald.dsl.annotation.SubCommandBuilderMarker
 import org.bukkit.command.CommandSender
 
 /**

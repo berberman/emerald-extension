@@ -1,6 +1,6 @@
 package cn.berberman.emerald.dsl.event
 
-import cn.berberman.emerald.dsl.event.annotation.EventBuilder
+import cn.berberman.emerald.dsl.annotation.EventBuilder
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 
@@ -13,10 +13,10 @@ import org.bukkit.event.EventPriority
 @EventBuilder
 class EventsBuilder internal constructor() {
 	/**
-	 * Build a packing event.
-	 * 	@param T target event
+	 * Build a packing createEventListener.
+	 * 	@param T target createEventListener
 	 * @param eventPriority Event Priority, default is normal
-	 * @param block DSL part of building event listeners
+	 * @param block DSL part of building createEventListener listeners
 	 */
 	@EventBuilder
 	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL,
@@ -33,7 +33,7 @@ class EventsBuilder internal constructor() {
 
 /**
  * Register events.
- * @param block DSL part of building event listeners
+ * @param block DSL part of building createEventListener listeners
  */
 fun registerEvents(block: EventsBuilder.() -> Unit) =
 		EventsBuilder().apply(block).apply {
@@ -41,11 +41,11 @@ fun registerEvents(block: EventsBuilder.() -> Unit) =
 		}
 
 /**
- * Build a packing event.
- * @param T target event
+ * Build a packing createEventListener.
+ * @param T target createEventListener
  * @param eventPriority Event Priority, default is normal
- * @param block DSL part of building event listeners
- * @return the event listener that you build
+ * @param block DSL part of building createEventListener listeners
+ * @return the createEventListener listener that you build
  */
-inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) =
+inline fun <reified T : Event> createEventListener(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) =
 		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block)

@@ -68,4 +68,6 @@ class NmsNBTTagCompound : ReflectionWrapper {
 		methods("set", name, any)
 	}
 
+	fun get(name: String): Any? = methods("get")
+
 }

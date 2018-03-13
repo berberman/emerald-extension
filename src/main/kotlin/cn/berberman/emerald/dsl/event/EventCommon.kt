@@ -13,7 +13,7 @@ import org.bukkit.plugin.RegisteredListener
 import org.bukkit.plugin.SimplePluginManager
 
 /**
- * Register event.
+ * Register createEventListener.
  */
 fun <T : Event> PackingEvent<T>.register() {
 	if (isRegistered) return
@@ -21,12 +21,12 @@ fun <T : Event> PackingEvent<T>.register() {
 			executor, plugin, ignoredCancelled)
 	isRegistered = true
 	if (Emerald.debug)
-		info("register event listener: ${type.simpleName}")
+		info("register createEventListener listener: ${type.simpleName}")
 }
 
 /**
- * Register event.
- * @param supplier A lambda supplies event listener
+ * Register createEventListener.
+ * @param supplier A lambda supplies createEventListener listener
  */
 fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
 	supplier().register()
@@ -40,7 +40,7 @@ internal fun RegisteredListener.getEventExecutor(): EventExecutor {
 }
 
 /**
- * Unregister event
+ * Unregister createEventListener
  */
 fun <T : Event> PackingEvent<T>.unregister() {
 	if (!isRegistered) return
@@ -52,8 +52,8 @@ fun <T : Event> PackingEvent<T>.unregister() {
 }
 
 /**
- * Unregister event
- * @param supplier a lambda supplies isRegistered event
+ * Unregister createEventListener
+ * @param supplier a lambda supplies isRegistered createEventListener
  */
 fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
 	supplier().unregister()

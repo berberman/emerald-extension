@@ -1,7 +1,7 @@
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.NBTModifier.NBTTagModifier
+import cn.berberman.emerald.extension.NBTModifier.NBTTagBuilder
 import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
 import cn.berberman.emerald.nms.wrapper.meta.BukkitCraftMetaBook
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
@@ -26,10 +26,10 @@ fun ItemStack.operateMeta(block: ItemMeta.() -> Unit) = apply {
 
 /**
  * Modify a NBT Tag to a bukkit ItemStack.
- * @param block function with receiver to access DSL NBTTagModifier
+ * @param block function with receiver to access DSL NBTTagBuilder
  * @return this ItemStack
  */
-fun ItemStack.addNBTTag(block: NBTModifier.NBTTagModifier.() -> Unit) = NBTModifier(this).modify(block)
+fun ItemStack.modifyNBT(block: NBTModifier.() -> Unit) = NBTModifier(this).apply(block).getResult()
 
 fun ItemStack.operateBookMeta(block: BukkitCraftMetaBook.() -> Unit) = apply {
 	itemMeta = BukkitCraftMetaBook(itemMeta as? BookMeta
@@ -46,8 +46,8 @@ inline fun <reified T : ItemMeta> ItemStack.operateSpecificMeta(block: T.() -> U
 		apply { itemMeta = (itemMeta as? T)?.apply(block) ?: throw IllegalStateException("Meta cast error!") }
 
 /**
- * NBT Modifier, let NBTTagModifier's value add to ItemStack.
- * @see NBTTagModifier
+ * NBT Modifier, let NBTTagBuilder's value add to ItemStack.
+ * @see NBTTagBuilder
  * @author berberman
  * @param itemStack bukkit ItemStack
  */
@@ -63,19 +63,19 @@ class NBTModifier(itemStack: ItemStack) {
 	/**
 	 * Let outer class to access modifier.
 	 */
-	internal fun modify(block: NBTTagModifier.() -> Unit) = apply {
-		tag.set("AttributeModifiers", NmsNBTTagList().apply {
-			add(NBTTagModifier().apply(block).nbtTagCompound.instance)
+	 fun addTag(block: NBTTagBuilder.() -> Unit) = apply {
+		tag.set("AttributeModifiers", /*NmsNBTTagList()*/tag.get("AttributeModifiers")?.let { NmsNBTTagList(it) }?:NmsNBTTagList().apply {
+			add(NBTTagBuilder().apply(block).nbtTagCompound.instance)
 		}.instance)
-	}.getResult()
+	}
 
-	private fun getResult() = NmsUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
+	internal fun getResult() = NmsUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
 	/**
 	 * Modify NBT Tag.
 	 * @see NBTModifier
 	 * @author berberman
 	 */
-	class NBTTagModifier {
+	class NBTTagBuilder {
 		internal val nbtTagCompound = NmsNBTTagCompound()
 
 		/**
@@ -138,7 +138,7 @@ class NBTModifier(itemStack: ItemStack) {
 			 */
 			Undefined("null");
 
-			override fun getNBTName() = "generic." + nbtName
+			override fun getNBTName() = "generic.$nbtName"
 		}
 
 		/**
