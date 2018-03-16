@@ -24,7 +24,7 @@ fun createCommands(block: CommandsBuilder.() -> Unit) =
 @CommonBuilderMarker
 class CommandsBuilder internal constructor() {
 
-	private val commands = mutableListOf<PackingCommand>()
+	private val commands = mutableSetOf<PackingCommand>()
 
 	/**
 	 * Action before execute, default is empty.Read only.
@@ -68,7 +68,10 @@ class CommandsBuilder internal constructor() {
 					aliases,
 					action,
 					permission,
-					permissionMessage, before, after, PackingTabCompleter(defaultProcessTabComplete)).let(commands::add)
+					permissionMessage, before, after, PackingTabCompleter(defaultProcessTabComplete))
+					.takeUnless { commands.any { e -> e.name == it.name } }?.let(commands::add)
+					?: throw IllegalArgumentException("Command Already Existed")
+
 		}
 	}
 

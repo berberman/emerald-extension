@@ -80,6 +80,7 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 *
 	 */
 	fun subCommand(name: String, block: SubCommandBuilderDsl.() -> Unit) {
+		if (subCommands.containsKey(name)) throw IllegalArgumentException("SubCommand Already Existed")
 		subCommands[name] = SubCommandBuilderDsl(name).apply(block)
 	}
 

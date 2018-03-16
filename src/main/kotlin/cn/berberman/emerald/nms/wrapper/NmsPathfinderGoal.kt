@@ -4,7 +4,7 @@ import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.util.EmeraldUtil.pool
 import cn.berberman.emerald.util.NmsUtil
 
-@Deprecated("un reachable", level = DeprecationLevel.HIDDEN)
+@Deprecated("unreachable", level = DeprecationLevel.HIDDEN)
 abstract class NmsPathfinderGoal : ReflectionWrapper() {
 	override val clazz: Class<*> = NmsUtil.getNMSClass("PathfinderGoal")
 

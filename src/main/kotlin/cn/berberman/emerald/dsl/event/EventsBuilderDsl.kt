@@ -21,13 +21,13 @@ class EventsBuilder internal constructor() {
 	@EventBuilder
 	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL,
 	                                     ignoreCancelled: Boolean = false,
-	                                     noinline block: T.() -> Unit) = run {
-		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add)
-		Unit
-	}
+	                                     noinline block: T.() -> Unit) =
+			PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add).takeIf { it }?:
+				throw IllegalArgumentException("Event Listener Already Existed")
+
 
 	@PublishedApi
-	internal val events = mutableListOf<PackingEvent<*>>()
+	internal val events = mutableSetOf<PackingEvent<*>>()
 
 }
 
