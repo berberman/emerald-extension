@@ -22,8 +22,8 @@ class EventsBuilder internal constructor() {
 	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL,
 	                                     ignoreCancelled: Boolean = false,
 	                                     noinline block: T.() -> Unit) =
-			PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add).takeIf { it }?:
-				throw IllegalArgumentException("Event Listener Already Existed")
+			PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add).takeIf { it }
+					?: throw IllegalArgumentException("Event Listener Already Existed")
 
 
 	@PublishedApi

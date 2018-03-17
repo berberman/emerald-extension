@@ -10,6 +10,7 @@ import org.bukkit.permissions.PermissionDefault
  */
 @PermissionBuilder
 class PermissionBuilderDsl internal constructor(private val name: String) {
+	//dsl start
 	/**
 	 * the description of permission, default is empty.
 	 */
@@ -35,8 +36,10 @@ class PermissionBuilderDsl internal constructor(private val name: String) {
 		childPermissionNames.add(resolveName)
 		childPermission.add(PermissionBuilderDsl(resolveName).apply(block).build())
 	}
+	//dsl end
 
 	internal fun getChildPermissionInstances() = childPermission
+
 	internal fun build(): Permission {
 		val desc = description.takeIf { it.isNotBlank() }
 		val map = mutableMapOf<String, Boolean>()

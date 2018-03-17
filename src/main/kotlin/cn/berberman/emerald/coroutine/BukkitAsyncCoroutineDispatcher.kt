@@ -14,7 +14,9 @@ import kotlin.coroutines.experimental.CoroutineContext
  * @see CoroutineDispatcher
  */
 object BukkitAsyncCoroutineDispatcher : CoroutineDispatcher() {
+
 	private val bukkitScheduler = Bukkit.getScheduler()
+
 	override fun dispatch(context: CoroutineContext, block: Runnable) {
 		context + BukkitTaskCoroutineContext(bukkitScheduler.runTaskAsynchronously(plugin, block))
 	}

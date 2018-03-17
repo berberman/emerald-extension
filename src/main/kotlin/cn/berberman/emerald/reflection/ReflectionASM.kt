@@ -32,7 +32,7 @@ fun <T : Any> Class<T>.getConstructorAccess(): ConstructorAccess<T> = Constructo
  * @param parameters method's parameters
  * @return method's return value
  */
-fun <T : Any> Class<T>.invokeMethod(instance: Any?, name: String, vararg parameters: Any): Any? =
+fun <T : Any> Class<T>.invokeMethod(instance: Any?, name: String, vararg parameters: Any?): Any? =
 		getMethodAccess()(instance, name, *parameters)
 
 /**

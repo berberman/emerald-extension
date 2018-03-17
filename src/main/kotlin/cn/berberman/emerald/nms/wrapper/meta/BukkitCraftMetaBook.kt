@@ -17,7 +17,7 @@ class BukkitCraftMetaBook(meta: BookMeta) : ReflectionWrapper(), BookMeta by met
 	private val pages: MutableList<Any> = clazz.getFieldAccess()[instance, "pages"] as MutableList<Any>
 
 	fun addPages(vararg text: NmsIChatBaseComponent) = /*text.forEach { pages.add(it.nmsChat) }*/
-			pages.addAll(text.map { it.nmsChat })
+			pages.addAll(text.map(NmsIChatBaseComponent::nmsChat))
 
 	fun addPage(text: Array<BaseComponent>) = addPages(*text.toIChatBaseList().toTypedArray())
 }

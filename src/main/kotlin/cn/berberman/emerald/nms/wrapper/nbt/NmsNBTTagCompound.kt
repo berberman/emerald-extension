@@ -3,6 +3,8 @@ package cn.berberman.emerald.nms.wrapper.nbt
 import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.util.NmsUtil
+import cn.berberman.emerald.util.ReflectionUtil
+
 
 /**
  * Corresponding NBTTagCompound
@@ -21,6 +23,7 @@ class NmsNBTTagCompound : ReflectionWrapper {
 	 */
 	constructor() {
 		instance = clazz.getConstructorAccess().newInstance()
+		internalMap = ReflectionUtil.getField(clazz, "map", instance)
 	}
 
 	/**
@@ -29,10 +32,11 @@ class NmsNBTTagCompound : ReflectionWrapper {
 	 */
 	constructor(original: Any) {
 		instance = original
+		internalMap = ReflectionUtil.getField(clazz, "map", instance)
 	}
 
 	override val instance: Any
-
+	private val internalMap: HashMap<*, *>
 	/**
 	 * set int value
 	 * @param name the key of value.
@@ -68,6 +72,12 @@ class NmsNBTTagCompound : ReflectionWrapper {
 		methods("set", name, any)
 	}
 
-	fun get(name: String): Any? = methods("get")
+	fun get(name: String): Any? = methods("get", name)
+
+	//internal
+	internal fun getInternal() = internalMap
+
+	fun internalClear() = internalMap.clear()
+
 
 }

@@ -8,12 +8,6 @@ import org.bukkit.block.Block
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Entity
 
-//internal fun getCommandMap(): CommandMap =
-//		Bukkit.getServer().let {
-//			it::class.java.declaredMethods.firstOrNull { it.name == "getCommandMap" }
-//					?.invoke(it) as CommandMap
-//		}
-
 /**
  * Join Chat Color and a String
  * @param s a string be joined to

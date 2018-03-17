@@ -9,12 +9,15 @@ import org.bukkit.plugin.IllegalPluginAccessException
 class NmsChatSerializer : ReflectionWrapper() {
 
 	companion object {
-		fun decodeFromString(raw: String) = NmsUtil.getNMSClass("IChatBaseComponent\$ChatSerializer").invokeMethod(
+		private val clazz = NmsUtil.getNMSClass("IChatBaseComponent\$ChatSerializer")
+
+		fun decodeFromString(raw: String) = clazz.invokeMethod(
 				null, "a", raw
 		)?.let { NmsIChatBaseComponentEx(it) } ?: throw IllegalPluginAccessException("Convert error.")
 	}
 
-	override val clazz: Class<*> = NmsUtil.getNMSClass("IChatBaseComponent\$ChatSerializer")
+	override val clazz: Class<*> = NmsChatSerializer.clazz
 
 	override val instance: Any = clazz.getConstructorAccess().newInstance()
+
 }

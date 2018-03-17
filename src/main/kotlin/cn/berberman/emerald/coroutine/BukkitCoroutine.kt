@@ -17,7 +17,7 @@ import kotlinx.coroutines.experimental.*
  * @param block the coroutine code.
  */
 @Deprecated("Use kontx's coroutine instead", ReplaceWith("async", "kotlinx.coroutines.experimental.async"))
-fun <T> emeraldAsync(
+fun <T> bukkitAsync(
 		start: CoroutineStart = CoroutineStart.DEFAULT,
 		block: suspend CoroutineScope.() -> T
 ) = async(BukkitAsyncCoroutineDispatcher, start, null, block)
@@ -42,11 +42,11 @@ fun <T> emeraldAsync(
  * @param block the coroutine code.
  */
 @Deprecated("Use kontx's coroutine instead", ReplaceWith("launch", "kotlinx.coroutines.experimental.launch"))
-fun emeraldLaunch(
+fun bukkitLaunch(
 		start: CoroutineStart = CoroutineStart.DEFAULT,
 		block: suspend CoroutineScope.() -> Unit
 ) = launch(BukkitAsyncCoroutineDispatcher, start, null, block)
 
-typealias ServerThread = BukkitSyncCoroutineDispatcher
+typealias ServerContext = BukkitSyncCoroutineDispatcher
 
-typealias SchedulerThread = BukkitAsyncCoroutineDispatcher
+typealias SchedulerContxt = BukkitAsyncCoroutineDispatcher

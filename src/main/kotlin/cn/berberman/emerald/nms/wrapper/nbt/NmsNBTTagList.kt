@@ -3,6 +3,7 @@ package cn.berberman.emerald.nms.wrapper.nbt
 import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.util.NmsUtil
+import cn.berberman.emerald.util.ReflectionUtil
 
 /**
  * Corresponding NBTTagList
@@ -22,6 +23,7 @@ class NmsNBTTagList : ReflectionWrapper {
 	 */
 	constructor() {
 		instance = clazz.getConstructorAccess().newInstance()
+		internalList = ReflectionUtil.getField(clazz, "list", instance)
 	}
 
 	/**
@@ -30,16 +32,19 @@ class NmsNBTTagList : ReflectionWrapper {
 	 */
 	constructor(original: Any) {
 		instance = original
+		internalList = ReflectionUtil.getField(clazz, "list", instance)
 	}
 
 	override val instance: Any
 
+	private val internalList: ArrayList<*>
+
 	/**
 	 * remove a member from list.
-	 * @param int the index of target member.
+	 * @param index the index of target member.
 	 */
-	fun remove(int: Int) {
-		methods("remove", int)
+	fun remove(index: Int) {
+		methods("remove", index)
 	}
 
 	/**
@@ -49,4 +54,15 @@ class NmsNBTTagList : ReflectionWrapper {
 	fun add(any: Any) {
 		methods("add", any)
 	}
+
+	fun get(index: Int) = methods("get", index)
+
+
+	//Internal
+	internal fun getInternal() = internalList
+
+	fun internalClear() = internalList.clear()
+
+	fun internalSize() = internalList.size
+
 }

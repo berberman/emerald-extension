@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender
 class DslCommandBuilder internal constructor(internal val name: String) {
 	private val subCommands =
 			mutableMapOf<String, SubCommandBuilderDsl>()
+	//dsl start
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
@@ -89,6 +90,7 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * @param alias alias you want's to add
 	 */
 	fun addAlias(alias: String) = aliases.add(alias)
+	//dsl end
 
 	/**
 	 * A class support function whenSenderIs, holds its data.

@@ -26,6 +26,7 @@ class CommandsBuilder internal constructor() {
 
 	private val commands = mutableSetOf<PackingCommand>()
 
+	//dsl start
 	/**
 	 * Action before execute, default is empty.Read only.
 	 */
@@ -74,6 +75,7 @@ class CommandsBuilder internal constructor() {
 
 		}
 	}
+	//dsl end
 
 	internal fun register(commandMap: CommandMap) {
 		commands.forEach {

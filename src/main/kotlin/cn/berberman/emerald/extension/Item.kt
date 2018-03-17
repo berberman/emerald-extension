@@ -60,14 +60,30 @@ class NBTModifier(itemStack: ItemStack) {
 		tag = if (nms.hasTag()) nms.getTag() else NmsNBTTagCompound()
 	}
 
+	//dsl start
 	/**
 	 * Let outer class to access modifier.
 	 */
-	 fun addTag(block: NBTTagBuilder.() -> Unit) = apply {
-		tag.set("AttributeModifiers", /*NmsNBTTagList()*/tag.get("AttributeModifiers")?.let { NmsNBTTagList(it) }?:NmsNBTTagList().apply {
-			add(NBTTagBuilder().apply(block).nbtTagCompound.instance)
-		}.instance)
+	fun addTag(block: NBTTagBuilder.() -> Unit) = operateList {
+		add(NBTTagBuilder().apply(block).nbtTagCompound.instance)
 	}
+
+	fun removeTagByIndex(index: Int) = operateList {
+		remove(index)
+	}
+
+	fun removeTagByType(type: NBTTagBuilder.NBTType) = operateList {
+		getInternal().map(::NmsNBTTagCompound).filter { it.getInternal().containsValue(type.getNBTName()) }
+				.let { getInternal().removeAll(it.map(NmsNBTTagCompound::instance)) }
+	}
+
+	fun clearAll() = operateList { internalClear() }
+	//dsl end
+
+	private fun operateList(block: NmsNBTTagList.() -> Unit) =
+			tag.set("AttributeModifiers", getOrNewList().apply(block).instance)
+
+	private fun getOrNewList() = tag.get("AttributeModifiers")?.let { NmsNBTTagList(it) } ?: NmsNBTTagList()
 
 	internal fun getResult() = NmsUtil.asBukkitCopy(nms.apply { setTag(this@NBTModifier.tag) })
 	/**
@@ -198,6 +214,7 @@ class NBTModifier(itemStack: ItemStack) {
 			 * Functions the same as Operation 1 if there is only a single modifier with operation 1 or 2. However, for multiple modifiers it will multiply the modifiers rather than adding them.
 			 * For example, modifying an attribute with {Amount:2,Operation:2} and {Amount:4,Operation:2} with a Base of 3 results in 45 (3 * (1 + 2) * (1 + 4) = 45)
 			 */
+			@Deprecated("magic value", ReplaceWith("Multiplicative"))
 			MultipleMultiplicative(2);
 
 			fun getNBTValue() = nbtValue
@@ -243,6 +260,7 @@ class NBTModifier(itemStack: ItemStack) {
 			const val DEFAULT_UUID_MOST = 30000
 		}
 
+		//dsl start
 		/**
 		 * Which NBT Tag type you want to modify.
 		 */
@@ -267,7 +285,7 @@ class NBTModifier(itemStack: ItemStack) {
 		 * uuidMost value.
 		 */
 		var uuidMost: Int by NBTDelegate(DEFAULT_UUID_MOST, TagName.UUIDMost)
-
+		//dsl end
 
 		private inner class NBTDelegate<T>(initialValue: T, private val tagName: TagName)
 			: ReadWriteProperty<Any?, T> {

@@ -6,6 +6,7 @@ import cn.berberman.emerald.reflection.invokeMethod
 import cn.berberman.emerald.util.EmeraldUtil.emptyListener
 import cn.berberman.emerald.util.EmeraldUtil.plugin
 import cn.berberman.emerald.util.EmeraldUtil.pluginManager
+import cn.berberman.emerald.util.ReflectionUtil
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 import org.bukkit.plugin.EventExecutor
@@ -33,10 +34,11 @@ fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
 }
 
 internal fun RegisteredListener.getEventExecutor(): EventExecutor {
-	val field = RegisteredListener::class.java.let {
-		it.declaredFields.first { it.name == "executor" }
-	}.apply { isAccessible = true }
-	return field.get(this) as EventExecutor
+//	val field = RegisteredListener::class.java.let {
+//		it.declaredFields.first { it.name == "executor" }
+//	}.apply { isAccessible = true }
+//	return field.get(this) as EventExecutor
+	return ReflectionUtil.getField("executor", this)
 }
 
 /**
@@ -61,11 +63,14 @@ fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
 
 @Suppress("UNCHECKED_CAST")
 internal fun Class<out Event>.getEventListeners(): HandlerList {
-	val getRegistrationClass = SimplePluginManager::class.java.let {
-		val m = it.declaredMethods.first { it.name == "getRegistrationClass" }
-		m.isAccessible = true
-		m
-	}
+//	val getRegistrationClass = SimplePluginManager::class.java.let {
+//		//		val m = it.declaredMethods.first { it.name == "getRegistrationClass" }
+//		val m = it.getDeclaredMethod("getRegistrationClass", Class::class.java)
+//		m.isAccessible = true
+//		m
+//	}
+	val getRegistrationClass = ReflectionUtil.getMethod(SimplePluginManager::class.java,
+			"getRegistrationClass", Class::class.java)
 	return (getRegistrationClass(pluginManager, this) as Class<out Event>).let {
 		it.invokeMethod(it, "getHandlerList") as HandlerList
 	}
