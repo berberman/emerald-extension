@@ -12,14 +12,14 @@ class SubCommandBuilderDsl internal constructor(internal val name: String) {
 	/**
 	 * sub command action, read only.
 	 */
-	var action: (CommandSender, Array<out String>) -> Boolean = { _, _ -> true }
+	var action: (CommandSender, Array<out String>) -> CommandResult = { _, _ -> CommandResult.SUCCESS }
 		private set
 
 	/**
 	 * set sub command action
 	 * @param block action
 	 */
-	fun action(block: (CommandSender) -> Boolean) {
+	fun action(block: (CommandSender) -> CommandResult) {
 		action = { sender, _ -> block(sender) }
 	}
 
@@ -27,7 +27,7 @@ class SubCommandBuilderDsl internal constructor(internal val name: String) {
 	 * set sub command action
 	 * @param block action
 	 */
-	fun action(block: (CommandSender, Array<out String>) -> Boolean) {
+	fun action(block: (CommandSender, Array<out String>) -> CommandResult) {
 		action = block
 	}
 }

@@ -14,7 +14,7 @@ import cn.berberman.emerald.util.EmeraldUtil
  * <p>
  * @param  msg   The string message (or a key in the message catalog)
  */
-fun info(msg: String) = EmeraldUtil.logger.info(msg)
+fun info(msg: Any) = EmeraldUtil.logger.info(msg.toString())
 
 /**
  * Log a INFO message, which is only to be constructed if the logging
@@ -28,7 +28,7 @@ fun info(msg: String) = EmeraldUtil.logger.info(msg)
  * @param  supplier   A function, which when called, produces the
  *                        desired log message
  */
-inline fun info(supplier: () -> String) = EmeraldUtil.logger.info(supplier())
+inline fun info(supplier: () -> Any) = EmeraldUtil.logger.info(supplier().toString())
 
 /**
  * Log a WARNING message.
@@ -39,7 +39,7 @@ inline fun info(supplier: () -> String) = EmeraldUtil.logger.info(supplier())
  * <p>
  * @param   msg     The string message (or a key in the message catalog)
  */
-fun warning(msg: String) = EmeraldUtil.logger.warning(msg)
+fun warning(msg: Any) = EmeraldUtil.logger.warning(msg.toString())
 
 /**
  * Log a WARNING message, which is only to be constructed if the logging
@@ -53,5 +53,5 @@ fun warning(msg: String) = EmeraldUtil.logger.warning(msg)
  * @param   supplier   A function, which when called, produces the
  *                        desired log message
  */
-inline fun warning(supplier: () -> String) = EmeraldUtil.logger.warning(supplier())
+inline fun warning(supplier: () -> Any) = EmeraldUtil.logger.warning(supplier().toString())
 

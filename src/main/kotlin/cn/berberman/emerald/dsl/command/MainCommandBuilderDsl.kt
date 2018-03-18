@@ -16,7 +16,14 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	/**
 	 * Read only, which will be invoked when commands execute.
 	 */
-	var action: Action = { sender, _, args -> dispatchSubCommand(sender, args).value ?: true }
+	var action: Action = { sender, _, args ->
+		dispatchSubCommand(sender, args).let { result ->
+			if (result.first == SubCommandInvokeState.UN_DISPATCHED)
+				CommandResult.SUCCESS
+			else result.second
+
+		}
+	}
 		private set
 	/**
 	 * The description of command, default is empty.
@@ -44,12 +51,13 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * @param block a function contains the action of execute command,
 	 * return boolean represents whether command executes successfully
 	 */
-	fun action(block: (CommandSender) -> Boolean) {
+	fun action(block: (CommandSender) -> CommandResult) {
 		action = { sender, _, args ->
 			dispatchSubCommand(sender, args).let { result ->
-				if (result == SubCommandInvokeState.UN_DISPATCHED && args.isEmpty()) block(sender)
-				else if (result == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) false
-				else result.value ?: throw IllegalStateException("That's impossible")
+				if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isEmpty()) block(sender)
+				else if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) CommandResult(false,
+						"Unable to find this command")
+				else result.second
 			}
 		}
 	}
@@ -59,12 +67,13 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * @param block a function contains the action of execute command,
 	 * return boolean represents whether command executes successfully
 	 */
-	fun action(block: (CommandSender, Array<out String>) -> Boolean) {
+	fun action(block: (CommandSender, Array<out String>) -> CommandResult) {
 		action = { sender, _, args ->
 			dispatchSubCommand(sender, args).let { result ->
-				if (result == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) block(sender, args)
-				else if (result == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) false
-				else result.value ?: throw IllegalStateException("That's impossible")
+				if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isEmpty()) block(sender, args)
+				else if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) CommandResult(false,
+						"Unable to find this command")
+				else result.second
 			}
 		}
 	}
@@ -103,12 +112,12 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	class TargetAndSenderBlocksData
 	(private val senderInstance: CommandSender,
 	 private val isTarget: Boolean,
-	 private val result: Boolean) {
+	 private val result: CommandResult) {
 		/**
 		 * Set otherwise action and return final result.
 		 * @param block the action that if sender ins't target object
 		 */
-		infix fun otherwise(block: CommandSender.() -> Boolean) =
+		infix fun otherwise(block: CommandSender.() -> CommandResult) =
 				if (!isTarget) senderInstance.block() else result
 
 		/**
@@ -128,19 +137,19 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * @param block action if sender is target type
 	 */
 	inline infix fun <reified T : CommandSender>
-			CommandSender.whenSenderIs(block: T.() -> Boolean) =
+			CommandSender.whenSenderIs(block: T.() -> CommandResult) =
 			(this is T).let { isTarget ->
 				TargetAndSenderBlocksData(this, isTarget, if (isTarget)
-					(this as T).block() else false)
+					(this as T).block() else CommandResult.EMPTY_FAIL)
 			}
 
-	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): SubCommandInvokeState =
-			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED
+	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): Pair<SubCommandInvokeState, CommandResult> =
+			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED to CommandResult.SUCCESS
 			else subCommands[args[0]]?.action?.invoke(sender, mutableListOf<String>()
 					.apply {
 						addAll(args)
 						remove(args[0])
-					}.toTypedArray()).let { SubCommandInvokeState.valueOf(it) }
+					}.toTypedArray()).let { SubCommandInvokeState.valueOf(it?.result) to (it ?: CommandResult.SUCCESS) }
 
 	internal val defaultProcessTabComplete: PackingTabCompleter.(CommandSender, Array<out String>) -> Unit = { _, args ->
 		subCommands.keys.filter { it.startsWith(args.last(), true) }.let(this::addAll)

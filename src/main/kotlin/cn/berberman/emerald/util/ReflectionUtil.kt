@@ -3,6 +3,7 @@ package cn.berberman.emerald.util
 import java.lang.reflect.Method
 
 object ReflectionUtil {
+
 	inline fun <reified T, reified R> getField(name: String, instance: T): R =
 			T::class.java.getDeclaredField(name).apply {
 				isAccessible = true

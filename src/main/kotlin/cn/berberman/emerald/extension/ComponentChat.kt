@@ -1,3 +1,5 @@
+@file:JvmName("ComponentChat")
+
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.nms.wrapper.chat.NmsChatSerializer
@@ -13,7 +15,7 @@ fun ComponentBuilder.createToIChatBaseList() =
 fun Array<BaseComponent>.toIChatBaseList() =
 		map { ComponentSerializer.toString(it) }.map(NmsChatSerializer.Companion::decodeFromString)
 
-fun componentChat(text: String, block: ComponentBuilder.() -> Unit) =
+fun componentChat(text: String, block: ComponentBuilder.() -> Unit = {}) =
 		ComponentBuilder(text).apply(block)
 
 fun ComponentBuilder.executeCommandOnClick(command: String): ComponentBuilder =

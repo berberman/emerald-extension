@@ -55,6 +55,10 @@ class NmsNBTTagCompound : ReflectionWrapper {
 		methods("setString", name, value)
 	}
 
+	fun setDouble(name: String, value: Double) {
+		methods("setDouble", name, value)
+	}
+
 	/**
 	 * remove a value from this compound.
 	 * @param name the key of value.
@@ -78,6 +82,4 @@ class NmsNBTTagCompound : ReflectionWrapper {
 	internal fun getInternal() = internalMap
 
 	fun internalClear() = internalMap.clear()
-
-
 }

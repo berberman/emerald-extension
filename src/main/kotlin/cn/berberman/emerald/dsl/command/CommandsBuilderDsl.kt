@@ -90,7 +90,7 @@ class CommandsBuilder internal constructor() {
  * (CommandSender, String, Array<out String>) -> Boolean is too long,
  * use typealias to replace :)
  */
-typealias Action = (CommandSender, String, Array<out String>) -> Boolean
+typealias Action = (CommandSender, String, Array<out String>) -> CommandResult
 
 
 /**

@@ -3,10 +3,10 @@ package cn.berberman.emerald.extension
 import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.extension.NBTModifier.NBTTagBuilder
 import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
-import cn.berberman.emerald.nms.wrapper.meta.BukkitCraftMetaBook
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagList
 import cn.berberman.emerald.util.NmsUtil
+import cn.berberman.emerald.util.ReflectionUtil
 import org.apache.commons.lang.math.RandomUtils
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BannerMeta
@@ -31,19 +31,23 @@ fun ItemStack.operateMeta(block: ItemMeta.() -> Unit) = apply {
  */
 fun ItemStack.modifyNBT(block: NBTModifier.() -> Unit) = NBTModifier(this).apply(block).getResult()
 
-fun ItemStack.operateBookMeta(block: BukkitCraftMetaBook.() -> Unit) = apply {
-	itemMeta = BukkitCraftMetaBook(itemMeta as? BookMeta
-			?: throw IllegalStateException("This is not a book!")).apply(block).instance as ItemMeta?
+//fun ItemStack.operateBookMeta(block: BukkitCraftMetaBook.() -> Unit) = apply {
+//	itemMeta = BukkitCraftMetaBook(itemMeta as? BookMeta
+//			?: throw IllegalStateException("This is not a book!")).apply(block).instance as ItemMeta?
+//}
+fun ItemStack.operateBookMeta(block: BookMeta.() -> Unit) = apply {
+	itemMeta = itemMeta.safeCast<BookMeta>()?.apply(block)
+			?: throw IllegalStateException("This is not a book!")
 }
 
 fun ItemStack.operateBannerMeta(block: BannerMeta.() -> Unit) = apply {
-	itemMeta = (itemMeta as? BannerMeta)?.apply(block) ?: throw IllegalStateException("This is not a banner!")
+	itemMeta = itemMeta.safeCast<BannerMeta>()?.apply(block)
+			?: throw IllegalStateException("This is not a banner!")
 }
 
-@Suppress("DeprecatedCallableAddReplaceWith")
-@Deprecated("Unsafe")
-inline fun <reified T : ItemMeta> ItemStack.operateSpecificMeta(block: T.() -> Unit) =
-		apply { itemMeta = (itemMeta as? T)?.apply(block) ?: throw IllegalStateException("Meta cast error!") }
+//@Deprecated("Unsafe")
+//inline fun <reified T : ItemMeta> ItemStack.operateSpecificMeta(block: T.() -> Unit) =
+//		apply { itemMeta = (itemMeta as? T)?.apply(block) ?: throw IllegalStateException("Meta cast error!") }
 
 /**
  * NBT Modifier, let NBTTagBuilder's value add to ItemStack.
@@ -73,11 +77,15 @@ class NBTModifier(itemStack: ItemStack) {
 	}
 
 	fun removeTagByType(type: NBTTagBuilder.NBTType) = operateList {
-		getInternal().map(::NmsNBTTagCompound).filter { it.getInternal().containsValue(type.getNBTName()) }
-				.let { getInternal().removeAll(it.map(NmsNBTTagCompound::instance)) }
+		getInternal().map(::NmsNBTTagCompound).filter {
+			ReflectionUtil.getField<String>(NmsUtil.getNMSClass("NBTTagString"),
+					"data", it.get("AttributeName")!!) == type.getNBTName()
+		}.let {
+			getInternal().removeAll(it.map(NmsNBTTagCompound::instance))
+		}
 	}
 
-	fun clearAll() = operateList { internalClear() }
+	fun clearAllTags() = operateList { internalClear() }
 	//dsl end
 
 	private fun operateList(block: NmsNBTTagList.() -> Unit) =
@@ -226,10 +234,16 @@ class NBTModifier(itemStack: ItemStack) {
 			nbtTagCompound.setString(tagName.getNBTName(), value)
 		}
 
-		private fun setInt(tagName: TagName, int: Int) {
+		private fun setInt(tagName: TagName, value: Int) {
 			if (Emerald.debug)
-				info("NBT:add $tagName:$int")
-			nbtTagCompound.setInt(tagName.getNBTName(), int)
+				info("NBT:add $tagName:$value")
+			nbtTagCompound.setInt(tagName.getNBTName(), value)
+		}
+
+		private fun setDouble(tagName: TagName, value: Double) {
+			if (Emerald.debug)
+				info("NBT:add $tagName:$value")
+			nbtTagCompound.setDouble(tagName.getNBTName(), value)
 		}
 
 		private fun remove(tagName: TagName) {
@@ -272,7 +286,7 @@ class NBTModifier(itemStack: ItemStack) {
 		/**
 		 * The value of NBT Tag
 		 */
-		var amount: Int by NBTDelegate(0, TagName.Amount)
+		var amount: Double by NBTDelegate(.0, TagName.Amount)
 		/**
 		 * NBT operation type, see [Operation]
 		 */
@@ -303,6 +317,7 @@ class NBTModifier(itemStack: ItemStack) {
 				when (value) {
 					is String    -> setString(tagName, value)
 					is Int       -> setInt(tagName, value)
+					is Double    -> setDouble(tagName, value)
 					is Operation -> setInt(tagName, value.getNBTValue().toInt())
 					is NBTType   -> {
 						setTypeName(value)
