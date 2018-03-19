@@ -12,7 +12,7 @@ class SubCommandBuilderDsl internal constructor(internal val name: String) {
 	/**
 	 * sub command action, read only.
 	 */
-	var action: (CommandSender, Array<out String>) -> CommandResult = { _, _ -> CommandResult.SUCCESS }
+	var action: (CommandSender, Array<out String>) -> CommandResult = { _, _ -> CommandResult.Successful }
 		private set
 
 	/**
