@@ -9,6 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
 
+@Deprecated("Unrealized", level = DeprecationLevel.HIDDEN)
 data class UI internal constructor(private val inventory: Inventory) {
 
 	val slots = mutableMapOf<Int, Slot>()
@@ -62,18 +63,19 @@ data class UI internal constructor(private val inventory: Inventory) {
 		}
 
 	}
-}
 
-data class Slot(internal val solt: Int) {
+	data class Slot(internal val solt: Int) {
 
-	var modifiable = false
+		var modifiable = false
 
-	var onClick: (InventoryClickEvent) -> Unit = {}
-		private set
+		var onClick: (InventoryClickEvent) -> Unit = {}
+			private set
 
-	fun onClick(block: (InventoryClickEvent) -> Unit) {
-		onClick = block
+		fun onClick(block: (InventoryClickEvent) -> Unit) {
+			onClick = block
+		}
+
+
 	}
-
-
 }
+

@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlin_version = '1.2.21'
+        kotlin_version = '1.2.30'
         dokka_version = '0.9.15'
         minecraft_version = '1.12.2-R0.1-SNAPSHOT'
     }
@@ -15,10 +15,8 @@ buildscript {
     }
 }
 
-//noinspection GroovyAssignabilityCheck
-group 'cn.berberman'
-//noinspection GroovyAssignabilityCheck
-version '1.1-SNAPSHOT'
+group = 'cn.berberman'
+version = '1.1-SNAPSHOT'
 
 apply plugin: 'kotlin'
 apply plugin: 'java'
@@ -30,13 +28,18 @@ repositories {
     maven { url = "https://hub.spigotmc.org/nexus/content/groups/public/" }
 }
 
+configurations {
+    artifact
+    configurations.compile.extendsFrom(configurations.artifact)
+}
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.spigotmc:spigot-api:$minecraft_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.2'
-    compile 'org.javassist:javassist:3.22.0-GA'
-    compile 'org.ow2.asm:asm-all:5.2'
+    artifact 'org.javassist:javassist:3.22.0-GA'
+    artifact 'org.ow2.asm:asm-all:5.2'
 }
 
 compileKotlin {
@@ -70,6 +73,7 @@ clean {
 configurations {
     dokka.finalizedBy copyDoc
     copyDoc.finalizedBy cleanOriginDoc
+    jar.finalizedBy lightJar
 }
 
 publish {
@@ -94,9 +98,19 @@ kotlin {
 }
 
 jar {
+    baseName += "-core"
     from {
-        configurations.compile.filter {
-            it.name.contains("javassist") || it.name.contains("asm")
-        }.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.artifact.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+
+task fatJar(group: 'build', type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with(jar)
+}
+
+task lightJar(group: 'build', type: Jar) {
+    baseName = project.name + '-light'
+    with(jar)
 }

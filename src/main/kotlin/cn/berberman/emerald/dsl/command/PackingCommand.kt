@@ -53,14 +53,15 @@ internal class PackingCommand
 	 */
 	override fun execute(p0: CommandSender, p1: String, p: Array<out String>): Boolean {
 		before(p0, p1)
-		return action(p0, p1, p).let {
-			if (!it.result) {
-				p0 sendMessage ChatColor.RED * "command execute error: ${it.message}"
+		return action(p0, p1, p).let { result ->
+			if (result === CommandResult.Successful) true
+			else {
+				p0 sendMessage ChatColor.RED * "command execute error: ${result.message}"
 				if (Emerald.debug)
-					info("command:/$p1 execute error! message: ${it.message}")
+					info("command:/$p1 execute error! message: ${result.message}")
+				after(p0, p1)
+				false
 			}
-			after(p0, p1)
-			it.result
 		}
 	}
 

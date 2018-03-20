@@ -1,3 +1,5 @@
+@file:JvmName("PlayerUtil")
+
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.nms.wrapper.chat.NmsChatComponentText
@@ -26,10 +28,20 @@ fun Player.sendActionBar(text: String) =
 				.sendPacket(NmsPacketPlayOutChat(NmsChatComponentText(text)
 						, NmsChatMessageType.GAME_INFO))
 
-fun Player.sendComponentActionBar(vararg components: BaseComponent) = spigot().sendMessage(ChatMessageType.ACTION_BAR, *components)
+fun Player.sendComponentActionBar(vararg components: BaseComponent) =
+		spigot().sendMessage(ChatMessageType.ACTION_BAR, *components)
 
-fun Player.sendComponentActionBar(builder: ComponentBuilder) = spigot().sendMessage(ChatMessageType.ACTION_BAR, *builder.create())
+fun Player.sendComponentActionBar(builder: ComponentBuilder) =
+		spigot().sendMessage(ChatMessageType.ACTION_BAR, *builder.create())
 
-fun Player.sendComponentChat(vararg components: BaseComponent) = spigot().sendMessage(ChatMessageType.CHAT, *components)
+fun Player.sendComponentActionBar(text: String, builder: ComponentBuilder.() -> Unit = {}) =
+		spigot().sendMessage(ChatMessageType.ACTION_BAR, *componentChat(text, builder).create())
 
-fun Player.sendComponentChat(builder: ComponentBuilder) = spigot().sendMessage(ChatMessageType.CHAT, *builder.create())
+fun Player.sendComponentChat(vararg components: BaseComponent) =
+		spigot().sendMessage(ChatMessageType.CHAT, *components)
+
+fun Player.sendComponentChat(builder: ComponentBuilder) =
+		spigot().sendMessage(ChatMessageType.CHAT, *builder.create())
+
+fun Player.sendComponentChat(text: String, builder: ComponentBuilder.() -> Unit = {}) =
+		spigot().sendMessage(ChatMessageType.CHAT, *componentChat(text, builder).create())

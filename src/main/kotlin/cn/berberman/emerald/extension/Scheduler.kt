@@ -1,3 +1,5 @@
+@file:JvmName("SchedulerUtil")
+
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.util.EmeraldUtil.plugin

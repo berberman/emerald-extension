@@ -1,3 +1,5 @@
+@file:JvmName("VectorUtil")
+
 package cn.berberman.emerald.extension
 
 import org.bukkit.util.Vector

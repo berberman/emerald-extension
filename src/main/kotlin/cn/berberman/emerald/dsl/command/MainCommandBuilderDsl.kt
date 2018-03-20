@@ -18,10 +18,9 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 */
 	var action: Action = { sender, _, args ->
 		dispatchSubCommand(sender, args).let { result ->
-			if (result.first == SubCommandInvokeState.UN_DISPATCHED)
-				CommandResult.Successful
-			else result.second
-
+			if (result === CommandResult.SubCommandUnDispatched)
+				CommandResult.Failed(CommandResult.COMMAND_NOT_FOUND)
+			else result
 		}
 	}
 		private set
@@ -54,10 +53,10 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	fun action(block: (CommandSender) -> CommandResult) {
 		action = { sender, _, args ->
 			dispatchSubCommand(sender, args).let { result ->
-				if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isEmpty()) block(sender)
-				else if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) CommandResult.Failed(
-						"Unable to find this command")
-				else result.second
+				if (result === CommandResult.SubCommandUnDispatched && args.isEmpty()) block(sender)
+//				else if (result === CommandResult.SubCommandUnDispatched && args.isNotEmpty())
+//					CommandResult.Failed(CommandResult.COMMAND_NOT_FOUND)
+				else result
 			}
 		}
 	}
@@ -70,10 +69,10 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	fun action(block: (CommandSender, Array<out String>) -> CommandResult) {
 		action = { sender, _, args ->
 			dispatchSubCommand(sender, args).let { result ->
-				if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isEmpty()) block(sender, args)
-				else if (result.first == SubCommandInvokeState.UN_DISPATCHED && args.isNotEmpty()) CommandResult.Failed(
-						"Unable to find this command")
-				else result.second
+				if (result === CommandResult.SubCommandUnDispatched && args.isEmpty()) block(sender, args)
+//				else if (result === CommandResult.SubCommandUnDispatched && args.isNotEmpty())
+//					CommandResult.Failed(CommandResult.COMMAND_NOT_FOUND)
+				else result
 			}
 		}
 	}
@@ -143,31 +142,30 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 					(this as T).block() else CommandResult.Failed())
 			}
 
-	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): Pair<SubCommandInvokeState, CommandResult> =
-			if (args.isEmpty()) SubCommandInvokeState.UN_DISPATCHED to CommandResult.Successful
+	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): CommandResult =
+			if (args.isEmpty()) CommandResult.SubCommandUnDispatched
 			else subCommands[args[0]]?.action?.invoke(sender, mutableListOf<String>()
 					.apply {
 						addAll(args)
 						remove(args[0])
-					}.toTypedArray()).let { SubCommandInvokeState.valueOf(it?.result) to (it ?: CommandResult.Successful) }
+					}.toTypedArray()) ?: CommandResult.SubCommandUnDispatched
 
 	internal val defaultProcessTabComplete: PackingTabCompleter.(CommandSender, Array<out String>) -> Unit = { _, args ->
 		subCommands.keys.filter { it.startsWith(args.last(), true) }.let(this::addAll)
 		sort()
 	}
 
-	//TODO remove it
-	private enum class SubCommandInvokeState(val value: Boolean?) {
-		SUCCESSFUL(true),
-		FAILED(false),
-		UN_DISPATCHED(null);
-
-		internal companion object {
-			fun valueOf(value: Boolean?) = when (value) {
-				true  -> SUCCESSFUL
-				false -> FAILED
-				null  -> UN_DISPATCHED
-			}
-		}
-	}
+//	private enum class SubCommandInvokeState(val value: Boolean?) {
+//		SUCCESSFUL(true),
+//		FAILED(false),
+//		UN_DISPATCHED(null);
+//
+//		internal companion object {
+//			fun valueOf(value: Boolean?) = when (value) {
+//				true -> SUCCESSFUL
+//				false -> FAILED
+//				null -> UN_DISPATCHED
+//			}
+//		}
+//	}
 }

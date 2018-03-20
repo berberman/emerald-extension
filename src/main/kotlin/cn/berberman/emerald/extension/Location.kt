@@ -1,3 +1,5 @@
+@file:JvmName("LocationUtil")
+
 package cn.berberman.emerald.extension
 
 import org.bukkit.Location

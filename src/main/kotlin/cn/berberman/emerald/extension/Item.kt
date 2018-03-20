@@ -1,3 +1,6 @@
+@file:JvmName("ItemStackUtil")
+
+
 package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.Emerald

@@ -1,4 +1,4 @@
-@file:JvmName("ComponentChat")
+@file:JvmName("ComponentChatBuilderUtil")
 
 package cn.berberman.emerald.extension
 
