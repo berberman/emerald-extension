@@ -13,7 +13,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  * @author berberman
  * @see CoroutineDispatcher
  */
-object BukkitAsyncCoroutineDispatcher : CoroutineDispatcher() {
+object BukkitPoolCoroutineDispatcher : CoroutineDispatcher() {
 
 	private val bukkitScheduler = Bukkit.getScheduler()
 

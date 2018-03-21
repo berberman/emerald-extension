@@ -17,11 +17,7 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * Read only, which will be invoked when commands execute.
 	 */
 	var action: Action = { sender, _, args ->
-		dispatchSubCommand(sender, args).let { result ->
-			if (result === CommandResult.SubCommandUnDispatched)
-				CommandResult.Failed(CommandResult.COMMAND_NOT_FOUND)
-			else result
-		}
+		dispatchSubCommand(sender, args)
 	}
 		private set
 	/**
@@ -53,9 +49,8 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	fun action(block: (CommandSender) -> CommandResult) {
 		action = { sender, _, args ->
 			dispatchSubCommand(sender, args).let { result ->
-				if (result === CommandResult.SubCommandUnDispatched && args.isEmpty()) block(sender)
-//				else if (result === CommandResult.SubCommandUnDispatched && args.isNotEmpty())
-//					CommandResult.Failed(CommandResult.COMMAND_NOT_FOUND)
+				if (result === CommandResult.SubCommandUnDispatched && args.isEmpty())
+					block(sender)
 				else result
 			}
 		}
@@ -69,9 +64,8 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	fun action(block: (CommandSender, Array<out String>) -> CommandResult) {
 		action = { sender, _, args ->
 			dispatchSubCommand(sender, args).let { result ->
-				if (result === CommandResult.SubCommandUnDispatched && args.isEmpty()) block(sender, args)
-//				else if (result === CommandResult.SubCommandUnDispatched && args.isNotEmpty())
-//					CommandResult.Failed(CommandResult.COMMAND_NOT_FOUND)
+				if (result === CommandResult.SubCommandUnDispatched && args.isEmpty())
+					block(sender, args)
 				else result
 			}
 		}
@@ -135,10 +129,10 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * @receiver sender command sender
 	 * @param block action if sender is target type
 	 */
-	inline infix fun <reified T : CommandSender>
-			CommandSender.whenSenderIs(block: T.() -> CommandResult) =
-			(this is T).let { isTarget ->
-				TargetAndSenderBlocksData(this, isTarget, if (isTarget)
+	inline fun <reified T : CommandSender>
+			whenSenderIs(sender: CommandSender, block: T.() -> CommandResult) =
+			(sender is T).let { isTarget ->
+				TargetAndSenderBlocksData(sender, isTarget, if (isTarget)
 					(this as T).block() else CommandResult.Failed())
 			}
 
@@ -150,22 +144,9 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 						remove(args[0])
 					}.toTypedArray()) ?: CommandResult.SubCommandUnDispatched
 
-	internal val defaultProcessTabComplete: PackingTabCompleter.(CommandSender, Array<out String>) -> Unit = { _, args ->
-		subCommands.keys.filter { it.startsWith(args.last(), true) }.let(this::addAll)
-		sort()
-	}
-
-//	private enum class SubCommandInvokeState(val value: Boolean?) {
-//		SUCCESSFUL(true),
-//		FAILED(false),
-//		UN_DISPATCHED(null);
-//
-//		internal companion object {
-//			fun valueOf(value: Boolean?) = when (value) {
-//				true -> SUCCESSFUL
-//				false -> FAILED
-//				null -> UN_DISPATCHED
-//			}
-//		}
-//	}
+	internal val defaultProcessTabComplete: PackingTabCompleter.(CommandSender, Array<out String>) -> Unit =
+			{ _, args ->
+				subCommands.keys.filter { it.startsWith(args.last(), true) }.let(this::addAll)
+				sort()
+			}
 }

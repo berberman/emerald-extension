@@ -13,7 +13,7 @@ import kotlin.coroutines.experimental.CoroutineContext
  * @author berberman
  * @see CoroutineDispatcher
  */
-object BukkitSyncCoroutineDispatcher : CoroutineDispatcher() {
+object MinecraftCoroutineDispatcher : CoroutineDispatcher() {
 
 	private val bukkitScheduler = Bukkit.getScheduler()
 
