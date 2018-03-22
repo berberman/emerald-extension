@@ -11,10 +11,11 @@ import java.net.URI
 object EmeraldProxySelector : ProxySelector() {
 
 	private lateinit var defaultProxySelector: ProxySelector
+
 	override fun select(uri: URI): MutableList<Proxy>? {
-		return ServerNetWorkEvent(uri).also(EmeraldUtil.pluginManager::callEvent).takeIf { it.isCancelled }?.let {
-			null
-		} ?: defaultProxySelector.select(uri)
+		return ServerNetWorkEvent(uri).also(EmeraldUtil.pluginManager::callEvent).let {
+			if (it.isCancelled) null else defaultProxySelector.select(uri)
+		}
 	}
 
 	override fun connectFailed(uri: URI?, sa: SocketAddress?, ioe: IOException?) {
