@@ -1,6 +1,7 @@
 package cn.berberman.emerald.util
 
 import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
+import cn.berberman.emerald.reflection.ReflectionClasses
 import org.bukkit.Bukkit
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.IllegalPluginAccessException
@@ -31,7 +32,7 @@ object NmsUtil {
 	 * Convert bukkit ItemStack to NmsItemStack
 	 * @param original bukkit ItemStack
 	 */
-	fun asNMSCopy(original: ItemStack): Any = getCraftBukkitClass("inventory.CraftItemStack")
+	fun asNMSCopy(original: ItemStack): Any = ReflectionClasses.CraftBukkitClass.CraftItemStack()
 			.getMethod("asNMSCopy", ItemStack::class.java)?.invoke(original, original)
 			?: throw IllegalPluginAccessException("Convert $original error.")
 
@@ -40,7 +41,7 @@ object NmsUtil {
 	 * Convert NMS ItemStack to bukkit ItemStack
 	 * @param original NMS ItemStack
 	 */
-	fun asBukkitCopy(original: NmsItemStack) = getCraftBukkitClass("inventory.CraftItemStack")
+	fun asBukkitCopy(original: NmsItemStack) = ReflectionClasses.CraftBukkitClass.CraftItemStack()
 			.methods.firstOrNull { it.name == "asBukkitCopy" }?.invoke(original.instance, original.instance) as? ItemStack
 			?: throw IllegalPluginAccessException("Convert $original error.")
 }

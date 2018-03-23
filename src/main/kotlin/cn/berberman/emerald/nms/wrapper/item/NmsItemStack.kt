@@ -1,6 +1,7 @@
 package cn.berberman.emerald.nms.wrapper.item
 
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
+import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.inventory.ItemStack
@@ -16,7 +17,7 @@ class NmsItemStack(itemStack: ItemStack) : ReflectionWrapper() {
 	 * internal property to save corresponding nms class.
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val clazz: Class<*> = NmsUtil.getNMSClass("ItemStack")
+	override val clazz: Class<*> = ReflectionClasses.NmsClass.ItemStack()
 	/**
 	 * an instance of nmsItemStack holds by this class.
 	 */

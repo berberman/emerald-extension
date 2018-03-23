@@ -1,5 +1,6 @@
 package cn.berberman.emerald.nms.wrapper.player
 
+import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.util.NmsUtil
@@ -12,7 +13,7 @@ import cn.berberman.emerald.util.NmsUtil
  * @param nmsEntityPlayer nmsEntityPlayer, get from reflection [BukkitCraftPlayer]
  */
 class NmsEntityPlayer(val nmsEntityPlayer: Any) : ReflectionWrapper() {
-	override val clazz: Class<*> = NmsUtil.getNMSClass("EntityPlayer")
+	override val clazz: Class<*> = ReflectionClasses.NmsClass.EntityPlayer()
 
 	override val instance: Any
 		get() = nmsEntityPlayer

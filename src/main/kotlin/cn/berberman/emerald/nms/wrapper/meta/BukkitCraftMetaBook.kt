@@ -2,6 +2,7 @@ package cn.berberman.emerald.nms.wrapper.meta
 
 import cn.berberman.emerald.extension.toIChatBaseList
 import cn.berberman.emerald.nms.wrapper.chat.interfaces.NmsIChatBaseComponent
+import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.util.NmsUtil
@@ -10,7 +11,7 @@ import org.bukkit.inventory.meta.BookMeta
 
 @Deprecated("Low performance", ReplaceWith("BookMeta##spigot()", "org.bukkit.inventory.meta.BookMeta"))
 class BukkitCraftMetaBook(meta: BookMeta) : ReflectionWrapper(), BookMeta by meta {
-	override val clazz: Class<*> = NmsUtil.getCraftBukkitClass("inventory.CraftMetaBook")
+	override val clazz: Class<*> = ReflectionClasses.CraftBukkitClass.CraftMetaBook()
 
 	override val instance: Any = meta
 

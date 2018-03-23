@@ -1,6 +1,7 @@
 package cn.berberman.emerald.util
 
 import cn.berberman.emerald.Emerald
+import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.reflection.invokeMethod
 import javassist.ClassPool
@@ -17,7 +18,7 @@ import java.util.logging.Logger
 
 object EmeraldUtil {
 
-	internal val craftServerClass = NmsUtil.getCraftBukkitClass("CraftServer")
+	internal val craftServerClass = ReflectionClasses.CraftBukkitClass.CraftServer()
 
 	val commandMap = craftServerClass
 			.invokeMethod(Bukkit.getServer(), "getCommandMap") as CommandMap
