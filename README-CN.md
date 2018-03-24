@@ -20,7 +20,7 @@ Codeship|[ ![Codeship Status for berberman/emerald-extension](https://app.codesh
 
 一个作为 Spigot 插件开发的依赖。
 
-本项目引入了 `spigot-1.12.2` 作为依赖, 理论支持 1.9+ 。
+本项目引入了 `spigot-1.12.2` 作为依赖, 理论支持 1.10+ 。
 
 本项目内容：
 * 一些顶层成员、函数，可以更便捷访问 Bukkit API
@@ -30,7 +30,7 @@ Codeship|[ ![Codeship Status for berberman/emerald-extension](https://app.codesh
 * DSL 注册、取消注册事件监听器
 * DSL 注册权限
 * `Location`,`Vector` 运算符的重载
-* NMS `Player` 发包，只实现了发送 Action Bar
+* 关于`Player`的扩展函数
 
 ## 食用方法
 本项目发布于 Bintray，~~Maven签名太麻烦~~ 只是一个依赖，并非前置插件，不能单独加载 / 运行，你需要先将其添加到项目依赖中。
@@ -67,19 +67,22 @@ dependencies {
 ## 一些栗子
 ### 修改NBT
 ```kotlin
-ItemStack(Material.WOOD_SWORD).modifyNBT {
-    type = NBTModifier.NBTTagModifier.NBTType.AttackDamage
-	amount = 233
-	slot = NBTModifier.NBTTagModifier.Slot.MainHand
+ItemStack(Material.PAPER).modifyNBT {
+	addTag {
+		type = NBTType.AttackDamage
+		amount = 233.0
+	}
+	removeTagByType(NBTType.MovementSpeed)
+	removeTagByIndex(0)
+	clearAllTags()
+}.operateMeta {
+	displayName = "Banana"
 }
-    .operateMeta {
-  		isUnbreakable = true
-  	    lore = lore.apply { add("蜜汁木剑") }
-  	    }
 ```
-一把 `不会损坏的233攻击力` 的木剑就到手了。
-### 协程
-...
+`modifyNBT` 提供一个 dsl 修改物品的 NBT 标签。
+`addTag` 后面跟一个 dsl ，可以为物品添加基础 NBT 标签。  
+`removeTagByType` 可以移除某类型全部标签。  
+`removeTagByIndex` 可以移除根据所有标签的下标移除一个标签。
 ### Bukkit Scheduler
 ```kotlin
 launch(SchedulerThread) {
@@ -93,9 +96,15 @@ launch(SchedulerThread) {
 这时，如果你想访问 Bukkit API，你就需要使任务运行在服务器线程上。但是，一些同步执行的
 简单语句没有开一个在主线程上运行的协程的必要，所以你可以通过`runOnServerThread {}` 函数
 使其运行在服务器主线程上。
+```kotlin
+bukkitAsync {
+	Thread.sleep(3000)
+}
+```
+有时候没必要开个协程折腾，上面的代码相当于把后面的内容异步执行。
 ### 注册命令
 ```kotlin
-registerCommands {
+createAndRegisterCommands {
     command("test") {
 		description = "A test command"
 		addAlias("t")
@@ -103,16 +112,16 @@ registerCommands {
 		permissionMessage = "你没这权限！"
 		action { sender ->
 			sender sendMessage "Hi!"
-			true
+			CommandResult.Successful
 		}
 		subCommand("player") { sender, args ->
 			sender.whenSenderIs<Player> {
 				world.spawnEntity<Pig>(location)
 				sendMessage(args.joinToString())
-				true
+				CommandResult.Successful
 			} otherwise {
 				sendMessage("你不是玩家！")
-				false
+				CommandResult.Failed()
 			}
 		}
 	}
@@ -121,13 +130,15 @@ registerCommands {
 	}
 }
 ```
-`registerCommands` 在插件启动时应该被调用。对于每个命令来说，除了名字必须声明外，其他都是可选的，
+`createAndRegisterCommands` 在插件启动时应该被调用。对于每个命令来说，除了名字必须声明外，其他都是可选的，
 包括子命令、描述、权限、别名等。子命令可以有许多，但父命令的 `action` 只有在子命令未被调用 (而不是调用失败) 时调用。
 ~~前面那句话没卵用，请忽略。~~ 在使用 `whenSenderIs<T : CommandSender>` 时后面要加 `otherwise {}`并且声明返回值。
 在 `registerCommands {}` 中，你可以使用 `command(name) {}` 注册许多命令。
+#### CommandResult
+对于命令的返回结果只用一个 `Boolean` 来表示显然不太恰当。我们提供了 `CommandResult` 来代表命令执行的结果。
 ### 注册事件监听器
 ```kotlin
-registerCommands {
+createAndRegisterCommands {
 	command("aaa") {
 		subCommand("a") { _, _ ->
 			registerEvent {
@@ -135,18 +146,18 @@ registerCommands {
 					player sendMessage ChatColor.AQUA * "Hello,${player.name}!"
 				}
 			}
-			true
+			CommandResult.Successful
 		}
-		val event = event<PlayerBedEnterEvent> {
+		val event = createEvent<PlayerBedEnterEvent> {
 			player sendMessage "欢迎上床♂"
 		}
 		subCommand("b") { _, _ ->
     		registerEvent(event)
-			true
+			CommandResult.Successful
 		}
 		subCommand("c") { _, _ ->
 			unregisterEvent(event)
-			true
+			CommandResult.Successful
 		}
 		subCommand("d") { _, _ ->
 			registerEvents {
@@ -154,7 +165,7 @@ registerCommands {
 				event<PlayerAdvancementDoneEvent> { }
 				//...
 			}
-			true
+			CommandResult.Successful
 		}
 	}
 }
@@ -178,6 +189,41 @@ registerPermissions {
 }
 ```
 和注册命令相似，`registerPermissions` 需要在插件启用时调用。
-对于每一个权限来说，只有名字时必要的，其他都是可选的，你可以给子权限注册子权限注册子权限（逃。
+对于每一个权限来说，只有名字时必要的，其他都是可选的，你可以给子权限注册子权限注册子权限。
+### ComponentChat
+对 Spigot#ComponentChat 的扩展。
+```kotlin
+componentChat("有趣") {
+			bold(true)
+			executeCommandOnClick("/say 233")
+}.create()
+```
+`componentChat` 函数会帮助你构建 `BaseChatMessage`。后者可用在聊天消息、书本内容中。
+### 玩家的扩展
+#### sendComponentChat/ActionBar
+```kotlin
+Bukkit.getPlayer("").sendComponentChat("测试") {
+  bold(true)
+  showTextOnHover(TextComponent("test"))
+  executeCommandOnClick("/say test")
+}
+```
+正如上部分提到。
+#### openBook
+```kotlin
+Bukkit.getPlayer("").openBook(ItemStack(Material.WRITTEN_BOOK),NmsEnumHand.MAIN_HAND)
+```
+打开书本界面。
+### 书本的扩展
+```kotlin
+ItemStack(Material.WRITTEN_BOOK).operateBookMeta {
+  addPage("测试"){
+    bold(true)
+    showTextOnHover(TextComponent("test"))
+    executeCommandOnClick("/say test")
+  }
+}
+```
+与上面一致。
 ## 贡献
 求星星，欢迎提 Issue、发PR。

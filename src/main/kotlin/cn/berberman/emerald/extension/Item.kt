@@ -10,6 +10,8 @@ import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagList
 import cn.berberman.emerald.util.NmsUtil
 import cn.berberman.emerald.util.ReflectionUtil
+import net.md_5.bungee.api.chat.BaseComponent
+import net.md_5.bungee.api.chat.ComponentBuilder
 import org.apache.commons.lang.math.RandomUtils
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BannerMeta
@@ -48,10 +50,9 @@ fun ItemStack.operateBannerMeta(block: BannerMeta.() -> Unit) = apply {
 			?: throw IllegalStateException("This is not a banner!")
 }
 
-//@Deprecated("Unsafe")
-//inline fun <reified T : ItemMeta> ItemStack.operateSpecificMeta(block: T.() -> Unit) =
-//		apply { itemMeta = (itemMeta as? T)?.apply(block) ?: throw IllegalStateException("Meta cast error!") }
+fun BookMeta.addPage(vararg baseComponent: BaseComponent) = spigot().addPage(baseComponent)
 
+fun BookMeta.addPage(text: String, block: ComponentBuilder.() -> Unit) = spigot().addPage(componentChat(text, block).create())
 /**
  * NBT Modifier, let NBTTagBuilder's value add to ItemStack.
  * @see NBTTagBuilder
