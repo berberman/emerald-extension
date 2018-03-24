@@ -41,3 +41,8 @@ fun <T : Any> Class<T>.invokeMethod(instance: Any?, name: String, vararg paramet
  * @param name field name
  */
 fun <T : Any> Class<T>.getField(instance: Any, name: String): Any? = getFieldAccess()[instance, name]
+
+fun <T : Any> Class<T>.invokeMethod(instance: Any?, name: String, classes: Array<Class<*>>, vararg parameters: Any?): Any? =
+		getMethodAccess().let {
+			it(instance, it.getIndex(name, *classes), *parameters)
+		}

@@ -126,14 +126,16 @@ class DslCommandBuilder internal constructor(internal val name: String) {
 	 * Provide a function to take place of ` if...else... `
 	 *    *infix fun can't declared generic explicitly*
 	 * @param T type that assess whether sender is
-	 * @receiver sender command sender
+	 * @param sender command sender
 	 * @param block action if sender is target type
 	 */
 	inline fun <reified T : CommandSender>
 			whenSenderIs(sender: CommandSender, block: T.() -> CommandResult) =
 			(sender is T).let { isTarget ->
-				TargetAndSenderBlocksData(sender, isTarget, if (isTarget)
-					(this as T).block() else CommandResult.Failed())
+				TargetAndSenderBlocksData(sender, isTarget,
+						if (isTarget)
+							(sender as T).block()
+						else CommandResult.Failed())
 			}
 
 	private fun dispatchSubCommand(sender: CommandSender, args: Array<out String>): CommandResult =

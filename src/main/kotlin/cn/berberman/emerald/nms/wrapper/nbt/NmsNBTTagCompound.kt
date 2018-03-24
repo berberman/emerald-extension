@@ -3,7 +3,6 @@ package cn.berberman.emerald.nms.wrapper.nbt
 import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.ReflectionWrapper
 import cn.berberman.emerald.reflection.getConstructorAccess
-import cn.berberman.emerald.util.NmsUtil
 import cn.berberman.emerald.util.ReflectionUtil
 
 

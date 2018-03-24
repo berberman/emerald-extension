@@ -1,4 +1,4 @@
-package cn.berberman.emerald.nms.wrapper.chat.interfaces
+package cn.berberman.emerald.nms.wrapper.packet
 
 import cn.berberman.emerald.reflection.ReflectionWrapper
 

@@ -21,7 +21,9 @@ object ReflectionClasses {
 		EntityPlayer("EntityPlayer"),
 		PacketPlayOutChat("PacketPlayOutChat"),
 		PlayerConnection("PlayerConnection"),
-		MinecraftServer("MinecraftServer");
+		MinecraftServer("MinecraftServer"),
+		PacketPlayOutSetSlot("PacketPlayOutSetSlot"),
+		EnumHand("EnumHand");
 
 		override val clazz = NmsUtil.getNMSClass(className)
 	}

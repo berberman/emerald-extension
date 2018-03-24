@@ -2,7 +2,6 @@ package cn.berberman.emerald.nms.wrapper.player
 
 import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.ReflectionWrapper
-import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.entity.Player
 
 /**

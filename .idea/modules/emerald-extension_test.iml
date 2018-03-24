@@ -22,19 +22,14 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.comphenix.protocol:ProtocolLib-API:4.3.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:21.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.2.21" level="project" />
     <orderEntry type="library" name="Gradle: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.19" level="project" />
     <orderEntry type="library" name="Gradle: net.md-5:bungeecord-chat:1.12-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.21" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.10" level="project" />
   </component>

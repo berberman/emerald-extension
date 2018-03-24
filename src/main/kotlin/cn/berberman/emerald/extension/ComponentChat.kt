@@ -23,3 +23,5 @@ fun ComponentBuilder.executeCommandOnClick(command: String): ComponentBuilder =
 
 fun ComponentBuilder.showTextOnHover(vararg components: BaseComponent): ComponentBuilder =
 		event(HoverEvent(HoverEvent.Action.SHOW_TEXT, components))
+
+fun ComponentBuilder.append(text: String, block: ComponentBuilder.() -> Unit) = append(componentChat(text, block).create())

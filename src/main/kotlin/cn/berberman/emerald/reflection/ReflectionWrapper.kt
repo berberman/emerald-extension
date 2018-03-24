@@ -23,5 +23,5 @@ abstract class ReflectionWrapper {
 
 	fun fields(name: String): Any? = clazz.getFieldAccess()[instance, name]
 
-	operator fun invoke(name: String, vararg parameter: Any?): Any? = methods(name, parameter)
+	operator fun invoke() = clazz
 }

@@ -4,12 +4,16 @@ package cn.berberman.emerald.extension
 
 import cn.berberman.emerald.nms.wrapper.chat.NmsChatComponentText
 import cn.berberman.emerald.nms.wrapper.chat.NmsChatMessageType
+import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
+import cn.berberman.emerald.nms.wrapper.packet.NmsPacketPlayOutChat
+import cn.berberman.emerald.nms.wrapper.packet.NmsPacketPlayOutSetSlot
 import cn.berberman.emerald.nms.wrapper.player.BukkitCraftPlayer
-import cn.berberman.emerald.nms.wrapper.player.NmsPacketPlayOutChat
+import cn.berberman.emerald.nms.wrapper.player.NmsEnumHand
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.ComponentBuilder
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
 
 /**
  * Convert bukkit player to craft player.
@@ -45,3 +49,12 @@ fun Player.sendComponentChat(builder: ComponentBuilder) =
 
 fun Player.sendComponentChat(text: String, builder: ComponentBuilder.() -> Unit = {}) =
 		spigot().sendMessage(ChatMessageType.CHAT, *componentChat(text, builder).create())
+
+fun Player.broadcastCarriedItem() = toCraftPlayer().getHandle().broadcastCarriedItem()
+
+fun Player.openBook(itemStack: ItemStack, enumHand: NmsEnumHand) = toCraftPlayer().getHandle().openBook(itemStack, enumHand)
+
+@Deprecated("magic", ReplaceWith("broadcastCarriedItem()"))
+fun Player.sendItemMessage(item: ItemStack) {
+	toCraftPlayer().getHandle().playerConnection.sendPacket(NmsPacketPlayOutSetSlot(-1, -1, NmsItemStack(item)))
+}

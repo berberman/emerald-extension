@@ -56,7 +56,7 @@ internal class PackingCommand
 		return action(p0, p1, p).let { result ->
 			if (result === CommandResult.Successful) true
 			else {
-				p0 sendMessage ChatColor.RED * "command execute error: ${result.message}"
+				p0 sendMessage ChatColor.RED * "error: ${result.message}"
 				if (Emerald.debug)
 					info("command:/$p1 execute error! message: ${result.message}")
 				after(p0, p1)

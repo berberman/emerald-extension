@@ -35,12 +35,14 @@ configurations {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile "org.spigotmc:spigot-api:$minecraft_version"
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile("org.spigotmc:spigot-api:$minecraft_version") {
+        exclude group: 'org.bukkit'
+    }
+    compile("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
     compile('org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5') {
         transitive = false
     }
-    artifact 'org.javassist:javassist:3.22.0-GA'
+//    artifact 'org.javassist:javassist:3.22.0-GA'
     artifact 'org.ow2.asm:asm-all:5.2'
 }
 
@@ -93,6 +95,7 @@ dokka {
     outputFormat = 'jekyll'
     outputDirectory = "$projectDir/docs"
 }
+
 kotlin {
     experimental {
         coroutines "enable"
@@ -112,7 +115,7 @@ task fatJar(group: 'build', type: Jar) {
     with(jar)
 }
 
-task lightJar(group: 'build', type: Jar) {
-    baseName = project.name + '-light'
-    with(jar)
+task sourceJar(group: 'build', type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }

@@ -1,8 +1,7 @@
-package cn.berberman.emerald.nms.wrapper.player
+package cn.berberman.emerald.nms.wrapper.packet
 
 import cn.berberman.emerald.nms.wrapper.chat.NmsChatMessageType
 import cn.berberman.emerald.nms.wrapper.chat.interfaces.NmsIChatBaseComponent
-import cn.berberman.emerald.nms.wrapper.chat.interfaces.NmsPacket
 import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.util.NmsUtil
 
@@ -21,7 +20,7 @@ class NmsPacketPlayOutChat(chatBaseComponent: NmsIChatBaseComponent, chatMessage
 		if (shouldUseNewFormat())
 			clazz.getConstructor(it,
 					ReflectionClasses.NmsClass.ChatMessageType()).newInstance(chatBaseComponent.nmsChat,
-					chatMessageType.getNMSInstance())
+					chatMessageType.getNmsInstance())
 		else clazz.getConstructor(it, Byte::class.java)
 				.newInstance(chatBaseComponent, chatMessageType.type)
 	}
