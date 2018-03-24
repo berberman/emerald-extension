@@ -53,3 +53,7 @@ operator fun Location.set(axis3D: Axis3D, double: Double) = when (axis3D) {
 	Axis3D.Z -> z = double
 }
 
+fun Location.approximate(location: Location) =
+		blockX == location.blockX
+				&& blockY == location.blockY
+				&& blockZ == location.blockZ
