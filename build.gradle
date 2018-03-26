@@ -44,6 +44,7 @@ dependencies {
     }
 //    artifact 'org.javassist:javassist:3.22.0-GA'
     artifact 'org.ow2.asm:asm-all:5.2'
+    compile'io.netty:netty-all:4.1.22.Final'
 }
 
 compileKotlin {
