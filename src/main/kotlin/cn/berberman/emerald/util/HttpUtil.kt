@@ -3,7 +3,7 @@ import kotlin.coroutines.experimental.suspendCoroutine
 
 object HttpUtil {
 
-	suspend fun sendGet(url: URL): String =
+	suspend fun originGet(url: URL): String =
 			suspendCoroutine {
 				try {
 					url.openConnection().apply {
