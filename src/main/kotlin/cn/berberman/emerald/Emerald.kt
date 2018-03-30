@@ -1,6 +1,9 @@
 package cn.berberman.emerald
 
+import cn.berberman.emerald.dsl.event.register
 import cn.berberman.emerald.events.proxy.EmeraldProxySelector
+import cn.berberman.emerald.util.onlinemode.OnlineModeValidate
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.net.ProxySelector
 
@@ -16,9 +19,8 @@ object Emerald {
 	/**
 	 * Quote plugin instance, must be call if you want to use this API.
 	 */
-	fun register(plugin: JavaPlugin) {
+	internal fun registerPlugin(plugin: JavaPlugin) {
 		Emerald.plugin = plugin
-		EmeraldProxySelector.init(ProxySelector.getDefault())
 	}
 
 	/**
@@ -26,5 +28,11 @@ object Emerald {
 	 */
 	fun setDebug(boolean: Boolean) {
 		debug = boolean
+	}
+
+	internal fun registerInternalEvents() {
+		EmeraldProxySelector.init(ProxySelector.getDefault())
+		if (Bukkit.getOnlineMode())
+			OnlineModeValidate.joinEvent.register()
 	}
 }

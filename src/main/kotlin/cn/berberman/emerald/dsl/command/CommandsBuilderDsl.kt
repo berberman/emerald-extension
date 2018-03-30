@@ -81,7 +81,7 @@ class CommandsBuilder internal constructor() {
 		commands.forEach {
 			commandMap.register(EmeraldUtil.plugin.name, it as Command)
 			if (Emerald.debug)
-				info("register command: /${it.name}")
+				info("registerPlugin command: /${it.name}")
 		}
 	}
 }

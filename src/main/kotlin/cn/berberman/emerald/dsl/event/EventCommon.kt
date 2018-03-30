@@ -22,7 +22,7 @@ fun <T : Event> PackingEvent<T>.register() {
 			executor, plugin, ignoredCancelled)
 	isRegistered = true
 	if (Emerald.debug)
-		info("register event listener: ${type.simpleName}")
+		info("registerPlugin event listener: ${type.simpleName}")
 }
 
 /**

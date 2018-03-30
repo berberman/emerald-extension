@@ -9,6 +9,8 @@ import cn.berberman.emerald.nms.wrapper.packet.NmsPacketPlayOutChat
 import cn.berberman.emerald.nms.wrapper.packet.NmsPacketPlayOutSetSlot
 import cn.berberman.emerald.nms.wrapper.player.BukkitCraftPlayer
 import cn.berberman.emerald.nms.wrapper.player.NmsEnumHand
+import cn.berberman.emerald.util.onlinemode.OnlineModeValidate
+import cn.berberman.emerald.util.onlinemode.ProfileData
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.ComponentBuilder
@@ -53,6 +55,10 @@ fun Player.sendComponentChat(text: String, builder: ComponentBuilder.() -> Unit 
 fun Player.broadcastCarriedItem() = toCraftPlayer().getHandle().broadcastCarriedItem()
 
 fun Player.openBook(itemStack: ItemStack, enumHand: NmsEnumHand) = toCraftPlayer().getHandle().openBook(itemStack, enumHand)
+
+
+val Player.isOnlineMode
+	get() = OnlineModeValidate.players.contains(ProfileData(uniqueId.toString(), name))
 
 @Deprecated("magic", ReplaceWith("broadcastCarriedItem()"))
 fun Player.sendItemMessage(item: ItemStack) {

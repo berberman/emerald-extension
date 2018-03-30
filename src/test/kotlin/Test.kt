@@ -3,8 +3,12 @@ import org.junit.Test
 
 class Test {
 	@Test
-	fun test() = runBlocking {
-		HttpUtil.get("https://api.mojang.com/users/profiles/minecraft/berberman") {}
+	fun testGet() = runBlocking {
+		HttpUtil.get("https://api.mojang.com/users/profiles/minecraft/berwberman") {
+			println(it.entity.content.bufferedReader().readText())
+		}
 		Unit
 	}
+
+
 }

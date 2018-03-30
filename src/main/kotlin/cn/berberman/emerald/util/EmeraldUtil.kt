@@ -16,15 +16,14 @@ import java.util.logging.Logger
 
 object EmeraldUtil {
 
-	internal val craftServerClass = ReflectionClasses.CraftBukkitClass.CraftServer()
-
-	val commandMap = craftServerClass
+	val commandMap = ReflectionClasses.CraftBukkitClass.CraftServer()
 			.invokeMethod(Bukkit.getServer(), "getCommandMap") as CommandMap
 
-	val serverThread = NmsUtil.getNMSClass("MinecraftServer").getFieldAccess()[craftServerClass
-			.getDeclaredField("console")
-			.also { it.isAccessible = true }
-			[Bukkit.getServer()], "primaryThread"] as Thread
+	val serverThread = NmsUtil.getNMSClass("MinecraftServer").getFieldAccess()[
+			ReflectionClasses.CraftBukkitClass.CraftServer()
+					.getDeclaredField("console")
+					.also { it.isAccessible = true }
+					[Bukkit.getServer()], "primaryThread"] as Thread
 
 	internal val emptyListener = object : Listener {}
 
