@@ -9,13 +9,13 @@ import org.bukkit.event.player.PlayerLoginEvent
 
 internal object OnlineModeValidate {
 
-	internal val players = mutableSetOf<ProfileData>()
+	internal val players = mutableMapOf<String, String>()
 
 	internal val joinEvent = createEventListener<PlayerLoginEvent> {
 		launch(SchedulerContxt) {
 			HttpUtil.get("https://api.mojang.com/users/profiles/minecraft/${player.name}") {
 				it.entity?.let { Gson().fromJson(it.content.bufferedReader(), ProfileData::class.java) }
-			}?.let { players.add(it) }
+			}.let { players[player.name] = it?.uuid ?: "" }
 		}
 	}
 }
