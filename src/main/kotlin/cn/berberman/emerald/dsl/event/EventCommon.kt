@@ -14,7 +14,7 @@ import org.bukkit.plugin.RegisteredListener
 import org.bukkit.plugin.SimplePluginManager
 
 /**
- * Register createEventListener.
+ * Register event Listener.
  */
 fun <T : Event> PackingEvent<T>.register() {
 	if (isRegistered) return
@@ -26,8 +26,8 @@ fun <T : Event> PackingEvent<T>.register() {
 }
 
 /**
- * Register createEventListener.
- * @param supplier A lambda supplies createEventListener listener
+ * Register event Listener.
+ * @param supplier A lambda supplies eventListener listener
  */
 fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
 	supplier().register()
@@ -42,7 +42,7 @@ internal fun RegisteredListener.getEventExecutor(): EventExecutor {
 }
 
 /**
- * Unregister createEventListener
+ * Unregister event Listener
  */
 fun <T : Event> PackingEvent<T>.unregister() {
 	if (!isRegistered) return
@@ -54,8 +54,8 @@ fun <T : Event> PackingEvent<T>.unregister() {
 }
 
 /**
- * Unregister createEventListener
- * @param supplier a lambda supplies isRegistered createEventListener
+ * Unregister eventListener
+ * @param supplier a lambda supplies isRegistered eventListener
  */
 fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
 	supplier().unregister()

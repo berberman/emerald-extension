@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender
  * Provide Emerald to access that, build a DSL command builder,
  * @param block DSL structure
  */
-fun createCommands(block: CommandsBuilder.() -> Unit) =
+fun commands(block: CommandsBuilder.() -> Unit) =
 		CommandsBuilder().apply(block)
 
 
@@ -97,8 +97,8 @@ typealias Action = (CommandSender, String, Array<out String>) -> CommandResult
  * Register commands.
  * @param block DSL part of building commands.
  */
-fun createAndRegisterCommands(block: CommandsBuilder.() -> Unit) =
-		createCommands(block).register()
+fun registerCommands(block: CommandsBuilder.() -> Unit) =
+		commands(block).register()
 
 
 fun CommandsBuilder.register() =

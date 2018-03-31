@@ -5,7 +5,6 @@ import org.bukkit.plugin.java.JavaPlugin
 
 abstract class KotlinPlugin(private val debug: Boolean = false) : JavaPlugin() {
 
-
 	abstract fun enable()
 
 	abstract fun disable()

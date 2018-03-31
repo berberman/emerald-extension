@@ -33,6 +33,6 @@ object Emerald {
 	internal fun registerInternalEvents() {
 		EmeraldProxySelector.init(ProxySelector.getDefault())
 		if (Bukkit.getOnlineMode())
-			OnlineModeValidate.joinEvent.register()
+			OnlineModeValidate.loginEvent.register()
 	}
 }

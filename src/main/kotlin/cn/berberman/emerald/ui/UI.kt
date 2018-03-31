@@ -1,6 +1,6 @@
 package cn.berberman.emerald.ui
 
-import cn.berberman.emerald.dsl.event.createEventListener
+import cn.berberman.emerald.dsl.event.eventListener
 import cn.berberman.emerald.dsl.event.register
 import cn.berberman.emerald.dsl.event.unregister
 import org.bukkit.entity.Player
@@ -34,17 +34,17 @@ data class UI internal constructor(private val inventory: Inventory) {
 	internal inner class InventoryClick {
 		private var registered = false
 
-		private val clickEvent = createEventListener<InventoryClickEvent>(EventPriority.MONITOR,
+		private val clickEvent = eventListener<InventoryClickEvent>(EventPriority.MONITOR,
 				true) {
-			if (clickedInventory != this@UI.inventory) return@createEventListener
+			if (clickedInventory != this@UI.inventory) return@eventListener
 			slots[rawSlot]?.let {
 				it.onClick(this)
 				it.modifiable.takeIf { it }?.let { isCancelled = true }
 			}
 		}
-		private val closeEvent = createEventListener<InventoryCloseEvent>(EventPriority.MONITOR,
+		private val closeEvent = eventListener<InventoryCloseEvent>(EventPriority.MONITOR,
 				true) {
-			if (inventory != this@UI.inventory) return@createEventListener
+			if (inventory != this@UI.inventory) return@eventListener
 			unregister()
 		}
 

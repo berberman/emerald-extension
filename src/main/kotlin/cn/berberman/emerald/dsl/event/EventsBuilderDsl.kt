@@ -13,10 +13,10 @@ import org.bukkit.event.EventPriority
 @EventBuilder
 class EventsBuilder internal constructor() {
 	/**
-	 * Build a packing createEventListener.
-	 * 	@param T target createEventListener
+	 * Build a packing eventListener.
+	 * 	@param T target eventListener
 	 * @param eventPriority Event Priority, default is normal
-	 * @param block DSL part of building createEventListener listeners
+	 * @param block DSL part of building eventListener listeners
 	 */
 	@EventBuilder
 	inline fun <reified T : Event> event(eventPriority: EventPriority = EventPriority.NORMAL,
@@ -33,7 +33,7 @@ class EventsBuilder internal constructor() {
 
 /**
  * Register events.
- * @param block DSL part of building createEventListener listeners
+ * @param block DSL part of building eventListener listeners
  */
 fun registerEvents(block: EventsBuilder.() -> Unit) =
 		EventsBuilder().apply(block).apply {
@@ -41,11 +41,11 @@ fun registerEvents(block: EventsBuilder.() -> Unit) =
 		}
 
 /**
- * Build a packing createEventListener.
- * @param T target createEventListener
+ * Build a packing eventListener.
+ * @param T target eventListener
  * @param eventPriority Event Priority, default is normal
- * @param block DSL part of building createEventListener listeners
- * @return the createEventListener listener that you build
+ * @param block DSL part of building eventListener listeners
+ * @return the eventListener listener that you build
  */
-inline fun <reified T : Event> createEventListener(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) =
+inline fun <reified T : Event> eventListener(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) =
 		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block)
