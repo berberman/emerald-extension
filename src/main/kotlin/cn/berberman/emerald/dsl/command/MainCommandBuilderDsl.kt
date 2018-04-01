@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender
  * @author berberman
  */
 @CommandBuilderMarker
-class DslCommandBuilder internal constructor(internal val name: String) {
+class CommandBuilderDsl internal constructor(internal val name: String) {
 	private val subCommands =
 			mutableMapOf<String, SubCommandBuilderDsl>()
 	//dsl start

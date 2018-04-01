@@ -1,5 +1,6 @@
 package cn.berberman.emerald.extension
 
+import com.google.gson.Gson
 import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.Material
@@ -7,6 +8,7 @@ import org.bukkit.World
 import org.bukkit.block.Block
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Entity
+import java.io.Reader
 
 /**
  * Join Chat Color and a String
@@ -60,3 +62,7 @@ fun World.setBlock(location: Location, type: Material): Block =
 		getBlockAt(location).apply { this.type = type }
 
 inline fun <reified T> Any?.safeCast() = this as? T
+
+inline fun <reified T : Any> Gson.fromJson(json: String): T = fromJson(json, T::class.java)
+
+inline fun <reified T : Any> Gson.fromJson(json: Reader): T = fromJson(json, T::class.java)

@@ -61,8 +61,8 @@ class CommandsBuilder internal constructor() {
 	 * @param name command name
 	 * @param block other information about command, a DSL structure
 	 */
-	fun command(name: String, block: DslCommandBuilder.() -> Unit) {
-		DslCommandBuilder(name).apply(block).apply {
+	fun command(name: String, block: CommandBuilderDsl.() -> Unit) {
+		CommandBuilderDsl(name).apply(block).apply {
 			PackingCommand(this.name,
 					description,
 					usageMessage,
