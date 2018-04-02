@@ -25,7 +25,6 @@ fun Player.toCraftPlayer() = BukkitCraftPlayer(this)
 /**
  * Send an action bar to a player.
  */
-@Deprecated("Low performance", ReplaceWith("sendComponentChat", "cn.berberman.emerald.extension.sendComponentChat"))
 fun Player.sendActionBar(text: String) =
 		toCraftPlayer()
 				.getHandle()
@@ -34,13 +33,25 @@ fun Player.sendActionBar(text: String) =
 						, NmsChatMessageType.GAME_INFO))
 
 fun Player.sendComponentActionBar(vararg components: BaseComponent) =
-		spigot().sendMessage(ChatMessageType.ACTION_BAR, *components)
+		try {
+			spigot().sendMessage(ChatMessageType.ACTION_BAR, *components)
+		} catch (ignore: Exception) {
+			sendActionBar(components.joinToString { it.toLegacyText() })
+		}
 
 fun Player.sendComponentActionBar(builder: ComponentBuilder) =
-		spigot().sendMessage(ChatMessageType.ACTION_BAR, *builder.create())
+		try {
+			spigot().sendMessage(ChatMessageType.ACTION_BAR, *builder.create())
+		} catch (ignore: Exception) {
+			sendActionBar(builder.create().joinToString { it.toLegacyText() })
+		}
 
 fun Player.sendComponentActionBar(text: String, builder: ComponentBuilder.() -> Unit = {}) =
-		spigot().sendMessage(ChatMessageType.ACTION_BAR, *componentChat(text, builder).create())
+		try {
+			spigot().sendMessage(ChatMessageType.ACTION_BAR, *componentChat(text, builder).create())
+		} catch (ignore: Exception) {
+			sendActionBar(text)
+		}
 
 fun Player.sendComponentChat(vararg components: BaseComponent) =
 		spigot().sendMessage(ChatMessageType.CHAT, *components)

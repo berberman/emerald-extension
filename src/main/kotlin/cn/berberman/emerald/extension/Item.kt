@@ -36,10 +36,6 @@ fun ItemStack.operateMeta(block: ItemMeta.() -> Unit) = apply {
  */
 fun ItemStack.modifyNBT(block: NBTModifier.() -> Unit) = NBTModifier(this).apply(block).getResult()
 
-//fun ItemStack.operateBookMeta(block: BukkitCraftMetaBook.() -> Unit) = apply {
-//	itemMeta = BukkitCraftMetaBook(itemMeta as? BookMeta
-//			?: throw IllegalStateException("This is not a book!")).apply(block).instance as ItemMeta?
-//}
 fun ItemStack.operateBookMeta(block: BookMeta.() -> Unit) = apply {
 	itemMeta = itemMeta.safeCast<BookMeta>()?.apply(block)
 			?: throw IllegalStateException("This is not a book!")

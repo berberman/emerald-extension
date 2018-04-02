@@ -33,13 +33,9 @@ fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
 	supplier().register()
 }
 
-internal fun RegisteredListener.getEventExecutor(): EventExecutor {
-//	val field = RegisteredListener::class.java.let {
-//		it.declaredFields.first { it.name == "executor" }
-//	}.apply { isAccessible = true }
-//	return field.get(this) as EventExecutor
-	return ReflectionUtil.getField("executor", this)
-}
+internal fun RegisteredListener.getEventExecutor(): EventExecutor =
+		ReflectionUtil.getField("executor", this)
+
 
 /**
  * Unregister event Listener
@@ -63,12 +59,6 @@ fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
 
 @Suppress("UNCHECKED_CAST")
 internal fun Class<out Event>.getEventListeners(): HandlerList {
-//	val getRegistrationClass = SimplePluginManager::class.java.let {
-//		//		val m = it.declaredMethods.first { it.name == "getRegistrationClass" }
-//		val m = it.getDeclaredMethod("getRegistrationClass", Class::class.java)
-//		m.isAccessible = true
-//		m
-//	}
 	val getRegistrationClass = ReflectionUtil.getMethod(SimplePluginManager::class.java,
 			"getRegistrationClass", Class::class.java)
 	return (getRegistrationClass(pluginManager, this) as Class<out Event>).let {

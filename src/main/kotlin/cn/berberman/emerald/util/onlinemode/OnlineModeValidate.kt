@@ -7,10 +7,11 @@ import cn.berberman.emerald.extension.fromJson
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.launch
 import org.bukkit.event.player.PlayerLoginEvent
+import java.util.concurrent.ConcurrentHashMap
 
 internal object OnlineModeValidate {
 
-	internal val players = mutableMapOf<String, String>()
+	internal val players = ConcurrentHashMap<String,String>()
 
 	internal val loginEvent = eventListener<PlayerLoginEvent> {
 		launch(SchedulerContxt) {
