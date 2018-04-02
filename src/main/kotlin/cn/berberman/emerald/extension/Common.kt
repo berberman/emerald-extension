@@ -63,6 +63,8 @@ fun World.setBlock(location: Location, type: Material): Block =
 
 inline fun <reified T> Any?.safeCast() = this as? T
 
+inline fun <reified T> Any?.unsafeCast() = safeCast<T>()!!
+
 inline fun <reified T : Any> Gson.fromJson(json: String): T = fromJson(json, T::class.java)
 
 inline fun <reified T : Any> Gson.fromJson(json: Reader): T = fromJson(json, T::class.java)

@@ -1,8 +1,10 @@
 package cn.berberman.emerald.util
 
+import cn.berberman.emerald.extension.safeCast
+import cn.berberman.emerald.extension.unsafeCast
 import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.invokeMethod
+import cn.berberman.emerald.reflection.invokeMethodSpecificTypes
 import org.bukkit.Bukkit
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.IllegalPluginAccessException
@@ -34,21 +36,14 @@ object NmsUtil {
 	 * @param original bukkit ItemStack
 	 */
 	fun asNMSCopy(original: ItemStack): Any = ReflectionClasses.CraftBukkitClass.CraftItemStack()
-			.invokeMethod(null, "asNMSCopy", arrayOf(ItemStack::class.java), original)
+			.invokeMethodSpecificTypes(null, "asNMSCopy", arrayOf(ItemStack::class.java.unsafeCast()), original)
 			?: throw IllegalPluginAccessException("Convert $original error.")
-//	fun asNMSCopy(original: ItemStack): Any = ReflectionClasses.CraftBukkitClass.CraftItemStack()
-//			.getMethod("asNMSCopy", ItemStack::class.java)?.invoke(original, original)
-//			?: throw IllegalPluginAccessException("Convert $original error.")
-
 
 	/**
 	 * Convert NMS ItemStack to bukkit ItemStack
 	 * @param original NMS ItemStack
 	 */
-	fun asBukkitCopy(original: NmsItemStack) = ReflectionClasses.CraftBukkitClass.CraftItemStack()
-			.invokeMethod(null, "asBukkitCopy", arrayOf(ReflectionClasses.NmsClass.ItemStack()), original.instance) as? ItemStack
-			?: throw IllegalPluginAccessException("Convert $original error.")
-//	fun asBukkitCopy(original: NmsItemStack) = ReflectionClasses.CraftBukkitClass.CraftItemStack()
-//			.methods.firstOrNull { it.name == "asBukkitCopy" }?.invoke(original.instance, original.instance) as? ItemStack
-//			?: throw IllegalPluginAccessException("Convert $original error.")
+	fun asBukkitCopy(original: NmsItemStack): ItemStack = ReflectionClasses.CraftBukkitClass.CraftItemStack()
+			.invokeMethodSpecificTypes(null, "asBukkitCopy", arrayOf(ReflectionClasses.NmsClass.ItemStack()), original.instance)
+			.safeCast() ?: throw IllegalPluginAccessException("Convert $original error.")
 }
