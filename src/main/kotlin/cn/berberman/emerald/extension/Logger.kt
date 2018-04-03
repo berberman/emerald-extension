@@ -2,6 +2,7 @@
 
 package cn.berberman.emerald.extension
 
+import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.util.EmeraldUtil
 
 
@@ -30,7 +31,7 @@ fun info(msg: Any) = EmeraldUtil.logger.info(msg.toString())
  * @param  supplier   A function, which when called, produces the
  *                        desired log message
  */
-inline fun info(supplier: () -> Any) = EmeraldUtil.logger.info(supplier().toString())
+inline fun info(supplier: () -> Any) = info(supplier())
 
 /**
  * Log a WARNING message.
@@ -55,5 +56,11 @@ fun warning(msg: Any) = EmeraldUtil.logger.warning(msg.toString())
  * @param   supplier   A function, which when called, produces the
  *                        desired log message
  */
-inline fun warning(supplier: () -> Any) = EmeraldUtil.logger.warning(supplier().toString())
+inline fun warning(supplier: () -> Any) = warning(supplier())
 
+fun debug(msg: Any) =
+		if (Emerald.debug)
+			EmeraldUtil.logger.warning("[debug] $msg")
+		else Unit
+
+inline fun debug(supplier: () -> Any) = debug(supplier())

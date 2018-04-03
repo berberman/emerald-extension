@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap
 
 internal object OnlineModeValidate {
 
-	internal val players = ConcurrentHashMap<String,String>()
+	internal val players = ConcurrentHashMap<String, String>()
 
 	internal val loginEvent = eventListener<PlayerLoginEvent> {
 		launch(SchedulerContxt) {

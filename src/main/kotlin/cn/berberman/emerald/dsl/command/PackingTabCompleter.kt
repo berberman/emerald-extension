@@ -9,8 +9,13 @@ class PackingTabCompleter(private val action: PackingTabCompleter.(CommandSender
 		MutableList<String> by mutableListOf() {
 
 
-	override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): List<String> =
-			apply { action(sender, args) }.toList().apply { this@PackingTabCompleter.clear() }
+	override fun onTabComplete(sender: CommandSender,
+	                           command: Command,
+	                           alias: String,
+	                           args: Array<out String>): List<String> =
+			apply { action(sender, args) }
+					.toList()
+					.apply { this@PackingTabCompleter.clear() }
 
 }
 

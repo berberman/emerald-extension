@@ -8,7 +8,6 @@ import cn.berberman.emerald.reflection.getFieldAccess
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.inventory.meta.BookMeta
 
-@Deprecated("Low performance", ReplaceWith("BookMeta##spigot()", "org.bukkit.inventory.meta.BookMeta"))
 class BukkitCraftMetaBook(meta: BookMeta) : ReflectionWrapper(), BookMeta by meta {
 	override val clazz: Class<*> = ReflectionClasses.CraftBukkitClass.CraftMetaBook()
 

@@ -1,6 +1,6 @@
 package cn.berberman.emerald.util.onlinemode
-import com.google.gson.annotations.SerializedName
 
+import com.google.gson.annotations.SerializedName
 
 
 data class ProfileData(

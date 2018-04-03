@@ -1,8 +1,7 @@
 package cn.berberman.emerald.dsl.command
 
-import cn.berberman.emerald.Emerald
 import cn.berberman.emerald.dsl.annotation.CommonBuilderMarker
-import cn.berberman.emerald.extension.info
+import cn.berberman.emerald.extension.debug
 import cn.berberman.emerald.util.EmeraldUtil
 import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
@@ -80,8 +79,7 @@ class CommandsBuilder internal constructor() {
 	internal fun register(commandMap: CommandMap) {
 		commands.forEach {
 			commandMap.register(EmeraldUtil.plugin.name, it as Command)
-			if (Emerald.debug)
-				info("registerPlugin command: /${it.name}")
+			debug("registerPlugin command: /${it.name}")
 		}
 	}
 }

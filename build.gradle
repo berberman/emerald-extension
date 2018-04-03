@@ -45,6 +45,7 @@ dependencies {
 //    artifact 'org.javassist:javassist:3.22.0-GA'
     artifact 'org.ow2.asm:asm-all:5.2'
     artifact 'org.apache.httpcomponents:httpclient:4.5.5'
+    compile 'c3p0:c3p0:0.9.1.2'
 
 }
 

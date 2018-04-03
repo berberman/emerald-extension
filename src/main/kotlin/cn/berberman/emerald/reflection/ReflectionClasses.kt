@@ -23,7 +23,8 @@ object ReflectionClasses {
 		PlayerConnection("PlayerConnection"),
 		MinecraftServer("MinecraftServer"),
 		PacketPlayOutSetSlot("PacketPlayOutSetSlot"),
-		EnumHand("EnumHand");
+		EnumHand("EnumHand"),
+		NBTTagString("NBTTagString");
 
 		override val clazz = NmsUtil.getNMSClass(className)
 	}

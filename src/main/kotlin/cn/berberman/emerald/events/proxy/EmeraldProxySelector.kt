@@ -14,7 +14,7 @@ object EmeraldProxySelector : ProxySelector() {
 
 	override fun select(uri: URI): MutableList<Proxy>? {
 		return ServerNetWorkEvent(uri).also(EmeraldUtil.pluginManager::callEvent).let {
-			if (it.isCancelled) null else defaultProxySelector.select(uri)
+			if (it.isCancelled) null else defaultProxySelector.select(it.uri)
 		}
 	}
 

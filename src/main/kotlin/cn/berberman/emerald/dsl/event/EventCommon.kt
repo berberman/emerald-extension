@@ -1,7 +1,6 @@
 package cn.berberman.emerald.dsl.event
 
-import cn.berberman.emerald.Emerald
-import cn.berberman.emerald.extension.info
+import cn.berberman.emerald.extension.debug
 import cn.berberman.emerald.reflection.invokeMethod
 import cn.berberman.emerald.util.EmeraldUtil.emptyListener
 import cn.berberman.emerald.util.EmeraldUtil.plugin
@@ -21,17 +20,16 @@ fun <T : Event> PackingEvent<T>.register() {
 	pluginManager.registerEvent(type, emptyListener, eventPriority,
 			executor, plugin, ignoredCancelled)
 	isRegistered = true
-	if (Emerald.debug)
-		info("registerPlugin event listener: ${type.simpleName}")
+	debug("registerPlugin event listener: ${type.simpleName}")
 }
 
 /**
  * Register event Listener.
  * @param supplier A lambda supplies eventListener listener
  */
-fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) {
-	supplier().register()
-}
+inline fun <T : Event> registerEvent(supplier: () -> PackingEvent<T>) =
+		supplier().register()
+
 
 internal fun RegisteredListener.getEventExecutor(): EventExecutor =
 		ReflectionUtil.getField("executor", this)
@@ -47,15 +45,16 @@ fun <T : Event> PackingEvent<T>.unregister() {
 				.let(it::unregister)
 	}
 	isRegistered = false
+	debug("unregisterPlugin event listener: ${type.simpleName}")
 }
 
 /**
  * Unregister eventListener
  * @param supplier a lambda supplies isRegistered eventListener
  */
-fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) {
-	supplier().unregister()
-}
+inline fun <T : Event> unregisterEvent(supplier: () -> PackingEvent<T>) =
+		supplier().unregister()
+
 
 @Suppress("UNCHECKED_CAST")
 internal fun Class<out Event>.getEventListeners(): HandlerList {
