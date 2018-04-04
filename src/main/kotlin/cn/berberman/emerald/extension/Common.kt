@@ -61,9 +61,9 @@ infix fun CommandSender.sendMessage(message: String) = sendMessage(message)
 fun World.setBlock(location: Location, type: Material): Block =
 		getBlockAt(location).apply { this.type = type }
 
-inline fun <reified T, reified R> T?.safeCast() = this as? R
+inline fun <reified T> Any?.safeCast() = this as? T
 
-inline fun <reified T, reified R> T.unsafeCast() = safeCast<T, R>()!!
+inline fun <reified T> Any.unsafeCast() = safeCast<T>()!!
 
 inline fun <reified T : Any> Gson.fromJson(json: String): T = fromJson(json, T::class.java)
 
