@@ -1,13 +1,15 @@
 package cn.berberman.emerald.nms.wrapper.chat
 
+import cn.berberman.emerald.nms.wrapper.IWrapper
 import cn.berberman.emerald.reflection.ReflectionClasses
+import cn.berberman.emerald.reflection.invokeMethodSpecificTypes
 
 /**
  * Corresponding ChatMessageType Enum
  * All methods are realized by reflection.
  * @author berberman
  */
-enum class NmsChatMessageType(val type: Byte) {
+enum class NmsChatMessageType(val type: Byte) : IWrapper {
 	/**
 	 * normal format
 	 */
@@ -25,9 +27,9 @@ enum class NmsChatMessageType(val type: Byte) {
 	 * Use reflection to get enum instance.
 	 * @return nms instance of the enum.
 	 */
-	fun getNmsInstance(): Any {
-		val clazz = ReflectionClasses.NmsClass.ChatMessageType()
-		val a = clazz.methods.first { it.name == "a" && it.returnType == clazz }
-		return a(null, type)
-	}
+
+	override val handle: Any =
+			ReflectionClasses.NmsClass.ChatMessageType()
+					.invokeMethodSpecificTypes(null, "a",
+							arrayOf(Byte::class.java as Class<*>), type)!!
 }

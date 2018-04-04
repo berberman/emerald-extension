@@ -2,7 +2,7 @@ package cn.berberman.emerald.nms.wrapper.item
 
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.inventory.ItemStack
 
@@ -21,7 +21,7 @@ class NmsItemStack(itemStack: ItemStack) : ReflectionWrapper() {
 	/**
 	 * an instance of nmsItemStack holds by this class.
 	 */
-	override val instance: Any = NmsUtil.asNMSCopy(itemStack)
+	override val handle: Any = NmsUtil.asNMSCopy(itemStack)
 
 	/**
 	 * Whether nms has NBT Tag.
@@ -40,6 +40,6 @@ class NmsItemStack(itemStack: ItemStack) : ReflectionWrapper() {
 	 * @param nmsNBTTagCompound tag
 	 */
 	fun setTag(nmsNBTTagCompound: NmsNBTTagCompound) {
-		methods("setTag", nmsNBTTagCompound.instance)
+		methods("setTag", nmsNBTTagCompound.handle)
 	}
 }

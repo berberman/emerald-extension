@@ -44,6 +44,6 @@ object NmsUtil {
 	 * @param original NMS ItemStack
 	 */
 	fun asBukkitCopy(original: NmsItemStack): ItemStack = ReflectionClasses.CraftBukkitClass.CraftItemStack()
-			.invokeMethodSpecificTypes(null, "asBukkitCopy", arrayOf(ReflectionClasses.NmsClass.ItemStack()), original.instance)
+			.invokeMethodSpecificTypes(null, "asBukkitCopy", arrayOf(ReflectionClasses.NmsClass.ItemStack()), original.handle)
 			.safeCast() ?: throw IllegalPluginAccessException("Convert $original error.")
 }

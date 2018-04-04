@@ -9,7 +9,7 @@ class NBTRawModifier(itemStack: ItemStack) : NBTModifier(itemStack) {
 
 	//dsl start
 	fun addRawTag(name: String, block: NmsNBTTagCompound.() -> Unit) {
-		tag.set(name, NmsNBTTagCompound().apply(block).instance)
+		tag.set(name, NmsNBTTagCompound().apply(block).handle)
 	}
 
 	fun getRawTagOrNull(name: String): NmsNBTTagCompound? {

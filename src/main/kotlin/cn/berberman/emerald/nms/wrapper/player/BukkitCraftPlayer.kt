@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.wrapper.player
 
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import org.bukkit.entity.Player
 
 /**
@@ -11,11 +11,10 @@ import org.bukkit.entity.Player
  * @author berberman
  * @param player bukkit player
  */
-class BukkitCraftPlayer(val player: Player) : ReflectionWrapper() {
+class BukkitCraftPlayer(player: Player) : ReflectionWrapper() {
 	override val clazz: Class<*> = ReflectionClasses.CraftBukkitClass.CraftPlayer()
 
-	override val instance: Any
-		get() = player
+	override val handle: Any = player
 
 	/**
 	 * Get entity player

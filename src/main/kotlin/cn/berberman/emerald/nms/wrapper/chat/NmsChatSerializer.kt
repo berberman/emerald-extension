@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.wrapper.chat
 
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.reflection.invokeMethod
 import org.bukkit.plugin.IllegalPluginAccessException
@@ -18,6 +18,6 @@ class NmsChatSerializer : ReflectionWrapper() {
 
 	override val clazz: Class<*> = NmsChatSerializer.clazz
 
-	override val instance: Any = clazz.getConstructorAccess().newInstance()
+	override val handle: Any = clazz.getConstructorAccess().newInstance()
 
 }

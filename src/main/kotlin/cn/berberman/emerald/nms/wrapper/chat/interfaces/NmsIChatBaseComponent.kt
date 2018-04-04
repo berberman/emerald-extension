@@ -1,6 +1,6 @@
 package cn.berberman.emerald.nms.wrapper.chat.interfaces
 
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 
 /**
  * Corresponding IChatBaseComponent, a nms interface
@@ -13,6 +13,6 @@ abstract class NmsIChatBaseComponent protected constructor() : ReflectionWrapper
 	 */
 	abstract val nmsChat: Any
 
-	override val instance: Any
+	final override val handle: Any
 		get() = nmsChat
 }

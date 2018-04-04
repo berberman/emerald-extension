@@ -10,6 +10,6 @@ class NmsPacketPlayOutSetSlot(var1: Int, var2: Int, itemStack: NmsItemStack) : N
 	override val nmsPacket: Any =
 			clazz.getConstructor(Int::class.java, Int::class.java,
 					ReflectionClasses.NmsClass.ItemStack())
-					.newInstance(var1, var2, itemStack.instance)
+					.newInstance(var1, var2, itemStack.handle)
 
 }

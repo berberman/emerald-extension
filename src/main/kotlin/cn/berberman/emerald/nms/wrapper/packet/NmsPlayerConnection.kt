@@ -2,7 +2,7 @@ package cn.berberman.emerald.nms.wrapper.packet
 
 import cn.berberman.emerald.nms.wrapper.player.NmsEntityPlayer
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 
 /**
  * Corresponding PlayerConnection
@@ -12,11 +12,10 @@ import cn.berberman.emerald.reflection.ReflectionWrapper
  * @author berberman
  * @param nmsPlayerConnection raw nms player connection
  */
-class NmsPlayerConnection(val nmsPlayerConnection: Any) : ReflectionWrapper() {
+class NmsPlayerConnection(nmsPlayerConnection: Any) : ReflectionWrapper() {
 	override val clazz: Class<*> = ReflectionClasses.NmsClass.PlayerConnection()
 
-	override val instance: Any
-		get() = nmsPlayerConnection
+	override val handle: Any = nmsPlayerConnection
 
 	/**
 	 * Send packet to player

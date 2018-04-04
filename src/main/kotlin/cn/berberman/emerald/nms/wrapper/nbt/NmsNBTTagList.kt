@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.wrapper.nbt
 
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.util.ReflectionUtil
 
@@ -22,8 +22,8 @@ class NmsNBTTagList : ReflectionWrapper {
 	 * Base constructor, which will new a NBTTagList instance.
 	 */
 	constructor() {
-		instance = clazz.getConstructorAccess().newInstance()
-		internalList = ReflectionUtil.getField(clazz, "list", instance)
+		handle = clazz.getConstructorAccess().newInstance()
+		internalList = ReflectionUtil.getField(clazz, "list", handle)
 	}
 
 	/**
@@ -31,11 +31,11 @@ class NmsNBTTagList : ReflectionWrapper {
 	 * @param original a NBTTagList instance.
 	 */
 	constructor(original: Any) {
-		instance = original
-		internalList = ReflectionUtil.getField(clazz, "list", instance)
+		handle = original
+		internalList = ReflectionUtil.getField(clazz, "list", handle)
 	}
 
-	override val instance: Any
+	override val handle: Any
 
 	private val internalList: ArrayList<*>
 

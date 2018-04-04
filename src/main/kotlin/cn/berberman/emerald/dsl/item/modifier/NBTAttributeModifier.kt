@@ -21,7 +21,7 @@ class NBTAttributeModifier(itemStack: ItemStack) : NBTModifier(itemStack) {
 	 * Let outer class to access modifier.
 	 */
 	fun addAttributeTag(block: NBTAttributeTagBuilder.() -> Unit) = operateList {
-		add(NBTAttributeTagBuilder().apply(block).nbtTagCompound.instance)
+		add(NBTAttributeTagBuilder().apply(block).nbtTagCompound.handle)
 	}
 
 	fun removeAttributeTagByIndex(index: Int) = operateList {
@@ -34,7 +34,7 @@ class NBTAttributeModifier(itemStack: ItemStack) : NBTModifier(itemStack) {
 			ReflectionUtil.getField<String>(ReflectionClasses.NmsClass.NBTTagString(),
 					"data", value) == key
 		}.let {
-			getInternal().removeAll(it.map(NmsNBTTagCompound::instance))
+			getInternal().removeAll(it.map(NmsNBTTagCompound::handle))
 		}
 	}
 
@@ -48,7 +48,7 @@ class NBTAttributeModifier(itemStack: ItemStack) : NBTModifier(itemStack) {
 	//dsl end
 
 	private fun operateList(block: NmsNBTTagList.() -> Unit) =
-			tag.set("AttributeModifiers", getOrNewList().apply(block).instance)
+			tag.set("AttributeModifiers", getOrNewList().apply(block).handle)
 
 	private fun getOrNewList() = tag.get("AttributeModifiers")?.let { NmsNBTTagList(it) }
 			?: NmsNBTTagList()

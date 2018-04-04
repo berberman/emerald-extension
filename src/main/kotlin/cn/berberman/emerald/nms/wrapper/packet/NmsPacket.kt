@@ -1,6 +1,6 @@
 package cn.berberman.emerald.nms.wrapper.packet
 
-import cn.berberman.emerald.reflection.ReflectionWrapper
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 
 /**
  * Corresponding Packet, a nms interface
@@ -13,6 +13,6 @@ abstract class NmsPacket : ReflectionWrapper() {
 	 */
 	abstract val nmsPacket: Any
 
-	override val instance: Any
+	final override val handle: Any
 		get() = nmsPacket
 }
