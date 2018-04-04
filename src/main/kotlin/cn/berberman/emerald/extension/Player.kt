@@ -66,9 +66,10 @@ fun Player.broadcastCarriedItem() = toCraftPlayer().getHandle().broadcastCarried
 
 fun Player.openBook(itemStack: ItemStack, enumHand: NmsEnumHand) = toCraftPlayer().getHandle().openBook(itemStack, enumHand)
 
-
+//TODO temporary restoration
 val Player.isOnlineMode
-	get() = OnlineModeValidate.players[name]?.equals(uniqueId.toString()) ?: false
+//	get() = OnlineModeValidate.players[name]?.also { debug { "$name:$it" } }?.equals(uniqueId.toString()) ?: false
+	get() = OnlineModeValidate.players.getOrDefault(name, "") == uniqueId.toString()
 
 @Deprecated("magic", ReplaceWith("broadcastCarriedItem()"))
 fun Player.sendItemMessage(item: ItemStack) {

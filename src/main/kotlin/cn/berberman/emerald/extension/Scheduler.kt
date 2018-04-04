@@ -32,8 +32,8 @@ fun bukkitAsyncLoop(delay: Long = 0L, block: () -> Boolean) = bukkitAsync(delay)
  * @param block action to run
  * @return a BukkitTask that contains the id number
  */
-fun bukkitAsync(delay: Long = 0L, block: () -> Unit): BukkitTask = Bukkit.getScheduler()
-		.let {
+fun bukkitAsync(delay: Long = 0L, block: () -> Unit): BukkitTask =
+		Bukkit.getScheduler().let {
 			if (delay != 0L) it.runTaskAsynchronously(plugin, block)
 			else it.runTaskLaterAsynchronously(plugin, block, delay)
 		}
@@ -46,8 +46,11 @@ fun bukkitAsync(delay: Long = 0L, block: () -> Unit): BukkitTask = Bukkit.getSch
  * @param block action to run
  * @return a BukkitTask that contains the id number
  */
-fun runOnServerThread(delay: Long = 0L, block: () -> Unit): BukkitTask = Bukkit.getScheduler()
-		.let {
+fun runOnServerThread(delay: Long = 0L, block: () -> Unit): BukkitTask =
+		Bukkit.getScheduler().let {
 			if (delay != 0L) it.runTask(plugin, block)
 			else it.runTaskLater(plugin, block, delay)
 		}
+
+fun bukkitPeriodAsync(delay: Long = 0L, period: Long, block: () -> Unit): BukkitTask =
+		Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, block, delay, period)
