@@ -20,7 +20,7 @@ class NmsPacketPlayOutChat(chatBaseComponent: NmsIChatBaseComponent, chatMessage
 		if (shouldUseNewFormat())
 			clazz.getConstructor(it,
 					ReflectionClasses.NmsClass.ChatMessageType()).newInstance(chatBaseComponent.nmsChat,
-					chatMessageType.getNmsInstance())
+					chatMessageType.handle)
 		else clazz.getConstructor(it, Byte::class.java)
 				.newInstance(chatBaseComponent, chatMessageType.type)
 	}
