@@ -64,7 +64,17 @@ fun Player.sendComponentChat(text: String, builder: ComponentBuilder.() -> Unit 
 
 fun Player.broadcastCarriedItem() = toCraftPlayer().getHandle().broadcastCarriedItem()
 
-fun Player.openBook(itemStack: ItemStack, enumHand: NmsEnumHand) = toCraftPlayer().getHandle().openBook(itemStack, enumHand)
+//fun Player.openBook(book: ItemStack, enumHand: NmsEnumHand) {
+//	inventory.itemInMainHand = book
+//	toCraftPlayer().getHandle().openBook(enumHand)
+//	inventory.itemInMainHand = temp
+//}
+fun Player.openBook(book: ItemStack) {
+	val temp=inventory.itemInMainHand
+	inventory.itemInMainHand = book
+	toCraftPlayer().getHandle().openBook(NmsEnumHand.MAIN_HAND)
+	inventory.itemInMainHand = temp
+}
 
 //TODO temporary restoration
 val Player.isOnlineMode
