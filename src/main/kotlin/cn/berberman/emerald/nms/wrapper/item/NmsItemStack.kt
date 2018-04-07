@@ -1,8 +1,8 @@
 package cn.berberman.emerald.nms.wrapper.item
 
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.nms.wrapper.nbt.NmsNBTTagCompound
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.util.NmsUtil
 import org.bukkit.inventory.ItemStack
 

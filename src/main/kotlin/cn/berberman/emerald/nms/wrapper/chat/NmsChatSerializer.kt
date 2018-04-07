@@ -1,7 +1,7 @@
 package cn.berberman.emerald.nms.wrapper.chat
 
-import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
+import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.getConstructorAccess
 import cn.berberman.emerald.reflection.invokeMethod
 import org.bukkit.plugin.IllegalPluginAccessException

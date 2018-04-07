@@ -47,5 +47,7 @@ fun registerEvents(block: EventsBuilder.() -> Unit) =
  * @param block DSL part of building eventListener listeners
  * @return the eventListener listener that you build
  */
-inline fun <reified T : Event> eventListener(eventPriority: EventPriority = EventPriority.NORMAL, ignoreCancelled: Boolean = false, noinline block: T.() -> Unit) =
+inline fun <reified T : Event> eventListener(eventPriority: EventPriority = EventPriority.NORMAL,
+                                             ignoreCancelled: Boolean = false,
+                                             noinline block: T.() -> Unit) =
 		PackingEvent(T::class.java, eventPriority, ignoreCancelled, block)

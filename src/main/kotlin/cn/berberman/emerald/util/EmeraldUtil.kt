@@ -19,11 +19,9 @@ object EmeraldUtil {
 	val commandMap = ReflectionClasses.CraftBukkitClass.CraftServer()
 			.invokeMethod(Bukkit.getServer(), "getCommandMap") as CommandMap
 
-	val serverThread = NmsUtil.getNMSClass("MinecraftServer").getFieldAccess()[
-			ReflectionClasses.CraftBukkitClass.CraftServer()
-					.getDeclaredField("console")
-					.also { it.isAccessible = true }
-					[Bukkit.getServer()], "primaryThread"] as Thread
+	val serverThread = ReflectionClasses.NmsClass.MinecraftServer().getFieldAccess()[
+			ReflectionUtil.getField(ReflectionClasses.CraftBukkitClass.CraftServer()
+					, "console", Bukkit.getServer()), "primaryThread"] as Thread
 
 	internal val emptyListener = object : Listener {}
 
@@ -46,7 +44,6 @@ object EmeraldUtil {
 	 */
 	val pluginManager: PluginManager = Bukkit.getPluginManager()
 
-//	val pool = ClassPool.getDefault().also { it.insertClassPath(LoaderClassPath(pluginManager.javaClass.classLoader)) }
 
 	/**
 	 * Creates an empty inventory.

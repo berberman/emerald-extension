@@ -1,8 +1,8 @@
 package cn.berberman.emerald.nms.wrapper.packet
 
+import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.nms.wrapper.player.NmsEntityPlayer
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 
 /**
  * Corresponding PlayerConnection
