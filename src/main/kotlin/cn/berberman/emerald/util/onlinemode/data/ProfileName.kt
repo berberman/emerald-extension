@@ -1,9 +1,9 @@
-package cn.berberman.emerald.util.onlinemode
+package cn.berberman.emerald.util.onlinemode.data
 
 import com.google.gson.annotations.SerializedName
 
 
-data class ProfileData(
+data class ProfileName(
 		@SerializedName("id") val uuid: String,
 		@SerializedName("name") val name: String
 )

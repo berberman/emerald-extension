@@ -121,3 +121,5 @@ task sourceJar(group: 'build', type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
 }
+
+jar.dependsOn(sourceJar)
