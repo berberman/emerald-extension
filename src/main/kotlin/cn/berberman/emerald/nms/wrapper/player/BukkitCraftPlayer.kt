@@ -12,7 +12,7 @@ import org.bukkit.entity.Player
  * @param player bukkit player
  */
 class BukkitCraftPlayer(player: Player) : ReflectionWrapper() {
-	override val clazz: Class<*> = ReflectionClasses.CraftBukkitClass.CraftPlayer()
+	override val clazz: Class<*> = ReflectionClasses.CraftBukkit.CraftPlayer()
 
 	override val handle: Any = player
 

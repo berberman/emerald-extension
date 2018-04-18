@@ -1,8 +1,8 @@
 package cn.berberman.emerald.util
 
 import cn.berberman.emerald.Emerald
+import cn.berberman.emerald.nms.wrapper.server.NmsMinecraftServer
 import cn.berberman.emerald.reflection.ReflectionClasses
-import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.reflection.invokeMethod
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandMap
@@ -16,12 +16,16 @@ import java.util.logging.Logger
 
 object EmeraldUtil {
 
-	val commandMap = ReflectionClasses.CraftBukkitClass.CraftServer()
+	val commandMap = ReflectionClasses.CraftBukkit.CraftServer()
 			.invokeMethod(Bukkit.getServer(), "getCommandMap") as CommandMap
 
-	val serverThread = ReflectionClasses.NmsClass.MinecraftServer().getFieldAccess()[
-			ReflectionUtil.getField(ReflectionClasses.CraftBukkitClass.CraftServer()
-					, "console", Bukkit.getServer()), "primaryThread"] as Thread
+//	val serverThread = ReflectionClasses.NmsClass.MinecraftServer().getFieldAccess()[
+//			ReflectionUtil.getField(ReflectionClasses.CraftBukkitClass.CraftServer()
+//					, "console", Bukkit.getServer()), "primaryThread"] as Thread
+
+	val minecraftServer = NmsMinecraftServer
+
+	val serverThread: Thread = NmsMinecraftServer.primaryThread
 
 	internal val emptyListener = object : Listener {}
 

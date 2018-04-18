@@ -16,7 +16,7 @@ class NmsNBTTagList : ReflectionWrapper {
 	 * internal property to save corresponding nms class.<br>
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val clazz: Class<*> = ReflectionClasses.NmsClass.NBTTagList()
+	override val clazz: Class<*> = ReflectionClasses.Nms.NBTTagList()
 
 	/**
 	 * Base constructor, which will new a NBTTagList instance.

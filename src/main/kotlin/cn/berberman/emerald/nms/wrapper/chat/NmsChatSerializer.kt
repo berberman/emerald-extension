@@ -9,7 +9,7 @@ import org.bukkit.plugin.IllegalPluginAccessException
 class NmsChatSerializer : ReflectionWrapper() {
 
 	companion object {
-		private val clazz = ReflectionClasses.NmsClass.ChatSerializer()
+		private val clazz = ReflectionClasses.Nms.ChatSerializer()
 
 		fun decodeFromString(raw: String) = clazz.invokeMethod(
 				null, "a", raw

@@ -14,7 +14,7 @@ class NBTRawModifier(itemStack: ItemStack) : NBTModifier(itemStack) {
 
 	fun getRawTagOrNull(name: String): NmsNBTTagCompound? {
 		val instance = tag.get(name) ?: return null
-		if (!ReflectionClasses.NmsClass.NBTTagCompound().isInstance(instance)) return null
+		if (!ReflectionClasses.Nms.NBTTagCompound().isInstance(instance)) return null
 		return NmsNBTTagCompound(instance)
 	}
 

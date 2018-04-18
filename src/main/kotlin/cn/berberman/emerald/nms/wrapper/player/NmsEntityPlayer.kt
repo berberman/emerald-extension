@@ -3,9 +3,13 @@ package cn.berberman.emerald.nms.wrapper.player
 import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
 import cn.berberman.emerald.nms.wrapper.packet.NmsPlayerConnection
+import cn.berberman.emerald.nms.wrapper.world.NmsWorldServer
 import cn.berberman.emerald.reflection.ReflectionClasses
+import cn.berberman.emerald.reflection.ReflectionClasses.Nms.*
 import cn.berberman.emerald.reflection.getFieldAccess
 import cn.berberman.emerald.reflection.invokeMethod
+import cn.berberman.emerald.util.onlinemode.pojo.ProfileName
+import cn.berberman.emerald.util.onlinemode.pojo.toGameProfile
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
@@ -17,7 +21,7 @@ import org.bukkit.inventory.ItemStack
  * @param nmsEntityPlayer nmsEntityPlayer, get from reflection [BukkitCraftPlayer]
  */
 class NmsEntityPlayer(nmsEntityPlayer: Any) : ReflectionWrapper() {
-	override val clazz: Class<*> = ReflectionClasses.NmsClass.EntityPlayer()
+	override val clazz: Class<*> = EntityPlayer()
 
 	override val handle: Any = nmsEntityPlayer
 	/**
@@ -26,11 +30,21 @@ class NmsEntityPlayer(nmsEntityPlayer: Any) : ReflectionWrapper() {
 	val playerConnection = NmsPlayerConnection(clazz.getFieldAccess()[nmsEntityPlayer, "playerConnection"])
 
 	fun openBook(enumHand: NmsEnumHand) {
-		clazz.invokeMethod(handle, "a", arrayOf(ReflectionClasses.NmsClass.ItemStack(),
-				ReflectionClasses.NmsClass.EnumHand()), NmsItemStack(ItemStack(Material.WRITTEN_BOOK)).handle, enumHand.handle)
+		clazz.invokeMethod(handle, "a", arrayOf(ItemStack(),
+				EnumHand()), NmsItemStack(ItemStack(Material.WRITTEN_BOOK)).handle, enumHand.handle)
 	}
 
 	fun broadcastCarriedItem() {
 		methods("broadcastCarriedItem")
+	}
+
+	companion object {
+		fun new(worldServer: NmsWorldServer,
+		        profileName: ProfileName, playerInteractManager: NmsPlayerInteractManager) = EntityPlayer().getConstructor(
+				MinecraftServer(),
+				WorldServer(),
+				ReflectionClasses.MojangAuthLib.GameProfile(),
+				PlayerInteractManager()
+		).newInstance(worldServer.handle, profileName.toGameProfile(), playerInteractManager.handle).let(::NmsEntityPlayer)
 	}
 }

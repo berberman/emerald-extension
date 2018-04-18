@@ -13,7 +13,7 @@ import cn.berberman.emerald.reflection.ReflectionClasses
  * @param nmsPlayerConnection raw nms player connection
  */
 class NmsPlayerConnection(nmsPlayerConnection: Any) : ReflectionWrapper() {
-	override val clazz: Class<*> = ReflectionClasses.NmsClass.PlayerConnection()
+	override val clazz: Class<*> = ReflectionClasses.Nms.PlayerConnection()
 
 	override val handle: Any = nmsPlayerConnection
 

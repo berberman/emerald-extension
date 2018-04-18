@@ -10,7 +10,7 @@ object ReflectionClasses {
 		operator fun invoke() = clazz
 	}
 
-	enum class NmsClass(className: String) : ClassEnum {
+	enum class Nms(className: String) : ClassEnum {
 		ItemStack("ItemStack"),
 		ChatComponentText("ChatComponentText"),
 		ChatMessageType("ChatMessageType"),
@@ -24,17 +24,30 @@ object ReflectionClasses {
 		MinecraftServer("MinecraftServer"),
 		PacketPlayOutSetSlot("PacketPlayOutSetSlot"),
 		EnumHand("EnumHand"),
-		NBTTagString("NBTTagString");
+		NBTTagString("NBTTagString"),
+		PacketPlayOutNamedEntitySpawn("PacketPlayOutNamedEntitySpawn"),
+		PacketPlayOutPlayerInfo("PacketPlayOutPlayerInfo"),
+		EnumPlayerInfoAction("EnumPlayerInfoAction"),
+		PlayerInteractManager("NmsPlayerInteractManager"),
+		WorldServer("WorldServer");
 
 		override val clazz = NmsUtil.getNMSClass(className)
 	}
 
-	enum class CraftBukkitClass(className: String) : ClassEnum {
+	enum class CraftBukkit(className: String) : ClassEnum {
 		CraftPlayer("entity.CraftPlayer"),
 		CraftMetaBook("inventory.CraftMetaBook"),
 		CraftItemStack("inventory.CraftItemStack"),
+		CraftWorld("CraftWorld"),
 		CraftServer("CraftServer");
 
 		override val clazz: Class<*> = NmsUtil.getCraftBukkitClass(className)
+	}
+
+	enum class MojangAuthLib(className: String) : ClassEnum {
+		Property("properties.Property"),
+		GameProfile("GameProfile");
+
+		override val clazz: Class<*> = Class.forName("com.mojang.authlib.$className")
 	}
 }

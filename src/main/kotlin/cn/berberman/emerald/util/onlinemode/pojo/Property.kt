@@ -1,4 +1,4 @@
-package cn.berberman.emerald.util.onlinemode.data
+package cn.berberman.emerald.util.onlinemode.pojo
 
 data class Property(
 		val name: String,

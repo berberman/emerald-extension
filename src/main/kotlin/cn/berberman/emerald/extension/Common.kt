@@ -1,6 +1,8 @@
 package cn.berberman.emerald.extension
 
+import cn.berberman.emerald.nms.wrapper.world.BukkitCraftWorld
 import com.google.gson.Gson
+import org.apache.http.HttpEntity
 import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.Material
@@ -72,3 +74,8 @@ inline fun <reified T : Any> Gson.fromJson(json: Reader): T = fromJson(json, T::
 fun <T : Any> T.toJson(): String = Gson().toJson(this)
 
 fun <T> (() -> T).toUnit() = { this();Unit }
+
+inline fun <reified T : Any> HttpEntity.toObject() =
+		Gson().fromJson<T>(content.bufferedReader())
+
+fun World.toCraftWorld() = BukkitCraftWorld(this)

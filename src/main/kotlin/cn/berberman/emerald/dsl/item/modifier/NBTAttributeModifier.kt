@@ -31,7 +31,7 @@ class NBTAttributeModifier(itemStack: ItemStack) : NBTModifier(itemStack) {
 	private fun removeAttributeByString(key: String) = operateList {
 		getInternal().map(::NmsNBTTagCompound).filter {
 			val value = it.get(key) ?: return@filter false
-			ReflectionUtil.getField<String>(ReflectionClasses.NmsClass.NBTTagString(),
+			ReflectionUtil.getField<String>(ReflectionClasses.Nms.NBTTagString(),
 					"data", value) == key
 		}.let {
 			getInternal().removeAll(it.map(NmsNBTTagCompound::handle))

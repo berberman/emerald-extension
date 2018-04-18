@@ -9,6 +9,6 @@ enum class NmsEnumHand : IWrapper {
 	OFF_HAND;
 
 	override val handle: Any =
-			ReflectionClasses.NmsClass.EnumHand()
+			ReflectionClasses.Nms.EnumHand()
 					.invokeMethod(null, "valueOf", name)!!
 }

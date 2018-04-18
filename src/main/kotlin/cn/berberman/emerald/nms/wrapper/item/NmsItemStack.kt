@@ -17,7 +17,7 @@ class NmsItemStack(itemStack: ItemStack) : ReflectionWrapper() {
 	 * internal property to save corresponding nms class.
 	 *     You can't access this property, because it's inherited from NMSReflection.
 	 */
-	override val clazz: Class<*> = ReflectionClasses.NmsClass.ItemStack()
+	override val clazz: Class<*> = ReflectionClasses.Nms.ItemStack()
 	/**
 	 * an instance of nmsItemStack holds by this class.
 	 */

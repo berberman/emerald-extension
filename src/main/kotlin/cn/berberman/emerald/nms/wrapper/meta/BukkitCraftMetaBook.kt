@@ -9,7 +9,7 @@ import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.inventory.meta.BookMeta
 
 class BukkitCraftMetaBook(meta: BookMeta) : ReflectionWrapper(), BookMeta by meta {
-	override val clazz: Class<*> = ReflectionClasses.CraftBukkitClass.CraftMetaBook()
+	override val clazz: Class<*> = ReflectionClasses.CraftBukkit.CraftMetaBook()
 
 	override val handle: Any = meta
 

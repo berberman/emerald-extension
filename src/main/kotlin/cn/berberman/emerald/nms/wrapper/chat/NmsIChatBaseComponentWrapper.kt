@@ -7,5 +7,5 @@ class NmsIChatBaseComponentWrapper(nmsMsg: Any) : NmsIChatBaseComponent() {
 
 	override val nmsChat: Any = nmsMsg
 
-	override val clazz: Class<*> = ReflectionClasses.NmsClass.IChatBaseComponent()
+	override val clazz: Class<*> = ReflectionClasses.Nms.IChatBaseComponent()
 }

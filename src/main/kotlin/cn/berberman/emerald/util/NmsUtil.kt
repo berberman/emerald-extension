@@ -35,7 +35,7 @@ object NmsUtil {
 	 * Convert bukkit ItemStack to NmsItemStack
 	 * @param original bukkit ItemStack
 	 */
-	fun asNMSCopy(original: ItemStack): Any = ReflectionClasses.CraftBukkitClass.CraftItemStack()
+	fun asNMSCopy(original: ItemStack): Any = ReflectionClasses.CraftBukkit.CraftItemStack()
 			.invokeMethodSpecificTypes(null, "asNMSCopy", arrayOf(ItemStack::class.java.unsafeCast()), original)
 			?: throw IllegalPluginAccessException("Convert $original error.")
 
@@ -43,7 +43,7 @@ object NmsUtil {
 	 * Convert NMS ItemStack to bukkit ItemStack
 	 * @param original NMS ItemStack
 	 */
-	fun asBukkitCopy(original: NmsItemStack): ItemStack = ReflectionClasses.CraftBukkitClass.CraftItemStack()
-			.invokeMethodSpecificTypes(null, "asBukkitCopy", arrayOf(ReflectionClasses.NmsClass.ItemStack()), original.handle)
+	fun asBukkitCopy(original: NmsItemStack): ItemStack = ReflectionClasses.CraftBukkit.CraftItemStack()
+			.invokeMethodSpecificTypes(null, "asBukkitCopy", arrayOf(ReflectionClasses.Nms.ItemStack()), original.handle)
 			.safeCast() ?: throw IllegalPluginAccessException("Convert $original error.")
 }

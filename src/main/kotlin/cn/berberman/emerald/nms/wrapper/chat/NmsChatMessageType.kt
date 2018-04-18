@@ -29,7 +29,7 @@ enum class NmsChatMessageType(val type: Byte) : IWrapper {
 	 */
 
 	override val handle: Any =
-			ReflectionClasses.NmsClass.ChatMessageType()
+			ReflectionClasses.Nms.ChatMessageType()
 					.invokeMethodSpecificTypes(null, "a",
 							arrayOf(Byte::class.java as Class<*>), type)!!
 }
