@@ -1,9 +1,9 @@
 package cn.berberman.emerald.util.onlinemode
 
 import HttpUtil
-import cn.berberman.emerald.extension.toObject
 import cn.berberman.emerald.util.onlinemode.pojo.ProfileName
 import cn.berberman.emerald.util.onlinemode.pojo.ProfileSkin
+import toObject
 
 object AuthenticationUtil {
 

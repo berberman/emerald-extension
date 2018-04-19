@@ -1,3 +1,5 @@
+import cn.berberman.emerald.extension.fromJson
+import com.google.gson.Gson
 import org.apache.http.Header
 import org.apache.http.HttpEntity
 import org.apache.http.client.methods.CloseableHttpResponse
@@ -56,3 +58,5 @@ object HttpUtil {
 			}
 
 }
+inline fun <reified T : Any> HttpEntity.toObject() =
+		Gson().fromJson<T>(content.bufferedReader())

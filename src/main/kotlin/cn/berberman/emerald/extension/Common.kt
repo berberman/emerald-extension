@@ -73,9 +73,4 @@ inline fun <reified T : Any> Gson.fromJson(json: Reader): T = fromJson(json, T::
 
 fun <T : Any> T.toJson(): String = Gson().toJson(this)
 
-fun <T> (() -> T).toUnit() = { this();Unit }
-
-inline fun <reified T : Any> HttpEntity.toObject() =
-		Gson().fromJson<T>(content.bufferedReader())
-
 fun World.toCraftWorld() = BukkitCraftWorld(this)

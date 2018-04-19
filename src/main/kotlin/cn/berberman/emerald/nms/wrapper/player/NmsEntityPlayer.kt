@@ -29,9 +29,11 @@ class NmsEntityPlayer(nmsEntityPlayer: Any) : ReflectionWrapper() {
 	 */
 	val playerConnection = NmsPlayerConnection(clazz.getFieldAccess()[nmsEntityPlayer, "playerConnection"])
 
+	private val nmsBook by lazy { NmsItemStack(ItemStack(Material.WRITTEN_BOOK)) }
+
 	fun openBook(enumHand: NmsEnumHand) {
 		clazz.invokeMethod(handle, "a", arrayOf(ItemStack(),
-				EnumHand()), NmsItemStack(ItemStack(Material.WRITTEN_BOOK)).handle, enumHand.handle)
+				EnumHand()), nmsBook.handle, enumHand.handle)
 	}
 
 	fun broadcastCarriedItem() {
