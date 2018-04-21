@@ -27,9 +27,10 @@ object ReflectionClasses {
 		NBTTagString("NBTTagString"),
 		PacketPlayOutNamedEntitySpawn("PacketPlayOutNamedEntitySpawn"),
 		PacketPlayOutPlayerInfo("PacketPlayOutPlayerInfo"),
-		EnumPlayerInfoAction("EnumPlayerInfoAction"),
-		PlayerInteractManager("NmsPlayerInteractManager"),
-		WorldServer("WorldServer");
+		EnumPlayerInfoAction("PacketPlayOutPlayerInfo\$EnumPlayerInfoAction"),
+		PlayerInteractManager("PlayerInteractManager"),
+		WorldServer("WorldServer"),
+		PacketPlayOutPlayerListHeaderFooter("PacketPlayOutPlayerListHeaderFooter");
 
 		override val clazz = NmsUtil.getNMSClass(className)
 	}

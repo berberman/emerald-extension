@@ -1,8 +1,12 @@
-package cn.berberman.emerald.nms.wrapper.packet
+package cn.berberman.emerald.nms.wrapper.player
 
+import cn.berberman.emerald.extension.unsafeCast
 import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
-import cn.berberman.emerald.nms.wrapper.player.NmsEntityPlayer
+import cn.berberman.emerald.nms.wrapper.packet.NmsPacket
 import cn.berberman.emerald.reflection.ReflectionClasses
+import cn.berberman.emerald.reflection.getField
+import cn.berberman.emerald.util.NmsUtil
+import io.netty.channel.Channel
 
 /**
  * Corresponding PlayerConnection
@@ -16,6 +20,10 @@ class NmsPlayerConnection(nmsPlayerConnection: Any) : ReflectionWrapper() {
 	override val clazz: Class<*> = ReflectionClasses.Nms.PlayerConnection()
 
 	override val handle: Any = nmsPlayerConnection
+
+	val channel: Channel = fields("networkManager").let {
+		NmsUtil.getNMSClass("NetworkManager").getField(it!!, "channel")!!.unsafeCast()
+	}
 
 	/**
 	 * Send packet to player

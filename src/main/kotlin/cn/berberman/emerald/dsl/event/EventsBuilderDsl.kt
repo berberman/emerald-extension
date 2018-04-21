@@ -23,11 +23,14 @@ class EventsBuilder internal constructor() {
 	                                     ignoreCancelled: Boolean = false,
 	                                     noinline block: T.() -> Unit) =
 			PackingEvent(T::class.java, eventPriority, ignoreCancelled, block).let(events::add).takeIf { it }
-					?: throw IllegalArgumentException("Event Listener Already Existed")
-
+					?: throw IllegalArgumentException("Event listener already existed")
 
 	@PublishedApi
 	internal val events = mutableSetOf<PackingEvent<*>>()
+
+	fun registerAll() = events.forEach(PackingEvent<*>::register)
+
+	fun unregisterAll() = events.forEach(PackingEvent<*>::unregister)
 
 }
 
@@ -35,10 +38,8 @@ class EventsBuilder internal constructor() {
  * Register events.
  * @param block DSL part of building eventListener listeners
  */
-fun registerEvents(block: EventsBuilder.() -> Unit) =
-		EventsBuilder().apply(block).apply {
-			events.forEach(PackingEvent<*>::register)
-		}
+fun registerEventListeners(block: EventsBuilder.() -> Unit) =
+		EventsBuilder().apply(block).also(EventsBuilder::registerAll)
 
 /**
  * Build a packing eventListener.

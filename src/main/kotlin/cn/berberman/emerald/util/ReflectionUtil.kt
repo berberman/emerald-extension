@@ -5,12 +5,12 @@ import java.lang.reflect.Method
 
 object ReflectionUtil {
 
-	inline fun <reified T, reified R> getField(name: String, instance: T): R =
+	inline fun <reified T, reified R> getField(name: String, instance: T?): R =
 			T::class.java.getDeclaredField(name).apply {
 				isAccessible = true
 			}[instance].unsafeCast()
 
-	inline fun <reified R> getField(clazz: Class<*>, name: String, instance: Any): R =
+	inline fun <reified R> getField(clazz: Class<*>, name: String, instance: Any?): R =
 			clazz.getDeclaredField(name).apply {
 				isAccessible = true
 			}[instance].unsafeCast()

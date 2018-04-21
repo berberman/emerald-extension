@@ -1,7 +1,6 @@
-package cn.berberman.emerald.events.proxy
+package cn.berberman.emerald.util
 
-import cn.berberman.emerald.events.ServerNetWorkEvent
-import cn.berberman.emerald.util.EmeraldUtil
+import cn.berberman.emerald.events.server.ServerNetworkEvent
 import java.io.IOException
 import java.net.Proxy
 import java.net.ProxySelector
@@ -13,7 +12,7 @@ object EmeraldProxySelector : ProxySelector() {
 	private lateinit var defaultProxySelector: ProxySelector
 
 	override fun select(uri: URI): MutableList<Proxy>? {
-		return ServerNetWorkEvent(uri).also(EmeraldUtil.pluginManager::callEvent).let {
+		return ServerNetworkEvent(uri).also(EmeraldUtil.pluginManager::callEvent).let {
 			if (it.isCancelled) null else defaultProxySelector.select(it.uri)
 		}
 	}

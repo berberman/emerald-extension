@@ -18,7 +18,7 @@ class PackingEvent<in T : Event>(val type: Class<out Event>,
 	internal var isRegistered = false
 
 	@Suppress("UNCHECKED_CAST")
-	val executor: EventExecutor = EventExecutor { _, event ->
+	internal val executor: EventExecutor = EventExecutor { _, event ->
 		block(event as T)
 	}
 }

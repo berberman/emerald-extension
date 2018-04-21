@@ -15,5 +15,5 @@ object NmsMinecraftServer : ReflectionWrapper() {
 			"getServer"
 	)!!
 
-	val primaryThread: Thread = fields("primaryThread")!!.unsafeCast()
+	val primaryThread: Thread = fields("primaryThread")!!.unsafeCast<Thread>()
 }

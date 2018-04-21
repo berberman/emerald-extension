@@ -2,7 +2,6 @@ package cn.berberman.emerald.nms.wrapper.player
 
 import cn.berberman.emerald.nms.wrapper.ReflectionWrapper
 import cn.berberman.emerald.nms.wrapper.item.NmsItemStack
-import cn.berberman.emerald.nms.wrapper.packet.NmsPlayerConnection
 import cn.berberman.emerald.nms.wrapper.world.NmsWorldServer
 import cn.berberman.emerald.reflection.ReflectionClasses
 import cn.berberman.emerald.reflection.ReflectionClasses.Nms.*
