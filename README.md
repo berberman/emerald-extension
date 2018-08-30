@@ -1,6 +1,7 @@
 # Emerald Extension
+# **This project is abandoned, please see [emerald](https://github.com/berberman/emerald)!**  
 ![233](https://d1u5p3l4wpay3k.cloudfront.net/minecraft_zh_gamepedia/6/6a/Emerald.png?version=c18f3d42d9893b84e783362697408421)
-## [Chinese Version](README-CN.md)
+### [Chinese Version](README-CN.md)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7b4f22765ae44af4bd84103daddb00c7)](https://www.codacy.com/app/berberman/emerald-extension?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=berberman/emerald-extension&amp;utm_campaign=Badge_Grade)
